@@ -1,0 +1,701 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "H:\\Dev\\Product Sources\\C#\\ITAM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\vitritaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\vitritaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\phongbanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\phongbanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\nhacungcapviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\nhacungcapviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\trangthaitaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\trangthaitaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\loaitaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\loaitaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\dmtaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\dmtaisanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\hethongdmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\hethongdmviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\catalogs\\catalognode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\catalogs\\catalognode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\vitritaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\vitritaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\phongbanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\phongbanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\nhacungcapview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\nhacungcapview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\trangthaitaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\trangthaitaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\dmtaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\dmtaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\catalogs\\loaitaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\catalogs\\loaitaisanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\itam.wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\itam.wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\hethongdmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\hethongdmview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\dashboardview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\dashboardview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\resources\\datatemplates\\viewtemplates.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\resources\\datatemplates\\viewtemplates.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\commands\\relaycmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\commands\\relaycmd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\resources\\mainresource.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\resources\\mainresource.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\resources\\themes\\menutheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\resources\\themes\\menutheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\menubarviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\menubarviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\usercontrols\\menubaruc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\usercontrols\\menubaruc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\usercontrols\\menubaruc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\usercontrols\\menubaruc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\constants\\pagetitles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\constants\\pagetitles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\services\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\services\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}|ITAM.Application\\ITAM.AppCore.csproj|h:\\dev\\product sources\\c#\\itam\\itam.application\\interfaces\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}|ITAM.Application\\ITAM.AppCore.csproj|solutionrelative:itam.application\\interfaces\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\appsetting.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\appsetting.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\usercontrols\\toolbaruc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\usercontrols\\toolbaruc.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\resources\\themes\\toolbartheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\resources\\themes\\toolbartheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}|ITAM.Application\\ITAM.AppCore.csproj|h:\\dev\\product sources\\c#\\itam\\itam.application\\interfaces\\ihavetitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}|ITAM.Application\\ITAM.AppCore.csproj|solutionrelative:itam.application\\interfaces\\ihavetitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|h:\\dev\\product sources\\c#\\itam\\itam.wpf\\usercontrols\\toolbaruc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{65749972-8565-431B-A446-D48C0D5DACB3}|ITAM.WPF\\ITAM.WPF.csproj|solutionrelative:itam.wpf\\usercontrols\\toolbaruc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ViTriTaiSanViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\ViTriTaiSanViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\ViTriTaiSanViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\ViTriTaiSanViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\ViTriTaiSanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:05:35.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PhongBanViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\PhongBanViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\PhongBanViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\PhongBanViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\PhongBanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:05:23.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NhaCungCapViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\NhaCungCapViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\NhaCungCapViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\NhaCungCapViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\NhaCungCapViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:05:00.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TrangThaiTaiSanViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\TrangThaiTaiSanViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\TrangThaiTaiSanViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\TrangThaiTaiSanViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\TrangThaiTaiSanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:04:34.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DMTaiSanViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\DMTaiSanViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\DMTaiSanViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\DMTaiSanViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\DMTaiSanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:04:05.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoaiTaiSanViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\LoaiTaiSanViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\LoaiTaiSanViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\LoaiTaiSanViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\LoaiTaiSanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T09:03:40.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ViTriTaiSanView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\ViTriTaiSanView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\ViTriTaiSanView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\ViTriTaiSanView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\ViTriTaiSanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:49:03.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PhongBanView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\PhongBanView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\PhongBanView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\PhongBanView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\PhongBanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:48:44.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NhaCungCapView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\NhaCungCapView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\NhaCungCapView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\NhaCungCapView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\NhaCungCapView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:48:11.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TrangThaiTaiSanView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\TrangThaiTaiSanView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\TrangThaiTaiSanView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\TrangThaiTaiSanView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\TrangThaiTaiSanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:47:19.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CatalogNode.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\CatalogNode.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\CatalogNode.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\CatalogNode.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\CatalogNode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T08:10:27.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HeThongDMViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\HeThongDMViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\Catalogs\\HeThongDMViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\Catalogs\\HeThongDMViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\Catalogs\\HeThongDMViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAABgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T03:20:32.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DMTaiSanView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\DMTaiSanView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\DMTaiSanView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\DMTaiSanView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\DMTaiSanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:46:00.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoaiTaiSanView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\LoaiTaiSanView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\Catalogs\\LoaiTaiSanView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\Catalogs\\LoaiTaiSanView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\Catalogs\\LoaiTaiSanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T08:44:59.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DashboardView.xaml.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\DashboardView.xaml.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\DashboardView.xaml.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\DashboardView.xaml.cs",
+              "RelativeToolTip": "ITAM.WPF\\Views\\DashboardView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T07:09:02.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ViewTemplates.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\DataTemplates\\ViewTemplates.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Resources\\DataTemplates\\ViewTemplates.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\DataTemplates\\ViewTemplates.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Resources\\DataTemplates\\ViewTemplates.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T07:08:46.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HeThongDMView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\HeThongDMView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\HeThongDMView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\HeThongDMView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\HeThongDMView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T04:31:29.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\App.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\App.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\App.xaml",
+              "RelativeToolTip": "ITAM.WPF\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:20:55.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAnwBgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:05:00.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ITAM.WPF",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ITAM.WPF.csproj",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ITAM.WPF.csproj",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ITAM.WPF.csproj",
+              "RelativeToolTip": "ITAM.WPF\\ITAM.WPF.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-09T03:34:39.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\App.xaml.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\App.xaml.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\App.xaml.cs",
+              "RelativeToolTip": "ITAM.WPF\\App.xaml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAUwB4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:10:20.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\BaseViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\BaseViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\BaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:05:08.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RelayCMD.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Commands\\RelayCMD.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Commands\\RelayCMD.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Commands\\RelayCMD.cs",
+              "RelativeToolTip": "ITAM.WPF\\Commands\\RelayCMD.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T04:03:04.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "DashboardView.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\DashboardView.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Views\\DashboardView.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Views\\DashboardView.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Views\\DashboardView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T04:31:08.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MainResource.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\MainResource.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Resources\\MainResource.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\MainResource.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Resources\\MainResource.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-07-09T04:29:18.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "MenuBarViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\MenuBarViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\MenuBarViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\MenuBarViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\MenuBarViewModel.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAswCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:10:17.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "MenuBarUC.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\MenuBarUC.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\UserControls\\MenuBarUC.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\MenuBarUC.xaml",
+              "RelativeToolTip": "ITAM.WPF\\UserControls\\MenuBarUC.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:11:11.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "MenuBarUC.xaml.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\MenuBarUC.xaml.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\UserControls\\MenuBarUC.xaml.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\MenuBarUC.xaml.cs",
+              "RelativeToolTip": "ITAM.WPF\\UserControls\\MenuBarUC.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T03:11:40.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MenuTheme.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\Themes\\MenuTheme.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Resources\\Themes\\MenuTheme.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\Themes\\MenuTheme.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Resources\\Themes\\MenuTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:19:50.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\MainWindow.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\MainWindow.xaml",
+              "RelativeToolTip": "ITAM.WPF\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:58:54.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "PageTitles.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Constants\\PageTitles.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Constants\\PageTitles.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Constants\\PageTitles.cs",
+              "RelativeToolTip": "ITAM.WPF\\Constants\\PageTitles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T03:35:09.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "NavigationService.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Services\\NavigationService.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Services\\NavigationService.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Services\\NavigationService.cs",
+              "RelativeToolTip": "ITAM.WPF\\Services\\NavigationService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:13:50.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "INavigationService.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.Application\\Interfaces\\INavigationService.cs",
+              "RelativeDocumentMoniker": "ITAM.Application\\Interfaces\\INavigationService.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.Application\\Interfaces\\INavigationService.cs",
+              "RelativeToolTip": "ITAM.Application\\Interfaces\\INavigationService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T09:37:10.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "appsetting.json",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\appsetting.json",
+              "RelativeDocumentMoniker": "ITAM.WPF\\appsetting.json",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\appsetting.json",
+              "RelativeToolTip": "ITAM.WPF\\appsetting.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-08T03:11:46.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\MainWindow.xaml.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "ITAM.WPF\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T03:29:34.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ToolbarUC.xaml.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\ToolbarUC.xaml.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\UserControls\\ToolbarUC.xaml.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\ToolbarUC.xaml.cs",
+              "RelativeToolTip": "ITAM.WPF\\UserControls\\ToolbarUC.xaml.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAArwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T03:35:38.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\AssemblyInfo.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\AssemblyInfo.cs",
+              "RelativeToolTip": "ITAM.WPF\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T04:29:33.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "ITAM.WPF\\ViewModels\\DashboardViewModel.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\ViewModels\\DashboardViewModel.cs",
+              "RelativeToolTip": "ITAM.WPF\\ViewModels\\DashboardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T03:19:15.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ToolbarTheme.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\Themes\\ToolbarTheme.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\Resources\\Themes\\ToolbarTheme.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\Resources\\Themes\\ToolbarTheme.xaml",
+              "RelativeToolTip": "ITAM.WPF\\Resources\\Themes\\ToolbarTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:19:47.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "IHaveTitle.cs",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.Application\\Interfaces\\IHaveTitle.cs",
+              "RelativeDocumentMoniker": "ITAM.Application\\Interfaces\\IHaveTitle.cs",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.Application\\Interfaces\\IHaveTitle.cs",
+              "RelativeToolTip": "ITAM.Application\\Interfaces\\IHaveTitle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-08T04:27:04.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ToolbarUC.xaml",
+              "DocumentMoniker": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\ToolbarUC.xaml",
+              "RelativeDocumentMoniker": "ITAM.WPF\\UserControls\\ToolbarUC.xaml",
+              "ToolTip": "H:\\Dev\\Product Sources\\C#\\ITAM\\ITAM.WPF\\UserControls\\ToolbarUC.xaml",
+              "RelativeToolTip": "ITAM.WPF\\UserControls\\ToolbarUC.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-29T03:55:41.775Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

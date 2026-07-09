@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="ITAM.WPF.UserControls.ToolbarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ITAM.WPF.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+             mc:Ignorable="d" 
+              d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="materialDesign:PackIcon" x:Key="ToolbarIconStyle">
+            <Setter Property="Foreground" Value="DarkOrange"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </UserControl.Resources>
+    <ToolBarTray IsLocked="True">
+
+        <ToolBar OverflowMode="Never">
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Thêm">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Foreground="#047857" Style="{StaticResource ToolbarIconStyle}" Kind="Plus" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Thêm" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Sửa">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="Pencil" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Sửa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Xóa">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Foreground="#C62828" Style="{StaticResource ToolbarIconStyle}" Kind="CloseBox" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Xóa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Lưu">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="ContentSave" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Lưu" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Bỏ qua">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="DeleteSweepOutline" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Bỏ qua" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Đóng">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="ExitToApp" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Đóng" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
+    </ToolBarTray>
+</UserControl>

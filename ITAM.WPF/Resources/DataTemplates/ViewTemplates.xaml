@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="clr-namespace:ITAM.WPF.ViewModels"
+    xmlns:views="clr-namespace:ITAM.WPF.Views">
+
+    <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
+        <views:DashboardView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:HeThongDMViewModel}">
+        <views:HeThongDMView />
+    </DataTemplate>
+
+</ResourceDictionary>

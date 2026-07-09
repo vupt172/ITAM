@@ -1,0 +1,30 @@
+﻿<Application x:Class="ITAM.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ITAM.WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<materialDesign:CustomColorTheme BaseTheme="Light" 
+                                 PrimaryColor="#007ACC" 
+                                 SecondaryColor="#2D7D9A" />-->
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+                <ResourceDictionary Source="/Resources/MainResource.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/DataTemplates/ViewTemplates.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/MenuTheme.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/ToolbarTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- global style -->
+            <Style TargetType="Window" BasedOn="{StaticResource MaterialDesignWindow}">
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                <Setter Property="FontFamily" Value="{DynamicResource MaterialDesignFont}" />
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+                <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
