@@ -2,7 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:viewModels="clr-namespace:ITAM.WPF.ViewModels"
-    xmlns:views="clr-namespace:ITAM.WPF.Views">
+    xmlns:catalogViewModels="clr-namespace:ITAM.WPF.ViewModels.Catalogs"
+    xmlns:views="clr-namespace:ITAM.WPF.Views"
+    xmlns:catalogViews="clr-namespace:ITAM.WPF.Views.Catalogs"
+    >
+    
 
     <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
         <views:DashboardView />
@@ -10,6 +14,13 @@
 
     <DataTemplate DataType="{x:Type viewModels:HeThongDMViewModel}">
         <views:HeThongDMView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type catalogViewModels:DMTaiSanViewModel}">
+        <catalogViews:DMTaiSanView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type catalogViewModels:LoaiTaiSanViewModel}">
+        <catalogViews:LoaiTaiSanView />
     </DataTemplate>
 
 </ResourceDictionary>

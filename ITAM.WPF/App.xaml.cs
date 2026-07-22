@@ -1,11 +1,16 @@
 ﻿using ITAM.AppCore.Interfaces;
+using ITAM.Infrastructure.Data;
 using ITAM.WPF.Services;
 using ITAM.WPF.UserControls;
 using ITAM.WPF.ViewModels;
 using ITAM.WPF.ViewModels.Catalogs;
+using ITAM.WPF.Views.Catalogs;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Windows;
 
 namespace ITAM.WPF
@@ -17,22 +22,46 @@ namespace ITAM.WPF
     {
         public static IServiceProvider Services { get; private set; }
 
-        protected override void OnStartup(StartupEventArgs e)
+        public App()
         {
-            base.OnStartup(e);
+            IConfiguration configuration =
+            new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
             // Khai báo DI container và đăng ký các dịch vụ, ViewModel, và Window
             var services = new ServiceCollection();
+            services.AddSingleton(configuration);
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection")));
+
 
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MenuBarViewModel>();
+            services.AddSingleton<ToolbarViewModel>();
             services.AddSingleton<DashboardViewModel>();
+
+
             services.AddTransient<HeThongDMViewModel>();
+            services.AddTransient<DMTaiSanViewModel>();
+            services.AddTransient<PhongBanViewModel>();
+            services.AddTransient<NhaCungCapViewModel>();
+            services.AddTransient<LoaiTaiSanViewModel>();
+            services.AddTransient<ViTriTaiSanViewModel>();
+
 
             services.AddSingleton<MainWindow>();
 
             Services = services.BuildServiceProvider();
+        }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+     
             // Lấy MainWindow từ DI container và hiển thị nó
             var mainWindow = Services.GetRequiredService<MainWindow>();
             mainWindow.Show();

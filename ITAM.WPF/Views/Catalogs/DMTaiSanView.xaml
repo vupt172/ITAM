@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ITAM.WPF.Views.Catalogs"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="red">
+        <TextBlock Text="DMTaiSanView" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White"/>
     </Grid>
 </UserControl>

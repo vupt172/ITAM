@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.AppCore.Interfaces;
+using ITAM.WPF.Constants;
 using ITAM.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ITAM.WPF.Services
 {   /// <summary>
@@ -11,51 +13,78 @@ namespace ITAM.WPF.Services
     public partial class NavigationService : ObservableObject, INavigationService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly Stack<object> _backStack = new();
+        private readonly ToolbarViewModel _toolbarViewModel;
 
-        public NavigationService(IServiceProvider serviceProvider)
+        private readonly Dictionary<Type, BaseViewModel> _openedViews = new();
+        public ObservableCollection<BaseViewModel> OpenedViews { get; }
+    = new();
+        [ObservableProperty]
+        private BaseViewModel? currentView;
+        [ObservableProperty]
+        private string currentTitle = PageTitles.Default;
+
+        public NavigationService(IServiceProvider serviceProvider, ToolbarViewModel toolbarViewModel)
         {
             _serviceProvider = serviceProvider;
+            _toolbarViewModel = toolbarViewModel;
         }
-
-        [ObservableProperty]
-        private object? currentView;
-
-        [ObservableProperty]
-        private string currentTitle = string.Empty;
-
-
-        public bool CanGoBack => _backStack.Count > 0;
-
-        public void NavigateTo<TViewModel>(string? title = null)
-            where TViewModel : class
+        public void NavigateTo<TViewModel>() where TViewModel : BaseViewModel
         {
-            var viewModel = _serviceProvider.GetRequiredService<TViewModel>();
+            BaseViewModel vm;
 
-            NavigateTo(viewModel, title);
-        }  
-
-        public void NavigateTo(object viewModel, string? title = null)
+            if (_openedViews.TryGetValue(typeof(TViewModel), out vm))
+            {
+                OpenedViews.Remove(vm);
+                OpenedViews.Add(vm);
+            }
+            else
+            {
+                vm = _serviceProvider.GetRequiredService<TViewModel>();
+                _openedViews.Add(typeof(TViewModel), vm);
+                OpenedViews.Add(vm);
+            }
+            ActivateView(vm);
+        }
+        // Kích hoạt View ra màn hình chính
+        public void ActivateView(BaseViewModel viewModel)
         {
-            if (CurrentView != null)
-                _backStack.Push(CurrentView);
-
             CurrentView = viewModel;
-
-            // ưu tiên title truyền vào, không thì lấy từ BaseViewModel
-            CurrentTitle = title ?? (viewModel as BaseViewModel)?.Title ?? "";
-            OnPropertyChanged(nameof(CanGoBack));
+            UpdateToolbar(viewModel);
+            CurrentTitle = viewModel.Title;
         }
 
-        public void GoBack()
+        private void UpdateToolbar(BaseViewModel viewModel)
         {
-            if (_backStack.Count == 0) return;
+            if (viewModel is IToolbarAware toolbarAware)
+            {
+                _toolbarViewModel.Apply(toolbarAware.ToolbarState);
+            }
+            else
+            {
+                _toolbarViewModel.Default();
+            }
+        }
 
-            CurrentView = _backStack.Pop();
+        public void CloseView(BaseViewModel viewModel)
+        {
+            var viewType = viewModel.GetType();
 
-            CurrentTitle = (CurrentView as BaseViewModel)?.Title ?? "";
+            _openedViews.Remove(viewType);
+            OpenedViews.Remove(viewModel);
 
-            OnPropertyChanged(nameof(CanGoBack));
+            if (CurrentView == viewModel)
+            {
+                if (OpenedViews.Count > 0)
+                {
+                    ActivateView(OpenedViews[^1]);
+                }
+                else
+                {
+                    CurrentView = null;
+                    CurrentTitle = PageTitles.Default;
+                    _toolbarViewModel.Default();
+                }
+            }
         }
     }
 

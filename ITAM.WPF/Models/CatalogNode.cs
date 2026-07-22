@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.WPF.ViewModels.Catalogs
+namespace ITAM.WPF.Models
 {
     public class CatalogNode
     {
@@ -14,5 +14,6 @@ namespace ITAM.WPF.ViewModels.Catalogs
         public Type? ViewModelType { get; set; }
 
         public ObservableCollection<CatalogNode> Children { get; set; } = [];
+        public bool IsLeaf => ViewModelType != null;
     }
 }

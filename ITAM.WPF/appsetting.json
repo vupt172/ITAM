@@ -1,8 +1,0 @@
-﻿{
-  "ConnectionStrings": {
-    "Default": "Server=.;Database=Test;Trusted_Connection=True;"
-  },
-  "AppSettings": {
-    "Theme": "Light"
-  }
-}

@@ -21,7 +21,7 @@
             <userControl:MenuBarUC DataContext="{Binding MenuBarViewModel}"></userControl:MenuBarUC>
         </Grid>
         <Grid Grid.Row="1">
-            <userControl:ToolbarUC ></userControl:ToolbarUC>
+            <userControl:ToolbarUC DataContext="{Binding ToolbarViewModel}"></userControl:ToolbarUC>
         </Grid>
         <Grid Grid.Row="2">
             <ContentControl Content="{Binding NavigationService.CurrentView}"/>

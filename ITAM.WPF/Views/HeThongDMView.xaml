@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ITAM.WPF.Views"
+             xmlns:models="clr-namespace:ITAM.WPF.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- TreeView danh mục -->
+        <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#D0D0D0" Padding="0" Background="red">
+            <TreeView ItemsSource="{Binding Catalogs}"
+          SelectedItemChanged="TreeView_SelectedItemChanged">
+
+                <TreeView.Resources>
+                    <!-- Node có con -->
+                    <HierarchicalDataTemplate DataType="{x:Type models:CatalogNode}"
+                                  ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Title}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+
+            </TreeView>
+        </Border>
+        <!-- Nội dung danh mục -->
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="10"/>
     </Grid>
 </UserControl>

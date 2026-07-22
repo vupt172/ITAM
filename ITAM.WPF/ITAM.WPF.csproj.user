@@ -20,9 +20,6 @@
     <Compile Update="Views\Catalogs\PhongBanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Catalogs\TrangThaiTaiSanView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Catalogs\ViTriTaiSanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ITAM.WPF.Models;
+using ITAM.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,13 @@ namespace ITAM.WPF.Views
         {
             InitializeComponent();
         }
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (DataContext is HeThongDMViewModel vm)
+            {
+                vm.SelectedCatalog = e.NewValue as CatalogNode;
+            }
+        }
     }
+
 }
