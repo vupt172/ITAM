@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <SolidColorBrush x:Key="TreeItemSelectedBrush"
+                     Color="#007ACC"/>
+
+    <SolidColorBrush x:Key="TreeItemHoverBrush"
+                     Color="#D6ECFF"/>
+
+
+    <Style TargetType="TreeViewItem"
+       BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+
+        <Setter Property="Padding"
+            Value="4"/>
+
+        <Setter Property="Margin"
+            Value="2"/>
+
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius"
+                        Value="4"/>
+            </Style>
+        </Style.Resources>
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource TreeItemHoverBrush}"/>
+            </Trigger>
+
+            <Trigger Property="IsSelected"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource TreeItemSelectedBrush}"/>
+                <Setter Property="Foreground"
+                        Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="materialDesign:PackIcon" x:Key="HeThongDMIconStyle">
+        <Setter Property="Kind" Value="ChartBox"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsParent}"
+                             Value="True">
+                <Setter Property="Kind"
+                            Value="FolderCog"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

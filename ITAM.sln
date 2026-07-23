@@ -5,13 +5,13 @@ VisualStudioVersion = 17.14.37314.3 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.WPF", "ITAM.WPF\ITAM.WPF.csproj", "{65749972-8565-431B-A446-D48C0D5DACB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.AppCore", "ITAM.Application\ITAM.AppCore.csproj", "{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.AppCore", "ITAM.AppCore\ITAM.AppCore.csproj", "{D335D7D2-A76B-46D7-A306-0EB60BA2EB65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.Domain", "ITAM.Domain\ITAM.Domain.csproj", "{FA1D2235-D729-40E7-A100-305AA670539E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.Infrastructure", "ITAM.EFCore\ITAM.Infrastructure.csproj", "{3B1FB2B1-8502-49CC-A944-FA43728B6BFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.Infrastructure", "ITAM.Infrastructure\ITAM.Infrastructure.csproj", "{3B1FB2B1-8502-49CC-A944-FA43728B6BFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.Shared", "ITAM.Common\ITAM.Shared.csproj", "{659426BA-495C-44B9-ADBD-490D8A659B12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITAM.Shared", "ITAM.Shared\ITAM.Shared.csproj", "{659426BA-495C-44B9-ADBD-490D8A659B12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

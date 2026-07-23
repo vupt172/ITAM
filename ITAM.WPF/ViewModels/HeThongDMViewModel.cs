@@ -23,7 +23,7 @@ namespace ITAM.WPF.ViewModels
         private readonly INavigationService _navigationService;
 
         public override string Title => PageTitles.HeThongDM;
-        public ToolbarState ToolbarState { get; }
+        public ToolbarState ToolbarState { get; set; }
 
         public ObservableCollection<CatalogNode> Catalogs { get; }
 
@@ -31,7 +31,9 @@ namespace ITAM.WPF.ViewModels
         private CatalogNode? selectedCatalog;
 
         [ObservableProperty]
-        private object? currentView;
+        private BaseViewModel? currentView;
+
+        public IToolbarAware? CurrentToolbarTarget => CurrentView as IToolbarAware;
 
         public HeThongDMViewModel(IServiceProvider serviceProvider,INavigationService navigationService)
         {
@@ -104,7 +106,7 @@ namespace ITAM.WPF.ViewModels
 
         partial void OnSelectedCatalogChanged(CatalogNode? value)
         {
-            if (value == null || !value.IsLeaf)
+            if (value == null || value.IsParent)
                 return;
 
             switch (value.Title)
@@ -117,12 +119,20 @@ namespace ITAM.WPF.ViewModels
                     CurrentView = _serviceProvider.GetRequiredService<DMTaiSanViewModel>();
                     break;
             }
+            UpdateToolbar(CurrentView);
+        }
+
+        private void UpdateToolbar(BaseViewModel viewModel) {
+            if (viewModel is IToolbarAware toolbarAware)
+            {
+                ToolbarState = toolbarAware.ToolbarState;
+            }          
         }
 
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddCommand))]
-        private bool canAdd=true;
+        private bool canAdd = true;
 
         [RelayCommand(CanExecute = nameof(CanAdd))]
         private void Add()
@@ -131,7 +141,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(EditCommand))]
-        private bool canEdit=true;
+        private bool canEdit = true;
 
         [RelayCommand(CanExecute = nameof(CanEdit))]
         private void Edit()
@@ -140,7 +150,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
-        private bool canDelete=true;
+        private bool canDelete = true;
 
         [RelayCommand(CanExecute = nameof(CanDelete))]
         private void Delete()
@@ -167,7 +177,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CloseCommand))]
-        private bool canClose=true;
+        private bool canClose = true;
 
         [RelayCommand(CanExecute = nameof(CanClose))]
         private void Close()

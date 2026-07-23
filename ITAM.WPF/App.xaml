@@ -16,15 +16,9 @@
                 <ResourceDictionary Source="/Resources/DataTemplates/ViewTemplates.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/MenuTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/ToolbarTheme.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/SidebarHeThongDM.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!-- global style -->
-            <Style TargetType="Window" BasedOn="{StaticResource MaterialDesignWindow}">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
-                <Setter Property="FontFamily" Value="{DynamicResource MaterialDesignFont}" />
-                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
-                <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
-            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

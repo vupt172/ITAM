@@ -1,5 +1,7 @@
 ﻿using ITAM.AppCore.Interfaces;
+using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
+using ITAM.Infrastructure.Services;
 using ITAM.WPF.Services;
 using ITAM.WPF.UserControls;
 using ITAM.WPF.ViewModels;
@@ -34,18 +36,19 @@ namespace ITAM.WPF
             var services = new ServiceCollection();
             services.AddSingleton(configuration);
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection")));
-
-
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+            );
+            // DI Services
             services.AddSingleton<INavigationService, NavigationService>();
 
+            services.AddTransient<IPhongBanService, PhongBanService>();
+
+            // DI ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MenuBarViewModel>();
             services.AddSingleton<ToolbarViewModel>();
-            services.AddSingleton<DashboardViewModel>();
 
-
+            services.AddTransient<DashboardViewModel>();
             services.AddTransient<HeThongDMViewModel>();
             services.AddTransient<DMTaiSanViewModel>();
             services.AddTransient<PhongBanViewModel>();
@@ -53,7 +56,7 @@ namespace ITAM.WPF
             services.AddTransient<LoaiTaiSanViewModel>();
             services.AddTransient<ViTriTaiSanViewModel>();
 
-
+            // DI Windows
             services.AddSingleton<MainWindow>();
 
             Services = services.BuildServiceProvider();

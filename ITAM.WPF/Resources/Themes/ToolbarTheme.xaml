@@ -53,7 +53,19 @@
 
 
     <!-- ================= BUTTON INSIDE TOOLBAR ================= -->
-    <Style TargetType="Button" x:Key="ToolbarButtonStyle" >
+    <Style x:Key="ToolbarButtonStyle"
+       TargetType="Button"
+       BasedOn="{StaticResource MaterialDesignFlatButton}">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource ToolbarForegroundBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="55"/>
+
+    </Style>
+    <!--<Style TargetType="Button" x:Key="ToolbarButtonStyle" >
 
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource ToolbarForegroundBrush}"/>
@@ -93,7 +105,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
     <Style x:Key="ToolbarTextStyle"

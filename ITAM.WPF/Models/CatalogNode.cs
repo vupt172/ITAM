@@ -14,6 +14,6 @@ namespace ITAM.WPF.Models
         public Type? ViewModelType { get; set; }
 
         public ObservableCollection<CatalogNode> Children { get; set; } = [];
-        public bool IsLeaf => ViewModelType != null;
+        public bool IsParent => Children.Count > 0;
     }
 }

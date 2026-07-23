@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITAM.WPF.ViewModels.Catalogs
 {
-    internal class LoaiTaiSanViewModel
+   public class LoaiTaiSanViewModel : BaseViewModel
     {
     }
 }
