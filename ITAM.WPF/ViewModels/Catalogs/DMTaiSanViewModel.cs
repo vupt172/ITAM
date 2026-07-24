@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace ITAM.WPF.ViewModels.Catalogs
 {
-    public class DMTaiSanViewModel : BaseViewModel, IToolbarAware
+    public class DMTaiSanViewModel 
     {
         private readonly ICatalogService<DMTaiSan> _dmTaiSanService;
-        public ToolbarState ToolbarState { get; set; }
+        public ToolbarContext ToolbarState { get; set; }
 
         public DMTaiSanViewModel(ICatalogService<DMTaiSan> dmTaiSanService)
         {

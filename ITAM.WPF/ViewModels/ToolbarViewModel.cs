@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Common;
+using ITAM.AppCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +14,25 @@ namespace ITAM.WPF.ViewModels
 {
     public partial class ToolbarViewModel : ObservableObject
     {
-        private ICommand DisableCommand { get; }
-        [ObservableProperty]
-        private ICommand? addCommand;
+        private readonly IToolbarService _toolbarService;
 
         [ObservableProperty]
-        private ICommand? editCommand;
+        private ToolbarContext? currentState;
 
-        [ObservableProperty]
-        private ICommand? deleteCommand;
 
-        [ObservableProperty]
-        private ICommand? saveCommand;
-
-        [ObservableProperty]
-        private ICommand? cancelCommand;
-
-        [ObservableProperty]
-        private ICommand? closeCommand;
-
-        public ToolbarViewModel()
+        public ToolbarViewModel(IToolbarService toolbarService)
         {
-            DisableCommand = new RelayCommand(() => { }, () => false);
+            _toolbarService= toolbarService;
+            CurrentState = toolbarService.CurrentState;
+     
+
+            toolbarService.StateChanged += state =>
+            {
+                CurrentState = state;
+            };
+
         }
-        public void Apply(ToolbarState state)
-        {
-            AddCommand = state.AddCommand;
-            EditCommand = state.EditCommand;
-            DeleteCommand = state.DeleteCommand;
-            SaveCommand = state.SaveCommand;
-            CancelCommand = state.CancelCommand;
-            CloseCommand = state.CloseCommand;
-        }
-        public void Default()
-        {
-            AddCommand = DisableCommand;
-            EditCommand = DisableCommand;
-            DeleteCommand = DisableCommand;
-            SaveCommand = DisableCommand;
-            CancelCommand = DisableCommand;
-            CloseCommand = DisableCommand;
-        }
+    
 
     }
 }

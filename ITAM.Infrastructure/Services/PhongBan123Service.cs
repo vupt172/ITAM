@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace ITAM.Infrastructure.Services
 {
-    public class PhongBanService : IPhongBanService
+    public class PhongBan123Service : IPhongBanService
     {
         private readonly AppDbContext _context;
-        public PhongBanService(AppDbContext context)
+        public PhongBan123Service(AppDbContext context)
         {
             _context = context;
         }

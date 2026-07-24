@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ITAM.AppCore.Common;
 using ITAM.AppCore.Interfaces;
 using ITAM.WPF.Constants;
 using ITAM.WPF.ViewModels;
@@ -13,20 +14,20 @@ namespace ITAM.WPF.Services
     public partial class NavigationService : ObservableObject, INavigationService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly ToolbarViewModel _toolbarViewModel;
+        private readonly IToolbarService _toolbarService;
 
         private readonly Dictionary<Type, BaseViewModel> _openedViews = new();
-        public ObservableCollection<BaseViewModel> OpenedViews { get; }
-    = new();
+        public ObservableCollection<BaseViewModel> OpenedViews { get; } = new();
         [ObservableProperty]
         private BaseViewModel? currentView;
         [ObservableProperty]
         private string currentTitle = PageTitles.Default;
 
-        public NavigationService(IServiceProvider serviceProvider, ToolbarViewModel toolbarViewModel)
+        public NavigationService(IServiceProvider serviceProvider, IToolbarService toolbarService)
         {
             _serviceProvider = serviceProvider;
-            _toolbarViewModel = toolbarViewModel;
+            _toolbarService = toolbarService;
+            _toolbarService.SetDefault();
         }
         public void NavigateTo<TViewModel>() where TViewModel : BaseViewModel
         {
@@ -49,21 +50,10 @@ namespace ITAM.WPF.Services
         public void ActivateView(BaseViewModel viewModel)
         {
             CurrentView = viewModel;
-            UpdateToolbar(viewModel);
+            _toolbarService.Apply(viewModel.ToolbarContext);
             CurrentTitle = viewModel.Title;
         }
 
-        private void UpdateToolbar(BaseViewModel viewModel)
-        {
-            if (viewModel is IToolbarAware toolbarAware)
-            {
-                _toolbarViewModel.Apply(toolbarAware.ToolbarState);
-            }
-            else
-            {
-                _toolbarViewModel.Default();
-            }
-        }
 
         public void CloseView(BaseViewModel viewModel)
         {
@@ -82,7 +72,7 @@ namespace ITAM.WPF.Services
                 {
                     CurrentView = null;
                     CurrentTitle = PageTitles.Default;
-                    _toolbarViewModel.Default();
+                    _toolbarService.SetDefault();
                 }
             }
         }

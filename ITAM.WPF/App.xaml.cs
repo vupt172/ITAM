@@ -1,4 +1,5 @@
 ﻿using ITAM.AppCore.Interfaces;
+using ITAM.Domain.Entities;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
 using ITAM.Infrastructure.Services;
@@ -40,9 +41,8 @@ namespace ITAM.WPF
             );
             // DI Services
             services.AddSingleton<INavigationService, NavigationService>();
-
-            services.AddTransient<IPhongBanService, PhongBanService>();
-
+            services.AddTransient(typeof(ICatalogService<>),typeof(CatalogService<>));
+            services.AddSingleton<IToolbarService, ToolbarService>();
             // DI ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MenuBarViewModel>();

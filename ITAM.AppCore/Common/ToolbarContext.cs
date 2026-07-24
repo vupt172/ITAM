@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace ITAM.AppCore.Common
 {
-    public class ToolbarState
+    public class ToolbarContext
     {
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }

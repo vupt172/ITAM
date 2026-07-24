@@ -17,13 +17,12 @@ using System.Windows.Navigation;
 
 namespace ITAM.WPF.ViewModels
 {
-    public partial class HeThongDMViewModel : BaseViewModel,IToolbarAware
+    public partial class HeThongDMViewModel : BaseViewModel
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly INavigationService _navigationService;
-
+        private readonly IToolbarService _toolbarService;
         public override string Title => PageTitles.HeThongDM;
-        public ToolbarState ToolbarState { get; set; }
+
 
         public ObservableCollection<CatalogNode> Catalogs { get; }
 
@@ -35,10 +34,10 @@ namespace ITAM.WPF.ViewModels
 
         public IToolbarAware? CurrentToolbarTarget => CurrentView as IToolbarAware;
 
-        public HeThongDMViewModel(IServiceProvider serviceProvider,INavigationService navigationService)
+        public HeThongDMViewModel(IServiceProvider serviceProvider, INavigationService navigationService, IToolbarService toolbarService):base(navigationService)
         {
             _serviceProvider = serviceProvider;
-            _navigationService = navigationService;
+            _toolbarService = toolbarService;
 
             Catalogs =
 [
@@ -92,98 +91,29 @@ namespace ITAM.WPF.ViewModels
     }
 ];
 
-            ToolbarState = new ToolbarState
-            {
-                AddCommand = AddCommand,
-                EditCommand = EditCommand,
-                DeleteCommand = DeleteCommand,
-                SaveCommand = SaveCommand,
-                CancelCommand = CancelCommand,
-                CloseCommand = CloseCommand
-            };
+            InitToolbarState();
         }
-        
 
+        protected override void InitToolbarState()
+        {
+            CanAdd = true;
+            CanEdit = true;
+            CanDelete = true;
+            CanClose = true;
+        }
+   
         partial void OnSelectedCatalogChanged(CatalogNode? value)
         {
-            if (value == null || value.IsParent)
+            if (value?.ViewModelType == null)
                 return;
 
-            switch (value.Title)
-            {
-                case "Loại Tài Sản":
-                    CurrentView = _serviceProvider.GetRequiredService<LoaiTaiSanViewModel>();
-                    break;
-
-                case "Danh Mục Tài Sản":
-                    CurrentView = _serviceProvider.GetRequiredService<DMTaiSanViewModel>();
-                    break;
-            }
-            UpdateToolbar(CurrentView);
-        }
-
-        private void UpdateToolbar(BaseViewModel viewModel) {
-            if (viewModel is IToolbarAware toolbarAware)
-            {
-                ToolbarState = toolbarAware.ToolbarState;
-            }          
+            CurrentView = (BaseViewModel)_serviceProvider.GetRequiredService(value.ViewModelType);
+            //UpdateToolbar(CurrentView);
         }
 
 
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
-        private bool canAdd = true;
 
-        [RelayCommand(CanExecute = nameof(CanAdd))]
-        private void Add()
-        {
-        }
 
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
-        private bool canEdit = true;
-
-        [RelayCommand(CanExecute = nameof(CanEdit))]
-        private void Edit()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
-        private bool canDelete = true;
-
-        [RelayCommand(CanExecute = nameof(CanDelete))]
-        private void Delete()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-        private bool canSave;
-
-        [RelayCommand(CanExecute = nameof(CanSave))]
-        private void Save()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(CancelCommand))]
-        private bool canCancel;
-
-        [RelayCommand(CanExecute = nameof(CanCancel))]
-        private void Cancel()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(CloseCommand))]
-        private bool canClose = true;
-
-        [RelayCommand(CanExecute = nameof(CanClose))]
-        private void Close()
-        {
-            _navigationService.CloseView(this);
-        }
     }
 }
 

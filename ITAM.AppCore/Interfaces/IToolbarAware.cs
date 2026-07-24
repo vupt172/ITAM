@@ -10,6 +10,6 @@ namespace ITAM.AppCore.Interfaces
 {
     public interface IToolbarAware
     {
-        ToolbarState ToolbarState { get; }
+        ToolbarContext ToolbarState { get; }
     }
 }

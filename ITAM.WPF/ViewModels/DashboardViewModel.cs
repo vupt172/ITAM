@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITAM.WPF.ViewModels
 {
-    public partial class DashboardViewModel:BaseViewModel
+    public partial class DashboardViewModel
     {
 
     }
