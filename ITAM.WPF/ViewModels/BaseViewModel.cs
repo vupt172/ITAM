@@ -19,13 +19,16 @@ namespace ITAM.WPF.ViewModels
         public ToolbarContext ToolbarContext { get; set; }
         protected readonly INavigationService _navigationService;
 
-
+        // navigationService : dùng để close View
+        // ToolbarContext : dùng để bind các command của toolbar (bao gồm cả điều kiện canExecute)
         public BaseViewModel(INavigationService navigationService)
         {
+            InitToolbarState();
             ToolbarContext = GetToolbarContext();
             _navigationService = navigationService;
         }
 
+        // Tạo một ToolbarContext dựa trên các command của ViewModel hiện tại
         public virtual ToolbarContext GetToolbarContext()
         {
             ToolbarContext toolbarContext = new ToolbarContext
@@ -39,6 +42,7 @@ namespace ITAM.WPF.ViewModels
             };
             return toolbarContext;
         }
+        // Khởi tạo trạng thái của toolbar (các command có thể thực hiện hay không)
         protected virtual void InitToolbarState() { }
 
         [ObservableProperty]

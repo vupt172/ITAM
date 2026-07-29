@@ -10,17 +10,21 @@ using System.Threading.Tasks;
 
 namespace ITAM.WPF.ViewModels.Catalogs
 {
-    public class DMTaiSanViewModel 
+    public class DMTaiSanViewModel : CatalogViewModel
     {
         private readonly ICatalogService<DMTaiSan> _dmTaiSanService;
         public ToolbarContext ToolbarState { get; set; }
+
+        protected override bool HasSelection => throw new NotImplementedException();
 
         public DMTaiSanViewModel(ICatalogService<DMTaiSan> dmTaiSanService)
         {
             _dmTaiSanService = dmTaiSanService;
         }
 
-
-
+        public override Task LoadAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

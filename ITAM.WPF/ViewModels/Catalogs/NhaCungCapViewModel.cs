@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ITAM.WPF.ViewModels.Catalogs
 {
-    internal class NhaCungCapViewModel
+    public class NhaCungCapViewModel : CatalogViewModel
     {
+        protected override bool HasSelection => throw new NotImplementedException();
+
+        public override Task LoadAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

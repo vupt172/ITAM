@@ -16,21 +16,21 @@
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Thêm"
                     Command="{Binding CurrentState.AddCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon  Style="{StaticResource ToolbarAddIconStyle}" Kind="Plus" HorizontalAlignment="Center"/>
+                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="ShapeSquarePlus" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Thêm" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Sửa"
                     Command ="{Binding CurrentState.EditCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="Pencil" HorizontalAlignment="Center"/>
+                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="SquareEditOutline" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Sửa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Xóa"
                     Command="{Binding CurrentState.DeleteCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon  Style="{StaticResource ToolbarDeleteIconStyle}" Kind="CloseBox" HorizontalAlignment="Center"/>
+                    <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="CloseBoxOutline" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Xóa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>

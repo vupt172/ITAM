@@ -22,5 +22,14 @@
     <DataTemplate DataType="{x:Type catalogViewModels:LoaiTaiSanViewModel}">
         <catalogViews:LoaiTaiSanView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type catalogViewModels:NhaCungCapViewModel}">
+        <catalogViews:NhaCungCapView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type catalogViewModels:PhongBanViewModel}">
+        <catalogViews:PhongBanView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type catalogViewModels:ViTriTaiSanViewModel}">
+        <catalogViews:ViTriTaiSanView />
+    </DataTemplate>
 
 </ResourceDictionary>

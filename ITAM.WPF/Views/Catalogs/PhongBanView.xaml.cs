@@ -24,5 +24,6 @@ namespace ITAM.WPF.Views.Catalogs
         {
             InitializeComponent();
         }
+
     }
 }

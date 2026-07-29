@@ -20,9 +20,7 @@ namespace ITAM.WPF.ViewModels
     public partial class HeThongDMViewModel : BaseViewModel
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IToolbarService _toolbarService;
         public override string Title => PageTitles.HeThongDM;
-
 
         public ObservableCollection<CatalogNode> Catalogs { get; }
 
@@ -30,14 +28,12 @@ namespace ITAM.WPF.ViewModels
         private CatalogNode? selectedCatalog;
 
         [ObservableProperty]
-        private BaseViewModel? currentView;
+        private CatalogViewModel? currentView;
 
-        public IToolbarAware? CurrentToolbarTarget => CurrentView as IToolbarAware;
-
-        public HeThongDMViewModel(IServiceProvider serviceProvider, INavigationService navigationService, IToolbarService toolbarService):base(navigationService)
+        // Kế thừa contructor từ BaseViewModel sẽ tự gọi InitToolbarState() để khởi tạo trạng thái toolbar và property _navigationService
+        public HeThongDMViewModel(IServiceProvider serviceProvider, INavigationService navigationService):base(navigationService)
         {
             _serviceProvider = serviceProvider;
-            _toolbarService = toolbarService;
 
             Catalogs =
 [
@@ -90,8 +86,6 @@ namespace ITAM.WPF.ViewModels
         ]
     }
 ];
-
-            InitToolbarState();
         }
 
         protected override void InitToolbarState()
@@ -107,8 +101,15 @@ namespace ITAM.WPF.ViewModels
             if (value?.ViewModelType == null)
                 return;
 
-            CurrentView = (BaseViewModel)_serviceProvider.GetRequiredService(value.ViewModelType);
-            //UpdateToolbar(CurrentView);
+            CurrentView =(CatalogViewModel)_serviceProvider.GetRequiredService(value.ViewModelType);
+ 
+        }
+        protected override void Add()
+        {
+            
+        }
+        protected override void Edit() {
+           
         }
 
 

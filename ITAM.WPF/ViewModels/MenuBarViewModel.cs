@@ -25,7 +25,7 @@ namespace ITAM.WPF.ViewModels
         [RelayCommand]
         private void NavigateDashboard()
         {
-            //_navigationService.NavigateTo<DashboardViewModel>();
+            _navigationService.NavigateTo<DashboardViewModel>();
         }
         [RelayCommand]
         private void NavigatHeThongDM()

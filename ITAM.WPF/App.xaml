@@ -7,10 +7,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<materialDesign:CustomColorTheme BaseTheme="Light" 
+                <materialDesign:CustomColorTheme BaseTheme="Light" 
                                  PrimaryColor="#007ACC" 
-                                 SecondaryColor="#2D7D9A" />-->
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />
+                                 SecondaryColor="#2D7D9A" />
+                <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
                 <ResourceDictionary Source="/Resources/MainResource.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Resources/DataTemplates/ViewTemplates.xaml"/>

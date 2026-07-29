@@ -5,8 +5,170 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ITAM.WPF.Views.Catalogs"
              mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:catalogs="clr-namespace:ITAM.WPF.ViewModels.Catalogs" d:DataContext="{d:DesignInstance Type=catalogs:PhongBanViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Margin="16">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===================== FORM ===================== -->
+
+        <materialDesign:Card
+            Padding="20"
+            IsEnabled="{Binding IsEditing}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Mã -->
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Mã phòng ban"/>
+
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5,0"
+                    materialDesign:HintAssist.Hint="Nhập mã"
+                    Text="{Binding CurrentItem.Ma,
+                                   UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- Tên -->
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    Text="Tên phòng ban"/>
+
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    Margin="5,0"
+                    materialDesign:HintAssist.Hint="Nhập tên phòng ban"
+                    Text="{Binding CurrentItem.Ten,
+                                   UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- Ghi chú -->
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    Text="Ghi chú"/>
+
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="4"
+                    Margin="5,0"
+                    Height="70"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    materialDesign:HintAssist.Hint="Ghi chú"
+                    Text="{Binding CurrentItem.GhiChu,
+                                   UpdateSourceTrigger=PropertyChanged}" />
+
+            </Grid>
+
+        </materialDesign:Card>
+
+        <!-- ===================== DANH SÁCH ===================== -->
+
+        <materialDesign:Card
+            Grid.Row="2"
+            Padding="16">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+
+                <DockPanel>
+
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"
+                        Text="DANH MỤC PHÒNG BAN"/>
+
+                    <TextBox
+                        Width="250"
+                        HorizontalAlignment="Right"
+                        DockPanel.Dock="Right"
+                        materialDesign:HintAssist.Hint="Tìm kiếm..." />
+
+                </DockPanel>
+
+                <!-- DataGrid -->
+
+                <DataGrid
+                    Grid.Row="2"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserResizeRows="False"
+                    IsReadOnly="True"
+                    IsEnabled="{Binding IsReadOnly}"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow"
+                    ItemsSource="{Binding Items}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn
+                            Width="70"
+                            Header="ID"
+                            Binding="{Binding Id}" />
+
+                        <DataGridTextColumn
+                            Width="150"
+                            Header="Mã"
+                            Binding="{Binding Ma}" />
+
+                        <DataGridTextColumn
+                            Width="250"
+                            Header="Tên phòng ban"
+                            Binding="{Binding Ten}" />
+
+                        <DataGridTextColumn
+                            Width="*"
+                            Header="Ghi chú"
+                            Binding="{Binding GhiChu}" />
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </Grid>
+
+        </materialDesign:Card>
+
     </Grid>
 </UserControl>

@@ -15,9 +15,10 @@
         </Grid.ColumnDefinitions>
         <!-- TreeView danh mục -->
         <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#D0D0D0" Padding="0">
-            <TreeView Background="AliceBlue"
+            <TreeView
                 ItemsSource="{Binding Catalogs}"
                 SelectedItemChanged="TreeView_SelectedItemChanged">
+             
                 <TreeView.Resources>
                     <!-- Node có con -->
                     <HierarchicalDataTemplate DataType="{x:Type models:CatalogNode}" ItemsSource="{Binding Children}">
@@ -30,6 +31,6 @@
             </TreeView>
         </Border>
         <!-- Nội dung danh mục -->
-        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="10"/>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
     </Grid>
 </UserControl>
