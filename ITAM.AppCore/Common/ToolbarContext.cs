@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,21 @@ using System.Windows.Input;
 
 namespace ITAM.AppCore.Common
 {
-    public class ToolbarContext
+    public partial class ToolbarContext : ObservableObject
     {
-        public ICommand AddCommand { get; set; }
-        public ICommand EditCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
-        public ICommand SaveCommand { get; set; }
-        public ICommand CancelCommand { get; set; }
-        public ICommand CloseCommand { get; set; }
+        [ObservableProperty]
+        public ICommand? addCommand;
+        [ObservableProperty]
+        public ICommand? editCommand;
+        [ObservableProperty]
+        public ICommand? deleteCommand;
+        [ObservableProperty]
+        public ICommand? saveCommand;
+        [ObservableProperty]
+        public ICommand? cancelCommand;
+        [ObservableProperty]
+        public ICommand? closeCommand;
+        [ObservableProperty]
+        public ICommand? refreshCommand;
     }
 }

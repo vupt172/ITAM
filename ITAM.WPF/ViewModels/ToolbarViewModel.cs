@@ -17,18 +17,18 @@ namespace ITAM.WPF.ViewModels
         private readonly IToolbarService _toolbarService;
 
         [ObservableProperty]
-        private ToolbarContext? currentState;
+        private ToolbarContext? currentContext;
 
 
         public ToolbarViewModel(IToolbarService toolbarService)
         {
             _toolbarService= toolbarService;
-            CurrentState = toolbarService.CurrentState;
+            CurrentContext = toolbarService.CurrentContext;
      
 
-            toolbarService.StateChanged += state =>
+            toolbarService.ContextChanged += state =>
             {
-                CurrentState = state;
+                CurrentContext = state;
             };
 
         }

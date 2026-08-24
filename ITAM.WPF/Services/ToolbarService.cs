@@ -13,8 +13,8 @@ namespace ITAM.WPF.Services
 {
     public class ToolbarService : IToolbarService
     {
-        public event Action<ToolbarContext>? StateChanged;
-        public ToolbarContext CurrentState { get; set; }
+        public event Action<ToolbarContext>? ContextChanged;
+        public ToolbarContext CurrentContext { get; set; }
         private ICommand DisableCommand { get; }
 
         public ToolbarService()
@@ -22,10 +22,10 @@ namespace ITAM.WPF.Services
             DisableCommand = new RelayCommand(() => { }, () => false);
         }
 
-        public void Apply(ToolbarContext state)
+        public void Apply(ToolbarContext context)
         {
-            CurrentState = state;
-            StateChanged?.Invoke(state);
+            CurrentContext = context;
+            ContextChanged?.Invoke(CurrentContext);
         }
         public void SetDefault()
         {   Apply(new ToolbarContext
@@ -35,7 +35,8 @@ namespace ITAM.WPF.Services
                 DeleteCommand = DisableCommand,
                 SaveCommand = DisableCommand,
                 CancelCommand = DisableCommand,
-                CloseCommand = DisableCommand
+                CloseCommand = DisableCommand,
+                RefreshCommand= DisableCommand
             });
 
         }

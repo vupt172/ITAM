@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.AppCore.Interfaces
+namespace ITAM.WPF.Services.Interfaces
 {
-    public interface IHaveTitle
+    public interface IErrorDialogService
     {
-        string Title { get; }
+        void Show(Exception exception);
     }
 }

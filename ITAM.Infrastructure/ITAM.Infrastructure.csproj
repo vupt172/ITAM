@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ITAM.AppCore\ITAM.AppCore.csproj" />
     <ProjectReference Include="..\ITAM.Domain\ITAM.Domain.csproj" />
   </ItemGroup>
 

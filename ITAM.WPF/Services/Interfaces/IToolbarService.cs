@@ -9,9 +9,9 @@ namespace ITAM.AppCore.Interfaces
 {
     public interface IToolbarService
     {
-        ToolbarContext CurrentState { get; set; }
-        event Action<ToolbarContext>? StateChanged;
-        void Apply(ToolbarContext toolbarState);
+        ToolbarContext CurrentContext { get; set; }
+        event Action<ToolbarContext>? ContextChanged;
+        void Apply(ToolbarContext toolbarContext);
         void SetDefault();
     }
 }

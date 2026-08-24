@@ -1,10 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ITAM.WPF.Services.Interfaces;
 
 namespace ITAM.WPF.ViewModels
 {
-    public abstract partial class CatalogViewModel : ObservableValidator
+    public abstract partial class CatalogViewModel : ObservableObject
     {
+        protected readonly IErrorDialogService _errorDialogService;
+ 
+        public CatalogViewModel(IErrorDialogService errorDialogService)
+        {
+            _errorDialogService = errorDialogService;
+        }
         #region Fields & Properties
         [ObservableProperty]
         private bool isEditing;

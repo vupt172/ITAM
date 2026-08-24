@@ -5,6 +5,7 @@ using ITAM.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,14 @@ namespace ITAM.Infrastructure.Services
 {
     public class CatalogService<T> : ICatalogService<T> where T : CatalogEntity
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         public CatalogService(AppDbContext context)
         {
             _context = context;
         }
         // Lấy danh sách: Mặc định chỉ lấy các bản ghi đang Active (Hoạt động)
         // Nếu màn hình Quản trị (Admin) cần xem tất cả -> truyền includeInactive = true
-        public async Task<IEnumerable<T>> GetAllActiveAsync(bool includeInactive = false)
+        public virtual async Task<IEnumerable<T>> GetAllAsync(bool includeInactive = false)
         {
             var query = _context.Set<T>().AsNoTracking();
 
@@ -31,11 +32,11 @@ namespace ITAM.Infrastructure.Services
 
             return await query.ToListAsync();
         }
-        public async Task<T?> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(long id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
-        public async Task<T> CreateAsync(T entity)
+        public virtual async Task<T> CreateAsync(T entity)
         {
             // Kiểm tra trùng code
             if (await IsCodeExistsAsync(entity.Code))
@@ -47,7 +48,7 @@ namespace ITAM.Infrastructure.Services
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task<bool> UpdateAsync(int id, T entity)
+        public virtual async Task<bool> UpdateAsync(long id, T entity)
         {
             var existing = await _context.Set<T>().FindAsync(id);
             if (existing == null) return false;
@@ -64,7 +65,7 @@ namespace ITAM.Infrastructure.Services
             return true;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public virtual async Task<bool> DeleteAsync(long id)
         {
             var existing = await _context.Set<T>().FindAsync(id);
             if (existing == null) return false;
@@ -73,7 +74,7 @@ namespace ITAM.Infrastructure.Services
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<bool> IsCodeExistsAsync(string code, int? excludeId = null)
+        public async Task<bool> IsCodeExistsAsync(string code, long? excludeId = null)
         {
             // Nếu mã trống thì không cần kiểm tra
             if (string.IsNullOrWhiteSpace(code)) return false;

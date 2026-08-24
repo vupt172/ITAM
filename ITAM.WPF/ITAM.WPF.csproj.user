@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>H:\Dev\Product Sources\C#\ITAM\ITAM.WPF\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Update="UserControls\MenuBarUC.xaml.cs">
+    <Compile Update="Views\UserControls\MenuBarUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\ToolbarUC.xaml.cs">
+    <Compile Update="Views\UserControls\ToolbarUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Catalogs\DMTaiSanView.xaml.cs">
@@ -26,7 +28,13 @@
     <Compile Update="Views\DashboardView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ErrorDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\HeThongDMView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

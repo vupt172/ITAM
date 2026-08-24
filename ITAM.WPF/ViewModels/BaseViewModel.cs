@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Common;
-using ITAM.WPF.Services;
+using ITAM.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +38,8 @@ namespace ITAM.WPF.ViewModels
                 DeleteCommand = DeleteCommand,
                 SaveCommand = SaveCommand,
                 CancelCommand = CancelCommand,
-                CloseCommand = CloseCommand
+                CloseCommand = CloseCommand,
+                RefreshCommand=RefreshCommand
             };
             return toolbarContext;
         }
@@ -47,7 +48,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddCommand))]
-        protected bool canAdd = false;
+        protected bool canAdd;
 
         [RelayCommand(CanExecute = nameof(CanAdd))]
         protected virtual void Add()
@@ -56,7 +57,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(EditCommand))]
-        protected bool canEdit = false;
+        protected bool canEdit;
 
         [RelayCommand(CanExecute = nameof(CanEdit))]
         protected virtual void Edit()
@@ -65,7 +66,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
-        protected bool canDelete = false;
+        protected bool canDelete;
 
         [RelayCommand(CanExecute = nameof(CanDelete))]
         protected virtual void Delete()
@@ -74,7 +75,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-        protected bool canSave = false;
+        protected bool canSave;
 
         [RelayCommand(CanExecute = nameof(CanSave))]
         protected virtual void Save()
@@ -83,7 +84,7 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CancelCommand))]
-        protected bool canCancel = false;
+        protected bool canCancel;
 
         [RelayCommand(CanExecute = nameof(CanCancel))]
         protected virtual void Cancel()
@@ -92,12 +93,22 @@ namespace ITAM.WPF.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CloseCommand))]
-        protected bool canClose = false;
+        protected bool canClose;
 
         [RelayCommand(CanExecute = nameof(CanClose))]
         protected virtual void Close()
         {
             _navigationService.CloseView(this);
+        }
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RefreshCommand))]
+        protected bool canRefresh;
+
+        [RelayCommand(CanExecute = nameof(CanRefresh))]
+        protected virtual void Refresh()
+        {
+           
         }
     }
 

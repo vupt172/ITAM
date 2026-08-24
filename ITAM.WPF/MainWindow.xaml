@@ -11,6 +11,26 @@
         TextElement.FontSize="13"
         Style="{StaticResource MaterialDesignWindow}"
         Title="{Binding NavigationService.CurrentTitle}" Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Key="N"
+                Modifiers="Ctrl"
+                Command="{Binding ToolbarViewModel.CurrentContext.AddCommand}" />
+
+        <KeyBinding Key="E"
+                Modifiers="Ctrl"
+                Command="{Binding ToolbarViewModel.CurrentContext.EditCommand}" />
+
+        <KeyBinding Key="D"
+                Modifiers="Ctrl"
+                Command="{Binding ToolbarViewModel.CurrentContext.DeleteCommand}" />
+
+        <KeyBinding Key="S"
+                Modifiers="Ctrl"
+                Command="{Binding ToolbarViewModel.CurrentContext.SaveCommand}" />
+
+        <KeyBinding Key="Escape"
+                Command="{Binding ToolbarViewModel.CurrentContext.CancelCommand}" />
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,7 +48,7 @@
             <ContentControl Content="{Binding NavigationService.CurrentView}"/>
         </Grid>
         <Grid Grid.Row="3" Background="#5D6B99">
-            
+            <TextBlock Foreground="AliceBlue" VerticalAlignment="Center" Text="Phím tắt: Ctrl+N=Thêm, Ctrl+E=Sửa, Ctrl+D=Xóa, Ctrl+S=Lưu, Esc=Bỏ qua"></TextBlock> 
         </Grid>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.WPF.Services
+namespace ITAM.WPF.Services.Interfaces
 {
     public interface INavigationService
     {

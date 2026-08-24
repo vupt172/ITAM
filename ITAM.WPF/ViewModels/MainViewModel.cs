@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Common;
 using ITAM.AppCore.Interfaces;
 using ITAM.WPF.Constants;
-using ITAM.WPF.Services;
+using ITAM.WPF.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

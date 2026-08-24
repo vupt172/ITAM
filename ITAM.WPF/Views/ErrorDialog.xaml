@@ -1,0 +1,243 @@
+﻿<Window x:Class="ITAM.WPF.Views.ErrorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Lỗi hệ thống"
+        Width="640"
+        MinWidth="560"
+        MaxWidth="900"
+        MaxHeight="720"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResizeWithGrip"
+        Background="{DynamicResource MaterialDesignPaper}">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel>
+            <materialDesign:PackIcon
+                Kind="AlertCircle"
+                Width="36"
+                Height="36"
+                Foreground="#D32F2F"
+                VerticalAlignment="Top"/>
+
+            <StackPanel Margin="14,0,0,0">
+
+                <TextBlock
+                    FontSize="19"
+                    FontWeight="SemiBold"
+                    Text="Đã xảy ra lỗi hệ thống"/>
+
+                <TextBlock
+                    Margin="0,4,0,0"
+                    FontSize="12"
+                    Foreground="Gray"
+                    TextWrapping="Wrap"
+                    Text="Ứng dụng đã gặp lỗi không mong muốn. Vui lòng xem thông tin chi tiết bên dưới."/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Summary -->
+        <materialDesign:Card Grid.Row="2"
+                             Padding="14">
+
+            <UniformGrid Columns="3">
+
+                <StackPanel>
+                    <TextBlock
+                        FontSize="11"
+                        FontWeight="SemiBold"
+                        Foreground="Gray"
+                        Text="LOẠI NGOẠI LỆ"/>
+                    <TextBlock
+                        Margin="0,3,0,0"
+                        FontSize="13"
+                        TextTrimming="CharacterEllipsis"
+                        Text="{Binding ExceptionType}"/>
+                </StackPanel>
+
+                <StackPanel Margin="12,0,0,0">
+                    <TextBlock
+                        FontSize="11"
+                        FontWeight="SemiBold"
+                        Foreground="Gray"
+                        Text="NGUỒN"/>
+                    <TextBlock
+                        Margin="0,3,0,0"
+                        FontSize="13"
+                        TextTrimming="CharacterEllipsis"
+                        Text="{Binding Source}"/>
+                </StackPanel>
+
+                <StackPanel Margin="12,0,0,0">
+                    <TextBlock
+                        FontSize="11"
+                        FontWeight="SemiBold"
+                        Foreground="Gray"
+                        Text="THỜI GIAN"/>
+                    <TextBlock
+                        Margin="0,3,0,0"
+                        FontSize="13"
+                        TextTrimming="CharacterEllipsis"
+                        Text="{Binding Time}"/>
+                </StackPanel>
+
+            </UniformGrid>
+
+        </materialDesign:Card>
+
+        <!-- Message -->
+        <materialDesign:Card Grid.Row="4"
+                             Padding="14">
+
+            <StackPanel>
+
+                <TextBlock
+                    FontWeight="SemiBold"
+                    FontSize="13"
+                    Text="Thông báo lỗi"/>
+
+                <TextBox
+                    Margin="0,8,0,0"
+                    IsReadOnly="True"
+                    Text="{Binding Message}"
+                    TextWrapping="Wrap"
+                    MaxHeight="90"
+                    VerticalScrollBarVisibility="Auto"
+                    BorderBrush="#E0E0E0"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            </StackPanel>
+
+        </materialDesign:Card>
+
+        <!-- StackTrace: Expander thu gọn mặc định, bấm để mở rộng xem chi tiết -->
+        <materialDesign:Card Grid.Row="6"
+                             Padding="0">
+
+            <Expander x:Name="StackTraceExpander"
+                      IsExpanded="False"
+                      Padding="14">
+
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Kind="CodeBraces"
+                            Width="18"
+                            Height="18"
+                            VerticalAlignment="Center"
+                            Foreground="Gray"/>
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            FontWeight="SemiBold"
+                            FontSize="13"
+                            Text="Chi tiết (Stack Trace)"/>
+                    </StackPanel>
+                </Expander.Header>
+
+                <TextBox
+                    Margin="0,10,0,0"
+                    IsReadOnly="True"
+                    AcceptsReturn="True"
+                    Text="{Binding StackTrace}"
+                    FontFamily="Consolas"
+                    FontSize="12"
+                    TextWrapping="NoWrap"
+                    MaxHeight="320"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            </Expander>
+
+        </materialDesign:Card>
+
+        <!-- Footer -->
+        <DockPanel Grid.Row="8">
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                <materialDesign:PackIcon
+                    Kind="InformationOutline"
+                    Width="16"
+                    Height="16"
+                    Foreground="Gray"/>
+
+                <TextBlock
+                    Margin="6,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="11"
+                    Foreground="Gray"
+                    TextWrapping="Wrap"
+                    Text="Bạn có thể sao chép nội dung lỗi để gửi cho quản trị hệ thống."/>
+
+            </StackPanel>
+
+            <StackPanel
+                DockPanel.Dock="Right"
+                Orientation="Horizontal">
+
+                <Button
+                    Margin="0,0,8,0"
+                    Width="104"
+                    Height="34"
+                    Command="{Binding CopyCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedSecondaryButton}">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <materialDesign:PackIcon
+                            Kind="ContentCopy"
+                            Width="16"
+                            Height="16"/>
+                        <TextBlock
+                            Margin="6,0,0,0"
+                            Text="Copy"/>
+                    </StackPanel>
+
+                </Button>
+
+                <Button
+                    Width="104"
+                    Height="34"
+                    IsCancel="True"
+                    Command="{Binding CloseCommand}"
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}">
+
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Kind="CloseCircleOutline"
+                            Width="16"
+                            Height="16"/>
+                        <TextBlock
+                            Margin="6,0,0,0"
+                            Text="Close"/>
+                    </StackPanel>
+
+                </Button>
+
+            </StackPanel>
+
+        </DockPanel>
+
+    </Grid>
+
+</Window>

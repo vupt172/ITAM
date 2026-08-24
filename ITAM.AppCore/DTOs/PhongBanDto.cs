@@ -11,22 +11,26 @@ namespace ITAM.AppCore.DTOs
     public partial class PhongBanDto : ObservableValidator
     {
         [ObservableProperty]
-        private int id;
+        private long id;
 
         [ObservableProperty]
-        [Required(ErrorMessage = "Mã phòng ban không được để trống.")]
-        private string name = string.Empty;
-
-        [ObservableProperty]
-        [Required(ErrorMessage = "Tên phòng ban không được để trống.")]
+        [Required(ErrorMessage = "Mã không được để trống.")]
         private string code = string.Empty;
+
+        [ObservableProperty]
+        [Required(ErrorMessage = "Tên không được để trống.")]
+        private string name = string.Empty;
 
         [ObservableProperty]
         private string? description;
 
         [ObservableProperty]
         private bool isActive = true;
-
+        public bool Validate()
+        {
+            ValidateAllProperties();
+            return !HasErrors;
+        }
         public PhongBanDto Clone()
         {
             return new PhongBanDto

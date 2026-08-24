@@ -8,8 +8,8 @@ namespace ITAM.Domain.Entities
 {
     public class LoaiTaiSan:CatalogEntity
     {
-        public int MinValue { get; set; }
-        public int MaxValue { get; set; }
+        public decimal MinValue { get; set; }
+        public decimal MaxValue { get; set; }
         public int DisplayOrder { get; set; } = 0;
     }
 }

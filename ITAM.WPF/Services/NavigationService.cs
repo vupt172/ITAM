@@ -2,10 +2,12 @@
 using ITAM.AppCore.Common;
 using ITAM.AppCore.Interfaces;
 using ITAM.WPF.Constants;
+using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace ITAM.WPF.Services
 {   /// <summary>

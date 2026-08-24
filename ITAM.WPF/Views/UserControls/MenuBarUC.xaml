@@ -17,9 +17,7 @@
 
         <!-- Logo -->
         <StackPanel Grid.Column="0"  Orientation="Horizontal" VerticalAlignment="Center">
-            <Image Source="/Assets/Images/logoITAM.png"
-               Width="80"/>
-
+            
         </StackPanel>
         <Menu Grid.Column="1">
             <!-- DASHBOARD -->
@@ -39,12 +37,12 @@
                 <MenuItem Header="Danh Sách Tài Sản"/>
                 <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}"/>
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
-                    <MenuItem Header="Đăng Xuất" Icon="{materialDesign:PackIcon Kind=DoorOpen}"/>
                 </MenuItem>
             </MenuItem>
             <!-- HỆ THỐNG -->
             <MenuItem Header="Hệ Thống">
-                <MenuItem Header="Đăng Xuất" Icon="{materialDesign:PackIcon Kind=DoorOpen}"/>
+                <MenuItem Header="Đăng Xuất" Icon="{materialDesign:PackIcon Kind=DoorOpen}"
+                          Command="{Binding LogoutCommand}"/>
                 <MenuItem Header="Đổi Mật Khẩu " Icon="{materialDesign:PackIcon Kind=Key}"/>
                 <MenuItem Header="Quản Trị Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountMultiple}"  />
                 <MenuItem Header="Thay Đổi Khoa/Phòng Ban" Icon="{materialDesign:PackIcon Kind=DomainArrowRight}"/>

@@ -8,7 +8,7 @@ namespace ITAM.Domain.Entities
 {
     public class ViTriTaiSan : CatalogEntity
     {
-        public int PhongBanId { get; set; }
+        public long PhongBanId { get; set; }
 
         public PhongBan PhongBan { get; set; } = null!;
     }

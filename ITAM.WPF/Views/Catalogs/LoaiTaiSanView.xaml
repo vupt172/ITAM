@@ -5,8 +5,116 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ITAM.WPF.Views.Catalogs"
              mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
-        <TextBlock Text="LoaiTaiSanView" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White"/>
+    <Grid Margin="16">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===================== FORM ===================== -->
+
+        <materialDesign:Card Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBox Width="250" Margin="0,0,20,0" materialDesign:HintAssist.Hint="Code" IsReadOnly="{Binding IsReadOnly}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+               Text="{Binding CurrentItem.Code,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+
+                    <TextBox Width="250" materialDesign:HintAssist.Hint="Name" IsReadOnly="{Binding IsReadOnly}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+               Text="{Binding CurrentItem.Name,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBox Width="250" Margin="0,0,20,0" materialDesign:HintAssist.Hint="Min Value" IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="CurrentItem.MinValue"  UpdateSourceTrigger="PropertyChanged"  ValidatesOnNotifyDataErrors="True" StringFormat="{}{0:N2}"/>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <TextBox Width="250" Margin="0,0,20,0" materialDesign:HintAssist.Hint="Max Value" IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="CurrentItem.MaxValue"  UpdateSourceTrigger="PropertyChanged"  ValidatesOnNotifyDataErrors="True" StringFormat="{}{0:N2}"/>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBox Width="520" materialDesign:HintAssist.Hint="Description" IsReadOnly="{Binding IsReadOnly}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+               Text="{Binding CurrentItem.Description,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox" Content="IsActive" IsEnabled="{Binding IsEditing}"
+                             IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"   />
+                </StackPanel>
+            </Grid>
+
+        </materialDesign:Card>
+
+        <!-- ===================== DANH SÁCH ===================== -->
+
+        <materialDesign:Card Grid.Row="2" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Header -->
+                <DockPanel>
+                    <TextBlock FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Text="DANH MỤC LOẠI TÀI SẢN"/>
+                    <TextBox Width="250" HorizontalAlignment="Right" DockPanel.Dock="Right" materialDesign:HintAssist.Hint="Tìm kiếm..." 
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <!-- DataGrid -->
+                <DataGrid
+                    Grid.Row="2"
+                    GridLinesVisibility="All"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserResizeRows="False"
+                    IsReadOnly="True"
+                    IsEnabled="{Binding IsReadOnly}"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow"
+                    ItemsSource="{Binding ItemsView}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="150" Header="Mã loại tài sản" Binding="{Binding Code}" />
+                        <DataGridTextColumn Width="250" Header="Tên loại tài sản" Binding="{Binding Name}" />
+                        <DataGridTextColumn Width="150" Header="Giá trị tối thiểu"  Binding="{Binding MinValue, StringFormat={}{0:N2}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    <!--<Setter Property="Margin" Value="0,0,5,0"/>-->
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="150" Header="Giá trị tối đa" Binding="{Binding MaxValue, StringFormat={}{0:N2}}" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    <!--<Setter Property="Margin" Value="0,0,5,0"/>-->
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Mô tả" Binding="{Binding Description}" />
+                        <DataGridCheckBoxColumn Width="100" Header="IsActive" Binding="{Binding IsActive}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
+
     </Grid>
 </UserControl>

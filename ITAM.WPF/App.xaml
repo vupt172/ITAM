@@ -9,16 +9,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:CustomColorTheme BaseTheme="Light" 
                                  PrimaryColor="#007ACC" 
-                                 SecondaryColor="#2D7D9A" />
+                                 SecondaryColor="#FF8C42" />
                 <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
                 <ResourceDictionary Source="/Resources/MainResource.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Resources/DataTemplates/ViewTemplates.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/AppTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/MenuTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/ToolbarTheme.xaml"/>
-                <ResourceDictionary Source="/Resources/Themes/SidebarHeThongDM.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/HeThongDMTheme.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
-            
+            <!-- Converters dùng toàn cục -->
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

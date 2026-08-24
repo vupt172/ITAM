@@ -14,43 +14,51 @@
 
         <ToolBar OverflowMode="Never">
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Thêm"
-                    Command="{Binding CurrentState.AddCommand}">
+                    Command="{Binding CurrentContext.AddCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="ShapeSquarePlus" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Thêm" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Sửa"
-                    Command ="{Binding CurrentState.EditCommand}">
+                    Command ="{Binding CurrentContext.EditCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="SquareEditOutline" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Sửa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Xóa"
-                    Command="{Binding CurrentState.DeleteCommand}">
+                    Command="{Binding CurrentContext.DeleteCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="CloseBoxOutline" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Xóa" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Lưu"
-                    Command="{Binding CurrentState.SaveCommand}">
+                    Command="{Binding CurrentContext.SaveCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon  Style="{StaticResource ToolbarIconStyle}" Kind="ContentSave" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Lưu" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Bỏ qua"
-                    Command="{Binding CurrentState.CancelCommand}">
+                    Command="{Binding CurrentContext.CancelCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="DeleteSweepOutline" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Bỏ qua" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Separator/>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Làm tươi"
+         Command="{Binding CurrentContext.RefreshCommand}">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="Refresh" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Refresh" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Đóng"
-                    Command="{Binding CurrentState.CloseCommand}">
+         Command="{Binding CurrentContext.CloseCommand}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="ExitToApp" HorizontalAlignment="Center"/>
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Đóng" Margin="0,4,0,0" HorizontalAlignment="Center"/>

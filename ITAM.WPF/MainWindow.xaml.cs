@@ -24,10 +24,6 @@ namespace ITAM.WPF
             DataContext = vm;
         }
 
-        private void UserControl1_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
 
     }
 }
