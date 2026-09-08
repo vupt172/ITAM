@@ -78,6 +78,14 @@ namespace ITAM.WPF.Services
                 }
             }
         }
+        public void Reset()
+        {
+            _openedViews.Clear();
+            OpenedViews.Clear();
+            CurrentView = null;
+            CurrentTitle = PageTitles.Default;
+            _toolbarService.SetDefault();
+        }
     }
 
 }

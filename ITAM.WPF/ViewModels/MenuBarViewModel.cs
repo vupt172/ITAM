@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace ITAM.WPF.ViewModels
 {
-    public partial class MenuBarViewModel 
+    public partial class MenuBarViewModel
     {
         private readonly INavigationService _navigationService;
         private readonly ICurrentUserContext _currentUserContext;
@@ -37,6 +37,45 @@ namespace ITAM.WPF.ViewModels
             _navigationService.NavigateTo<HeThongDMViewModel>();
         }
         [RelayCommand]
+        private void NavigateUserManagement()
+        {
+            _navigationService.NavigateTo<UserManagementViewModel>();
+        }
+
+        [RelayCommand]
+        private void NavigateRoleManagement()
+        {
+            _navigationService.NavigateTo<RoleManagementViewModel>();
+        }
+
+        [RelayCommand]
+        private void NavigateThamSoNguoiDung()
+        {
+            _navigationService.NavigateTo<ThamSoNguoiDungViewModel>();
+        }
+        [RelayCommand]
+        private async Task ChangePhongBan()
+        {
+            var dialogVm = App.Services.GetRequiredService<ChangePhongBanViewModel>();
+
+            var window = App.Services.GetRequiredService<ChangePhongBanWindow>();
+            window.DataContext = dialogVm;
+            window.Owner = Application.Current.MainWindow;
+
+            dialogVm.RequestClose += (s, saved) =>
+            {
+                window.DialogResult = saved;
+                window.Close();
+            };
+
+            await dialogVm.InitializeAsync();
+
+            if (window.ShowDialog() == true)
+            {
+                App.Services.GetRequiredService<MainViewModel>().RefreshCurrentUser();
+            }
+        }
+        [RelayCommand]
         private void Logout()
         {
             var result = MessageBox.Show(
@@ -50,6 +89,8 @@ namespace ITAM.WPF.ViewModels
 
             // 1. Xóa thông tin user hiện tại
             _currentUserContext.Clear();
+            App.Services.GetRequiredService<MainViewModel>().RefreshCurrentUser();
+            _navigationService.Reset();   // ⬅ thêm dòng này — xóa sạch cache màn hình đã mở
 
             // 2. Mở lại LoginWindow (Transient -> tạo instance mới, ViewModel mới sạch sẽ)
             var loginWindow = App.Services.GetRequiredService<LoginWindow>();
@@ -58,10 +99,12 @@ namespace ITAM.WPF.ViewModels
             // 3. Cập nhật Application.MainWindow để tránh app bị shutdown nhầm
             Application.Current.MainWindow = loginWindow;
 
-            // 4. Đóng MainWindow hiện tại
+            // Đổi Close() -> Hide(): MainWindow là Singleton, Close() sẽ khiến Window
+            // không thể Show() lại được nữa ở lần đăng nhập kế tiếp (WPF hạn chế này).
+            // Hide() giữ nguyên Window ở trạng thái "ẩn", vẫn Show() lại được bình thường.
             Application.Current.Windows
                 .OfType<MainWindow>()
-                .FirstOrDefault()?.Close();
+                .FirstOrDefault()?.Hide();
         }
     }
 }

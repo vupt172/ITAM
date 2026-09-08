@@ -10,7 +10,8 @@
 
     <Style TargetType="TreeViewItem"
        BasedOn="{StaticResource MaterialDesignTreeViewItem}">
-
+        <Setter Property="IsExpanded"
+                    Value="{Binding IsExpanded, Mode=TwoWay}" />
         <Setter Property="Padding"
             Value="4"/>
 
@@ -41,7 +42,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style TargetType="materialDesign:PackIcon" x:Key="HeThongDMIconStyle">
         <Setter Property="Kind" Value="ChartBox"/>
         <Style.Triggers>

@@ -34,7 +34,8 @@ namespace ITAM.WPF
             var services = new ServiceCollection();
             services.AddSingleton(configuration);
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
+                ServiceLifetime.Transient);   // ⬅ thêm tham số này
 
             // DI Models
             services.AddSingleton<ICurrentUserContext, CurrentUserContext>();
@@ -48,6 +49,7 @@ namespace ITAM.WPF
             services.AddSingleton<IToolbarService, ToolbarService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IFeatureService, FeatureService>();
 
             // DI ViewModels
             services.AddTransient<LoginViewModel>();          // ⬅ thêm
@@ -61,11 +63,18 @@ namespace ITAM.WPF
             services.AddTransient<NhaCungCapViewModel>();
             services.AddTransient<LoaiTaiSanViewModel>();
             services.AddTransient<ViTriTaiSanViewModel>();
-
+            services.AddTransient<UserManagementViewModel>();
+            services.AddTransient<AddEditUserViewModel>();
+            services.AddTransient<RoleManagementViewModel>();
+            services.AddTransient<AddEditRoleViewModel>();
+            services.AddTransient<ThamSoNguoiDungViewModel>();
+            services.AddTransient<ChangePhongBanViewModel>();
             // DI Windows
             services.AddTransient<LoginWindow>();              // ⬅ đổi Transient (mở lại được khi logout)
             services.AddSingleton<MainWindow>();
-
+            services.AddTransient<AddEditUserWindow>();
+            services.AddTransient<AddEditRoleWindow>();
+            services.AddTransient<ChangePhongBanWindow>();
             Services = services.BuildServiceProvider();
         }
 

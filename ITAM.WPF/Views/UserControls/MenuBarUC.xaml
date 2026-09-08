@@ -14,10 +14,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <!-- Logo -->
         <StackPanel Grid.Column="0"  Orientation="Horizontal" VerticalAlignment="Center">
-            
+
         </StackPanel>
         <Menu Grid.Column="1">
             <!-- DASHBOARD -->
@@ -25,7 +24,6 @@
                 <MenuItem Header="View Dashboard"  Icon="{materialDesign:PackIcon Kind=ViewDashboard}" 
                           Command="{Binding NavigateDashboardCommand}" />
             </MenuItem>
-
             <!-- DANH MỤC -->
             <MenuItem Header="Danh Mục">
                 <MenuItem  Header="Hệ Thống Danh Mục" Icon="{materialDesign:PackIcon Kind=FormatListBulleted}"
@@ -39,15 +37,24 @@
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
                 </MenuItem>
             </MenuItem>
+
             <!-- HỆ THỐNG -->
             <MenuItem Header="Hệ Thống">
                 <MenuItem Header="Đăng Xuất" Icon="{materialDesign:PackIcon Kind=DoorOpen}"
                           Command="{Binding LogoutCommand}"/>
                 <MenuItem Header="Đổi Mật Khẩu " Icon="{materialDesign:PackIcon Kind=Key}"/>
-                <MenuItem Header="Quản Trị Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountMultiple}"  />
-                <MenuItem Header="Thay Đổi Khoa/Phòng Ban" Icon="{materialDesign:PackIcon Kind=DomainArrowRight}"/>
-            </MenuItem>
 
+                <Separator/>
+                <MenuItem Header="Quản Trị Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountMultiple}"
+                          Command="{Binding NavigateUserManagementCommand}"/>
+                <MenuItem Header="Quản Trị Vai Trò" Icon="{materialDesign:PackIcon Kind=ShieldAccount}"
+                          Command="{Binding NavigateRoleManagementCommand}"/>
+                <MenuItem Header="Tham Số Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountCog}"
+                          Command="{Binding NavigateThamSoNguoiDungCommand}"/>
+                <Separator/>
+                <MenuItem Header="Thay Đổi Khoa/Phòng Ban" Icon="{materialDesign:PackIcon Kind=DomainArrowRight}"
+              Command="{Binding ChangePhongBanCommand}"/>
+            </MenuItem>
         </Menu>
     </Grid>
 </UserControl>

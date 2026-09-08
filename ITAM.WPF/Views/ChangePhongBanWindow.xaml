@@ -1,0 +1,42 @@
+﻿<Window x:Class="ITAM.WPF.Views.ChangePhongBanWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Thay Đổi Khoa/Phòng Ban"
+        Height="240" Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SaveCommand}" />
+        <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Text="Chọn Khoa/Phòng ban muốn làm việc" FontWeight="Bold" Margin="0,0,0,12"/>
+            <ComboBox ItemsSource="{Binding AccessiblePhongBans}"
+                      SelectedValue="{Binding SelectedPhongBanId}"
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name"
+                      materialDesign:HintAssist.Hint="Khoa/Phòng ban"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Lưu" Command="{Binding SaveCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Hủy" Command="{Binding CancelCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window>

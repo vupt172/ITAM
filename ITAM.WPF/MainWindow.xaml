@@ -48,7 +48,32 @@
             <ContentControl Content="{Binding NavigationService.CurrentView}"/>
         </Grid>
         <Grid Grid.Row="3" Background="#5D6B99">
-            <TextBlock Foreground="AliceBlue" VerticalAlignment="Center" Text="Phím tắt: Ctrl+N=Thêm, Ctrl+E=Sửa, Ctrl+D=Xóa, Ctrl+S=Lưu, Esc=Bỏ qua"></TextBlock> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0"
+               Text="Phím tắt: Ctrl+N=Thêm, Ctrl+E=Sửa, Ctrl+D=Xóa, Ctrl+S=Lưu, Esc=Bỏ qua"/>
+            <StackPanel Grid.Column="1"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="12,0">
+
+                <!-- Phòng ban -->
+                <TextBlock Text="{Binding CurrentPhongBanName}"
+               Foreground="#B8F2C8"
+               VerticalAlignment="Center"
+               Margin="0,0,8,0"/>
+
+                <!-- Tên user -->
+                <TextBlock Text="{Binding CurrentUserDisplayName}"
+               Foreground="#FFE69A"
+               FontWeight="SemiBold"
+               VerticalAlignment="Center"/>
+
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

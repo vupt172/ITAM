@@ -2,14 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Common;
 using ITAM.WPF.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ITAM.WPF.ViewModels
 {
@@ -18,20 +10,25 @@ namespace ITAM.WPF.ViewModels
         public virtual string Title => string.Empty;
         public ToolbarContext ToolbarContext { get; set; }
         protected readonly INavigationService _navigationService;
+        // Cờ chỉnh sửa chung — Add/Edit bật lên, Save/Cancel tắt đi.
+        [ObservableProperty]
+        private bool isEditing;
 
-        // navigationService : dùng để close View
-        // ToolbarContext : dùng để bind các command của toolbar (bao gồm cả điều kiện canExecute)
+        // Lớp con override để cho biết đang có dòng được chọn hay không
+        // (áp dụng cho màn có DataGrid: User/Role/ThamSoNguoiDung...)
+        protected virtual bool HasSelection => false;
+        public bool IsReadOnly => !IsEditing;
+
         public BaseViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             InitToolbarState();
             ToolbarContext = GetToolbarContext();
-            _navigationService = navigationService;
         }
 
-        // Tạo một ToolbarContext dựa trên các command của ViewModel hiện tại
         public virtual ToolbarContext GetToolbarContext()
         {
-            ToolbarContext toolbarContext = new ToolbarContext
+            return new ToolbarContext
             {
                 AddCommand = AddCommand,
                 EditCommand = EditCommand,
@@ -39,77 +36,63 @@ namespace ITAM.WPF.ViewModels
                 SaveCommand = SaveCommand,
                 CancelCommand = CancelCommand,
                 CloseCommand = CloseCommand,
-                RefreshCommand=RefreshCommand
+                RefreshCommand = RefreshCommand
             };
-            return toolbarContext;
         }
-        // Khởi tạo trạng thái của toolbar (các command có thể thực hiện hay không)
+
+        // Dùng để set canClose/canRefresh (2 cờ không phụ thuộc IsEditing).
+        // Add/Edit/Delete/Save/Cancel giờ tự suy ra từ IsEditing + HasSelection,
+        // không cần gán tay trong hàm này nữa.
         protected virtual void InitToolbarState() { }
 
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
-        protected bool canAdd;
+   
 
         [RelayCommand(CanExecute = nameof(CanAdd))]
-        protected virtual void Add()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
-        protected bool canEdit;
+        protected virtual void Add() => IsEditing = true;
+        protected virtual bool CanAdd() => !IsEditing;
 
         [RelayCommand(CanExecute = nameof(CanEdit))]
-        protected virtual void Edit()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
-        protected bool canDelete;
+        protected virtual void Edit() => IsEditing = true;
+        protected virtual bool CanEdit() => !IsEditing && HasSelection;
 
         [RelayCommand(CanExecute = nameof(CanDelete))]
-        protected virtual void Delete()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-        protected bool canSave;
+        protected virtual void Delete() { }
+        protected virtual bool CanDelete() => !IsEditing && HasSelection;
 
         [RelayCommand(CanExecute = nameof(CanSave))]
-        protected virtual void Save()
-        {
-        }
-
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(CancelCommand))]
-        protected bool canCancel;
+        protected virtual void Save() => IsEditing = false;
+        protected virtual bool CanSave() => IsEditing;
 
         [RelayCommand(CanExecute = nameof(CanCancel))]
-        protected virtual void Cancel()
-        {
-        }
-
+        protected virtual void Cancel() => IsEditing = false;
+        protected virtual bool CanCancel() => IsEditing;
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CloseCommand))]
         protected bool canClose;
-
         [RelayCommand(CanExecute = nameof(CanClose))]
-        protected virtual void Close()
-        {
-            _navigationService.CloseView(this);
-        }
-
+        protected virtual void Close() => _navigationService.CloseView(this);
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(RefreshCommand))]
         protected bool canRefresh;
-
         [RelayCommand(CanExecute = nameof(CanRefresh))]
-        protected virtual void Refresh()
+        protected virtual void Refresh() { }
+
+        partial void OnIsEditingChanged(bool value)
         {
-           
+            OnPropertyChanged(nameof(IsReadOnly));
+            AddCommand.NotifyCanExecuteChanged();
+            EditCommand.NotifyCanExecuteChanged();
+            DeleteCommand.NotifyCanExecuteChanged();
+            SaveCommand.NotifyCanExecuteChanged();
+            CancelCommand.NotifyCanExecuteChanged();
+        }
+
+        // Lớp con gọi hàm này trong OnSelectedXxxChanged để cập nhật lại
+        // trạng thái Edit/Delete khi người dùng chọn dòng khác trên DataGrid.
+        protected void NotifySelectionChanged()
+        {
+            EditCommand.NotifyCanExecuteChanged();
+            DeleteCommand.NotifyCanExecuteChanged();
         }
     }
-
 }

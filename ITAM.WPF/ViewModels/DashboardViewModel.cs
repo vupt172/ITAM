@@ -16,9 +16,6 @@ namespace ITAM.WPF.ViewModels
 
         protected override void InitToolbarState()
         {
-            CanAdd = true;
-            CanEdit = true;
-            CanDelete = true;
             CanClose = true;
         }
     }

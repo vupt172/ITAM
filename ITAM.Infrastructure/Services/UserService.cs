@@ -20,8 +20,10 @@ namespace ITAM.Infrastructure.Services
         public async Task<List<User>> GetAllAsync()
         {
             return await _context.Users
+                .AsNoTracking()
                 .Include(u => u.PhongBan)
                 .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPhongBans).ThenInclude(upb => upb.PhongBan)   // ⬅ thêm
                 .OrderBy(u => u.FullName)
                 .ToListAsync();
         }
@@ -29,9 +31,46 @@ namespace ITAM.Infrastructure.Services
         public async Task<User?> GetByIdAsync(long id)
         {
             return await _context.Users
+                .AsNoTracking()
                 .Include(u => u.PhongBan)
                 .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPhongBans).ThenInclude(upb => upb.PhongBan)   // ⬅ thêm
                 .FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<List<long>> GetAccessiblePhongBanIdsAsync(long userId)
+        {
+            return await _context.Set<UserPhongBan>()
+                .Where(upb => upb.UserId == userId)
+                .Select(upb => upb.PhongBanId)
+                .ToListAsync();
+        }
+
+        public async Task SetPhongBanAccessAsync(long userId, long? defaultPhongBanId, List<long> accessiblePhongBanIds)
+        {
+            var distinctIds = accessiblePhongBanIds.Distinct().ToList();
+
+            if (defaultPhongBanId.HasValue && !distinctIds.Contains(defaultPhongBanId.Value))
+                throw new InvalidOperationException("Phòng ban mặc định phải nằm trong danh sách Phòng ban được truy cập.");
+
+            var user = await _context.Users
+                .Include(u => u.UserPhongBans)
+                .FirstOrDefaultAsync(u => u.Id == userId)
+                ?? throw new InvalidOperationException("Không tìm thấy người dùng.");
+
+            user.PhongBanId = defaultPhongBanId;
+
+            var newIds = distinctIds.ToHashSet();
+            var currentIds = user.UserPhongBans.Select(upb => upb.PhongBanId).ToHashSet();
+
+            var toRemove = user.UserPhongBans.Where(upb => !newIds.Contains(upb.PhongBanId)).ToList();
+            foreach (var upb in toRemove)
+                user.UserPhongBans.Remove(upb);
+
+            foreach (var pbId in newIds.Except(currentIds))
+                user.UserPhongBans.Add(new UserPhongBan { UserId = user.Id, PhongBanId = pbId });
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> IsUsernameExistsAsync(string username, long? excludeUserId = null)
@@ -114,6 +153,25 @@ namespace ITAM.Infrastructure.Services
             var user = await _context.Users.FindAsync(userId)
                 ?? throw new InvalidOperationException("Không tìm thấy người dùng.");
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            await _context.SaveChangesAsync();
+        }
+        public async Task SetDefaultPhongBanAsync(long userId, long phongBanId)
+        {
+            var accessibleIds = await GetAccessiblePhongBanIdsAsync(userId);
+            if (!accessibleIds.Contains(phongBanId))
+                throw new InvalidOperationException("Bạn không có quyền truy cập Phòng ban này.");
+
+            var user = await _context.Users.FindAsync(userId)
+                ?? throw new InvalidOperationException("Không tìm thấy người dùng.");
+
+            user.PhongBanId = phongBanId;
+            await _context.SaveChangesAsync();
+        }
+        public async Task DeleteAsync(long userId)
+        {
+            var user = await _context.Users.FindAsync(userId)
+                ?? throw new InvalidOperationException("Không tìm thấy người dùng.");
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
     }

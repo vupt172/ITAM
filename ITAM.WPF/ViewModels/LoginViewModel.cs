@@ -2,9 +2,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.WPF.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Security.Authentication;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ITAM.WPF.ViewModels
 {
@@ -36,9 +38,15 @@ namespace ITAM.WPF.ViewModels
 
         partial void OnUsernameChanged(string value) => ErrorMessage = string.Empty;
 
+        [RelayCommand]
+        private void Test()
+        {
+            MessageBox.Show("Đang thử đăng nhập...");
+        }
         [RelayCommand(CanExecute = nameof(CanLogin))]
         private async Task LoginAsync(object? passwordBoxParam)
         {
+    
             // passwordBoxParam sẽ là PasswordBox truyền từ XAML (MaterialDesign chưa hỗ trợ bind Password trực tiếp)
             var password = ExtractPassword(passwordBoxParam);
 
@@ -59,6 +67,7 @@ namespace ITAM.WPF.ViewModels
             {
                 var user = await _authService.LoginAsync(Username.Trim(), password);
                 _currentUserContext.Set(user);
+                App.Services.GetRequiredService<MainViewModel>().RefreshCurrentUser();
                 LoginSucceeded?.Invoke();
             }
             catch (AuthenticationException ex)

@@ -15,10 +15,17 @@ namespace ITAM.Infrastructure.Services
         public async Task<List<Role>> GetAllAsync()
         {
             return await _context.Roles
+                .AsNoTracking()
                 .Include(r => r.RoleFeatures).ThenInclude(rf => rf.Feature)
+                .Include(r => r.UserRoles)          // ⬅ thêm dòng này — thiếu dòng này khiến UserCount luôn = 0
                 .ToListAsync();
         }
-
+        public async Task<Role?> GetByIdAsync(long id)
+        {
+            return await _context.Roles
+                .AsNoTracking()
+                .FirstOrDefaultAsync(r => r.Id == id);
+        }
         public async Task<Role> CreateAsync(string code, string name, List<long> featureIds)
         {
             if (await _context.Roles.AnyAsync(r => r.Code == code))

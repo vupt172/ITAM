@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITAM.Domain.Entities.Identity
 {
-    public class Feature 
+    public class Feature
     {
         public long Id { get; set; }
         public string Code { get; set; } = null!;   // VD: "TAISAN_QUANLY"

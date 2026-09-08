@@ -23,7 +23,12 @@ namespace ITAM.WPF
             InitializeComponent();
             DataContext = vm;
         }
-
-
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            // MainWindow chỉ thực sự bị Close() khi người dùng bấm nút X để thoát hẳn ứng dụng
+            // (đăng xuất giờ dùng Hide(), không gọi Close() nữa)
+            Application.Current.Shutdown();
+        }
     }
 }

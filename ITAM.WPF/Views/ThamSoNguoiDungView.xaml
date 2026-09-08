@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="ITAM.WPF.Views.ThamSoNguoiDungView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1. Chọn người dùng -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Người Sử Dụng" VerticalAlignment="Center" Margin="0,0,12,0" FontWeight="Bold"/>
+            <ComboBox Grid.Column="1"
+          IsEditable="True"
+          IsTextSearchEnabled="False"
+          StaysOpenOnEdit="True"
+          IsSynchronizedWithCurrentItem="True"
+          ItemsSource="{Binding UserSearch.View}"
+          SelectedItem="{Binding UserSearch.HighlightedItem, Mode=TwoWay}"
+          Text="{Binding UserSearch.SearchText, UpdateSourceTrigger=PropertyChanged}"
+          IsEnabled="{Binding IsReadonly}"
+          DropDownClosed="UserComboBox_DropDownClosed"
+          materialDesign:HintAssist.Hint="Gõ để tìm theo họ tên hoặc tài khoản..."
+          Style="{StaticResource SearchableComboBoxStyle}"
+          MaxWidth="420" HorizontalAlignment="Left">
+                <ComboBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding ConfirmUserSearchCommand}"/>
+                </ComboBox.InputBindings>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                <Run Text="{Binding FullName}"/>
+                <Run Text=" - "/>
+                <Run Text="{Binding Username}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+
+        <!-- 2. Thông tin chính -->
+        <GroupBox Grid.Row="1" Header="Thông Tin Chính" Margin="0,0,0,16"
+                  IsEnabled="{Binding IsDetailEnabled}">
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Phòng ban mặc định" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <ComboBox Grid.Column="1"
+                          ItemsSource="{Binding AccessiblePhongBans}"
+                          SelectedValue="{Binding DefaultPhongBanId}"
+                          SelectedValuePath="PhongBanId"
+                          DisplayMemberPath="PhongBanName"
+                          IsEnabled="{Binding IsEditing}"
+                          materialDesign:HintAssist.Hint="Chọn phòng ban mặc định"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          MaxWidth="420" HorizontalAlignment="Left"/>
+                <!-- Chỗ này để dành mở rộng thêm các tham số khác của người dùng sau này -->
+            </Grid>
+        </GroupBox>
+
+        <!-- 3. Danh sách Phòng ban được truy cập -->
+        <GroupBox Grid.Row="2" Header="Phòng Ban Được Phép Truy Cập"
+          IsEnabled="{Binding IsDetailEnabled}">
+            <DataGrid ItemsSource="{Binding AllPhongBans}"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              materialDesign:DataGridAssist.CellPadding="6"
+              materialDesign:DataGridAssist.ColumnHeaderPadding="6">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Chọn" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MaterialDesignCheckBox}"
+                                  IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"
+                                  IsHitTestVisible="{Binding DataContext.IsEditing, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Mã Phòng Ban" Binding="{Binding Code}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Tên Phòng Ban" Binding="{Binding PhongBanName}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</UserControl>

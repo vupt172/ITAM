@@ -6,14 +6,23 @@
     xmlns:views="clr-namespace:ITAM.WPF.Views"
     xmlns:catalogViews="clr-namespace:ITAM.WPF.Views.Catalogs"
     >
-    
 
     <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
         <views:DashboardView />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type viewModels:HeThongDMViewModel}">
         <views:HeThongDMView />
+    </DataTemplate>
+
+    <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
+    <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">
+        <views:UserManagementView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:RoleManagementViewModel}">
+        <views:RoleManagementView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:ThamSoNguoiDungViewModel}">
+        <views:ThamSoNguoiDungView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type catalogViewModels:DMTaiSanViewModel}">
@@ -31,5 +40,4 @@
     <DataTemplate DataType="{x:Type catalogViewModels:ViTriTaiSanViewModel}">
         <catalogViews:ViTriTaiSanView />
     </DataTemplate>
-
 </ResourceDictionary>

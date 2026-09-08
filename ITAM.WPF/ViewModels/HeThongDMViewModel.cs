@@ -43,6 +43,7 @@ namespace ITAM.WPF.ViewModels
     new()
     {
         Title = "Tài Sản",
+        IsExpanded = true,
         Children =
         [
             new()
@@ -54,13 +55,14 @@ namespace ITAM.WPF.ViewModels
             {
                 Title = "Danh Mục Tài Sản",
                 ViewModelType = typeof(DMTaiSanViewModel)
-            }   
+            }
         ]
     },
 
     new()
     {
         Title = "Tổ Chức",
+        IsExpanded = true,
         Children =
         [
             new()
@@ -68,7 +70,7 @@ namespace ITAM.WPF.ViewModels
                 Title = "Phòng Ban",
                 ViewModelType = typeof(PhongBanViewModel)
             },
-               new()
+            new()
             {
                 Title = "Vị Trí Tài Sản",
                 ViewModelType = typeof(ViTriTaiSanViewModel)
@@ -76,11 +78,11 @@ namespace ITAM.WPF.ViewModels
         ]
     },
 
-     new()
-            {
-                Title = "Nhà Cung Cấp",
-                ViewModelType = typeof(NhaCungCapViewModel)
-            }
+    new()
+    {
+        Title = "Nhà Cung Cấp",
+        ViewModelType = typeof(NhaCungCapViewModel)
+    }
 ];
         }
 
