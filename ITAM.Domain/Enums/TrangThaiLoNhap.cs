@@ -8,8 +8,8 @@ namespace ITAM.Domain.Enums
 {
     public enum TrangThaiLoNhap
     {
-        Nhap = 0,
-        HoanTat = 1,
-        Huy = 2
+        PENDING,
+        APPROVED,
+        REJECTED
     }
 }

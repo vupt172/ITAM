@@ -57,6 +57,7 @@ namespace ITAM.WPF.ViewModels
                 FullName = u.FullName,
                 PhongBanId = u.PhongBanId,
                 PhongBanName = u.PhongBan?.Name,
+                RoleNames = string.Join(", ", u.UserRoles.Select(r => r.Role.Name)),
                 IsActive = u.IsActive,
                 LastLoginAt = u.LastLoginAt
             }));

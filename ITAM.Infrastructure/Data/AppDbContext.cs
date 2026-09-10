@@ -22,6 +22,7 @@ namespace ITAM.Infrastructure.Data
         // Catalog
         public DbSet<LoaiTaiSan> LoaiTaiSan => Set<LoaiTaiSan>();
         public DbSet<DMTaiSan> DMTaiSan => Set<DMTaiSan>();
+        public DbSet<HangHoa> HangHoa => Set<HangHoa>();
         public DbSet<NhaCungCap> NhaCungCap => Set<NhaCungCap>();
         public DbSet<PhongBan> PhongBan => Set<PhongBan>();
         public DbSet<ViTriTaiSan> ViTriTaiSan => Set<ViTriTaiSan>();
@@ -33,6 +34,10 @@ namespace ITAM.Infrastructure.Data
         public DbSet<RoleFeature> RoleFeatures => Set<RoleFeature>();
         public DbSet<UserRole> UserRoles => Set<UserRole>();
         public DbSet<UserPhongBan> UserPhongBans => Set<UserPhongBan>();
+        public DbSet<TaiSanDinhDanh> TaiSanDinhDanh { get; set; }
+        public DbSet<VatTu> VatTu { get; set; }
+        public DbSet<LoNhap> LoNhap { get; set; }
+        public DbSet<LoNhapChiTiet> LoNhapChiTiet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -24,5 +24,7 @@ namespace ITAM.AppCore.Common
         public ICommand? closeCommand;
         [ObservableProperty]
         public ICommand? refreshCommand;
+        [ObservableProperty]
+        public ICommand? searchCommand;
     }
 }

@@ -22,7 +22,7 @@ namespace ITAM.Domain.Entities
         public long NguoiLapPhieuId { get; set; }
         public User NguoiLapPhieu { get; set; } = null!;
 
-        public TrangThaiLoNhap TrangThai { get; set; } = TrangThaiLoNhap.Nhap;
+        public TrangThaiLoNhap TrangThai { get; set; } = TrangThaiLoNhap.PENDING;
         public string? GhiChu { get; set; }
 
         public ICollection<LoNhapChiTiet> ChiTiets { get; set; } = new List<LoNhapChiTiet>();

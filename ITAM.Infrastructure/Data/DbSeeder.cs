@@ -9,10 +9,10 @@ namespace ITAM.Infrastructure.Data
         // Danh sách Feature mặc định của hệ thống — quản lý tập trung tại đây
         private static readonly (string Code, string Name)[] DefaultFeatures = new[]
         {
-            ("DASHBOARD_VIEW","Xem Dashboard"),
+            ("DASHBOARD","Xem Dashboard"),
             ("HETHONG_DANHMUC","Hệ thống danh mục"),
             ("HETHONG_NGUOIDUNG","Quản trị người dùng"),
-            ("HETHONG_PHANQUYEN","Quản trị phân quyền"),
+            ("HETHONG_QUYEN","Quản trị phân quyền"),
         };
 
         public static async Task SeedAsync(AppDbContext context)

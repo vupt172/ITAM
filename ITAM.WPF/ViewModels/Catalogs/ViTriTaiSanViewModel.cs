@@ -19,8 +19,8 @@ namespace ITAM.WPF.ViewModels.Catalogs
         private readonly IViTriTaiSanService _viTriTaiSanService;
         private readonly ICatalogService<PhongBan> _phongBanService;
 
-        [ObservableProperty]
-        private ObservableCollection<ViTriTaiSanDto> items =new();
+        
+        public ObservableCollection<ViTriTaiSanDto> Items { get; } = [];
         // Danh sách nguồn cho ComboBox - load 1 lần, không đổi liên tục theo CurrentItem
         [ObservableProperty]
         private ObservableCollection<PhongBanDto> _dsPhongBan = new();
@@ -48,14 +48,15 @@ namespace ITAM.WPF.ViewModels.Catalogs
         {
             var dsPhongBan = await _phongBanService.GetAllAsync();
             DsPhongBan = dsPhongBan.Adapt<ObservableCollection<PhongBanDto>>();
-            //Items.Clear();
-            var dsViTriTaiSan = await _viTriTaiSanService.GetAllAsync(true);
-            Items = dsViTriTaiSan.Adapt<ObservableCollection<ViTriTaiSanDto>>();
-            //foreach (var dto in entities.Adapt<List<PhongBanDto>>())
-            //{
-            //    Items.Add(dto);
-            //}
-        } 
+            Items.Clear();
+            var entities = await _viTriTaiSanService.GetAllAsync(true);
+            foreach (var dto in entities.Adapt<List<ViTriTaiSanDto>>())
+            {
+                Items.Add(dto);
+            }
+            //Items = dsViTriTaiSan.Adapt<ObservableCollection<ViTriTaiSanDto>>();
+
+        }
 
         #endregion
         #region Commands

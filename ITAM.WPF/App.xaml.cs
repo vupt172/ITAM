@@ -46,6 +46,8 @@ namespace ITAM.WPF
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddTransient(typeof(ICatalogService<>), typeof(CatalogService<>));
             services.AddTransient<IViTriTaiSanService, ViTriTaiSanService>();
+            services.AddTransient<IHangHoaService, HangHoaService>();
+            services.AddTransient<ILoNhapService, LoNhapService>();
             services.AddSingleton<IToolbarService, ToolbarService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
@@ -63,18 +65,22 @@ namespace ITAM.WPF
             services.AddTransient<NhaCungCapViewModel>();
             services.AddTransient<LoaiTaiSanViewModel>();
             services.AddTransient<ViTriTaiSanViewModel>();
+            services.AddTransient<HangHoaViewModel>();
+            services.AddTransient<LoNhapViewModel>();
             services.AddTransient<UserManagementViewModel>();
             services.AddTransient<AddEditUserViewModel>();
             services.AddTransient<RoleManagementViewModel>();
             services.AddTransient<AddEditRoleViewModel>();
             services.AddTransient<ThamSoNguoiDungViewModel>();
             services.AddTransient<ChangePhongBanViewModel>();
+            services.AddTransient<LoNhapSearchViewModel>();
             // DI Windows
             services.AddTransient<LoginWindow>();              // ⬅ đổi Transient (mở lại được khi logout)
             services.AddSingleton<MainWindow>();
             services.AddTransient<AddEditUserWindow>();
             services.AddTransient<AddEditRoleWindow>();
             services.AddTransient<ChangePhongBanWindow>();
+            services.AddTransient<LoNhapSearchWindow>();
             Services = services.BuildServiceProvider();
         }
 

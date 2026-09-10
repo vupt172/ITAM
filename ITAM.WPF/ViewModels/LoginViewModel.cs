@@ -68,6 +68,7 @@ namespace ITAM.WPF.ViewModels
                 var user = await _authService.LoginAsync(Username.Trim(), password);
                 _currentUserContext.Set(user);
                 App.Services.GetRequiredService<MainViewModel>().RefreshCurrentUser();
+                App.Services.GetRequiredService<MenuBarViewModel>().RefreshCurrentUser();
                 LoginSucceeded?.Invoke();
             }
             catch (AuthenticationException ex)

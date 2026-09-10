@@ -13,6 +13,9 @@
     <DataTemplate DataType="{x:Type viewModels:HeThongDMViewModel}">
         <views:HeThongDMView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:LoNhapViewModel}">
+        <views:LoNhapView />
+    </DataTemplate>
 
     <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
     <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">
@@ -39,5 +42,8 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type catalogViewModels:ViTriTaiSanViewModel}">
         <catalogViews:ViTriTaiSanView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type catalogViewModels:HangHoaViewModel}">
+        <catalogViews:HangHoaView />
     </DataTemplate>
 </ResourceDictionary>

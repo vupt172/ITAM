@@ -1,0 +1,87 @@
+<UserControl x:Class="ITAM.WPF.Views.Catalogs.HangHoaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="900">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200" Margin="0,0,16,0" materialDesign:HintAssist.Hint="Mã hàng hóa"
+                             IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding CurrentItem.Code, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
+                    <TextBox Width="300" materialDesign:HintAssist.Hint="Tên hàng hóa"
+                             IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding CurrentItem.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBox Width="200" Margin="0,0,16,0" materialDesign:HintAssist.Hint="Hãng sản xuất"
+                             IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding CurrentItem.HangSanXuat, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
+                    <TextBox Width="300" materialDesign:HintAssist.Hint="Model"
+                             IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding CurrentItem.Model, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <ComboBox Width="300" ItemsSource="{Binding DsDMTaiSan}" DisplayMemberPath="Name"
+                              SelectedValuePath="Id" IsEnabled="{Binding IsEditing}"
+                              SelectedValue="{Binding CurrentItem.DMTaiSanId, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                              materialDesign:HintAssist.Hint="Danh mục tài sản"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <TextBox Width="516" materialDesign:HintAssist.Hint="Mô tả"
+                             IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Margin="16,0,0,0" Content="Đang sử dụng" IsEnabled="{Binding IsEditing}"
+                              IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"/>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="2" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel>
+                    <TextBlock FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" Text="DANH MỤC HÀNG HÓA"/>
+                    <TextBox Width="250" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                             materialDesign:HintAssist.Hint="Tìm kiếm..."
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DataGrid Grid.Row="2" GridLinesVisibility="All" AutoGenerateColumns="False"
+                          CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
+                          IsReadOnly="True" IsEnabled="{Binding IsReadOnly}" SelectionMode="Single"
+                          SelectionUnit="FullRow" ItemsSource="{Binding ItemsView}"
+                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="120" Header="Mã" Binding="{Binding Code}"/>
+                        <DataGridTextColumn Width="220" Header="Tên hàng hóa" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Width="130" Header="Hãng SX" Binding="{Binding HangSanXuat}"/>
+                        <DataGridTextColumn Width="130" Header="Model" Binding="{Binding Model}"/>
+                        <DataGridTextColumn Width="180" Header="Danh mục tài sản" Binding="{Binding DMTaiSanName}"/>
+                        <DataGridTextColumn Width="*" Header="Mô tả" Binding="{Binding Description}"/>
+                        <DataGridCheckBoxColumn Width="100" Header="Sử dụng" Binding="{Binding IsActive}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

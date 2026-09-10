@@ -55,6 +55,11 @@ namespace ITAM.WPF.ViewModels
             {
                 Title = "Danh Mục Tài Sản",
                 ViewModelType = typeof(DMTaiSanViewModel)
+            },
+            new()
+            {
+                Title = "Hàng Hóa",
+                ViewModelType = typeof(HangHoaViewModel)
             }
         ]
     },

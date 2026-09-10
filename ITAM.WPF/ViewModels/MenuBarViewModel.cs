@@ -13,18 +13,21 @@ using System.Windows.Input;
 
 namespace ITAM.WPF.ViewModels
 {
-    public partial class MenuBarViewModel
+    public partial class MenuBarViewModel:ObservableObject
     {
         private readonly INavigationService _navigationService;
         private readonly ICurrentUserContext _currentUserContext;
-
+        public bool HasFeatureDashboard =>_currentUserContext.HasFeature("DASHBOARD");
+        public bool HasFeatureHeThongDM => _currentUserContext.HasFeature("HETHONG_DANHMUC");
+        public bool HasFeatureUserManagement => _currentUserContext.HasFeature("HETHONG_NGUOIDUNG");
+        public bool HasFeatureRoleManagement => _currentUserContext.HasFeature("HETHONG_QUYEN");
+        
         public MenuBarViewModel(INavigationService navigationService, ICurrentUserContext currentUserContext)
         {
             _navigationService = navigationService;
             _currentUserContext = currentUserContext;
-
         }
-
+        #region Commands
 
         [RelayCommand]
         private void NavigateDashboard()
@@ -36,6 +39,8 @@ namespace ITAM.WPF.ViewModels
         {
             _navigationService.NavigateTo<HeThongDMViewModel>();
         }
+        [RelayCommand]
+        private void NavigateLoNhap() => _navigationService.NavigateTo<LoNhapViewModel>();
         [RelayCommand]
         private void NavigateUserManagement()
         {
@@ -105,6 +110,15 @@ namespace ITAM.WPF.ViewModels
             Application.Current.Windows
                 .OfType<MainWindow>()
                 .FirstOrDefault()?.Hide();
+        }
+        #endregion
+        // Gọi lại sau khi đăng nhập thành công hoặc đăng xuất để cập nhật tên hiển thị trên MainWindow
+        public void RefreshCurrentUser()
+        {
+            OnPropertyChanged(nameof(HasFeatureDashboard));
+            OnPropertyChanged(nameof(HasFeatureHeThongDM));
+            OnPropertyChanged(nameof(HasFeatureUserManagement));
+            OnPropertyChanged(nameof(HasFeatureRoleManagement));
         }
     }
 }

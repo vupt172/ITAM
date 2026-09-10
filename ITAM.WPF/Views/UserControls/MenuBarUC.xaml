@@ -21,17 +21,18 @@
         <Menu Grid.Column="1">
             <!-- DASHBOARD -->
             <MenuItem Header="Dashboard">
-                <MenuItem Header="View Dashboard"  Icon="{materialDesign:PackIcon Kind=ViewDashboard}" 
+                <MenuItem Header="View Dashboard"  Icon="{materialDesign:PackIcon Kind=ViewDashboard}" Visibility="{Binding HasFeatureDashboard, Converter={StaticResource BooleanToVisibilityConverter}}" 
                           Command="{Binding NavigateDashboardCommand}" />
             </MenuItem>
             <!-- DANH MỤC -->
             <MenuItem Header="Danh Mục">
-                <MenuItem  Header="Hệ Thống Danh Mục" Icon="{materialDesign:PackIcon Kind=FormatListBulleted}"
+                <MenuItem  Header="Hệ Thống Danh Mục" Icon="{materialDesign:PackIcon Kind=FormatListBulleted}" Visibility="{Binding HasFeatureHeThongDM, Converter={StaticResource BooleanToVisibilityConverter}}"
                            Command="{Binding NavigatHeThongDMCommand}"/>
             </MenuItem>
             <!-- TÀI SẢN -->
             <MenuItem Header="Quản Lý Tài Sản">
-                <MenuItem Header="Nhập Tài Sản Từ NCC"/>
+                <MenuItem Header="Nhập Tài Sản Từ NCC"
+                          Command="{Binding NavigateLoNhapCommand}"/>
                 <MenuItem Header="Danh Sách Tài Sản"/>
                 <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}"/>
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
@@ -45,9 +46,9 @@
                 <MenuItem Header="Đổi Mật Khẩu " Icon="{materialDesign:PackIcon Kind=Key}"/>
 
                 <Separator/>
-                <MenuItem Header="Quản Trị Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountMultiple}"
+                <MenuItem Header="Quản Trị Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountMultiple}" Visibility="{Binding HasFeatureUserManagement, Converter={StaticResource BooleanToVisibilityConverter}}"
                           Command="{Binding NavigateUserManagementCommand}"/>
-                <MenuItem Header="Quản Trị Vai Trò" Icon="{materialDesign:PackIcon Kind=ShieldAccount}"
+                <MenuItem Header="Quản Trị Vai Trò" Icon="{materialDesign:PackIcon Kind=ShieldAccount}" Visibility="{Binding HasFeatureRoleManagement, Converter={StaticResource BooleanToVisibilityConverter}}"
                           Command="{Binding NavigateRoleManagementCommand}"/>
                 <MenuItem Header="Tham Số Người Dùng" Icon="{materialDesign:PackIcon Kind=AccountCog}"
                           Command="{Binding NavigateThamSoNguoiDungCommand}"/>

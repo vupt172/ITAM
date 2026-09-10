@@ -1,0 +1,103 @@
+<UserControl x:Class="ITAM.WPF.Views.LoNhapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- FORM THÔNG TIN PHIẾU NHẬP -->
+        <materialDesign:Card Padding="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <UniformGrid Grid.Row="0" Columns="3">
+                    <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.SoLo, Mode=OneWay}" IsReadOnly="True"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:HintAssist.Hint="Số phiếu nhập"/>
+                    <DatePicker Margin="0,0,12,0" SelectedDate="{Binding CurrentPhieu.NgayNhap}" IsEnabled="{Binding IsEditing}"
+                      materialDesign:HintAssist.Hint="Ngày nhập"
+                      Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <ComboBox ItemsSource="{Binding NhaCungCaps}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentPhieu.NhaCungCapId}" IsEnabled="{Binding IsEditing}"
+                    materialDesign:HintAssist.Hint="Nhà cung cấp"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                    />
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="1" Columns="2" Margin="0,16,0,0">
+                    <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.TenNguoiLapPhieu, Mode=OneWay}" IsReadOnly="True"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:HintAssist.Hint="Người lập phiếu"/>
+                    <TextBox Text="{Binding CurrentPhieu.TrangThai, Mode=OneWay}" IsReadOnly="True"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:HintAssist.Hint="Trạng thái"/>
+                </UniformGrid>
+
+                <TextBox Grid.Row="2" Margin="0,16,0,0" Text="{Binding CurrentPhieu.GhiChu}" IsReadOnly="{Binding IsReadOnly}"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 AcceptsReturn="True" TextWrapping="Wrap" Height="60"
+                 materialDesign:HintAssist.Hint="Ghi chú"/>
+
+                <!-- Duyệt / Từ chối — chỉ hiện khi phiếu đang PENDING -->
+                <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="16,0,0,0"
+                    VerticalAlignment="Center" HorizontalAlignment="Right"
+                    Visibility="{Binding IsPending, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button Content="Duyệt phiếu" Command="{Binding DuyetCommand}" Margin="0,0,0,8"
+                  Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="Từ chối" Command="{Binding TuChoiCommand}"
+                  Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- BẢNG CHI TIẾT -->
+        <materialDesign:Card Grid.Row="2" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Width="220" ItemsSource="{Binding HangHoas}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentChiTiet.HangHoaId}" IsEnabled="{Binding IsPending}"
+                    materialDesign:HintAssist.Hint="Hàng hóa"/>
+                    <TextBox Width="80" Margin="8,0" Text="{Binding CurrentChiTiet.SoLuongNhap}" IsEnabled="{Binding IsPending}"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:HintAssist.Hint="SL"/>
+                    <TextBox Width="110" Text="{Binding CurrentChiTiet.DonGia}" IsEnabled="{Binding IsPending}"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:HintAssist.Hint="Đơn giá"/>
+                    <ComboBox Width="170" Margin="8,0" ItemsSource="{Binding LoaiTaiSans}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentChiTiet.LoaiTaiSanId}" IsEnabled="{Binding IsPending}"
+                    materialDesign:HintAssist.Hint="Loại TS (nếu có)"/>
+                    <Button Content="Thêm dòng" Command="{Binding AddChiTietCommand}"/>
+                    <Button Margin="8,0" Content="Xóa dòng" Command="{Binding DeleteChiTietCommand}"/>
+                </StackPanel>
+
+                <DataGrid Grid.Row="1" Margin="0,12,0,0" AutoGenerateColumns="False" IsReadOnly="True"
+                  ItemsSource="{Binding ChiTiets}" SelectedItem="{Binding SelectedChiTiet}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Số dòng" Binding="{Binding SoLo}" Width="130"/>
+                        <DataGridTextColumn Header="Hàng hóa" Binding="{Binding TenVatPham}" Width="*"/>
+                        <DataGridTextColumn Header="SL" Binding="{Binding SoLuongNhap}" Width="70"/>
+                        <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGia, StringFormat=N0}" Width="110"/>
+                        <DataGridTextColumn Header="Thành tiền" Binding="{Binding ThanhTien, StringFormat=N0}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

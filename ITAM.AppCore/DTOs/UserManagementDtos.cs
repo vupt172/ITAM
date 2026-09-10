@@ -10,6 +10,7 @@
         public string FullName { get; set; } = null!;
         public long? PhongBanId { get; set; }
         public string? PhongBanName { get; set; }
+        public string? RoleNames { get; set; } // Comma-separated role names for display
         public bool IsActive { get; set; }
         public DateTime? LastLoginAt { get; set; }
     }

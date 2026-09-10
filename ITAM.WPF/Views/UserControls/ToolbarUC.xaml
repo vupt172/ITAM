@@ -56,6 +56,13 @@
                     <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Refresh" Margin="0,4,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Tìm kiếm"
+                    Command="{Binding CurrentContext.SearchCommand}">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Style="{StaticResource ToolbarIconStyle}" Kind="Magnify" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource ToolbarTextStyle}" Text="Tìm kiếm" Margin="0,4,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
             <Separator/>
             <Button Style="{StaticResource ToolbarButtonStyle}" ToolTip="Đóng"
          Command="{Binding CurrentContext.CloseCommand}">
