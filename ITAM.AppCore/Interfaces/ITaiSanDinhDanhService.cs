@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ITAM.AppCore.DTOs;
 using ITAM.Domain.Entities;
 using ITAM.Domain.Enums;
 
@@ -13,6 +14,7 @@ namespace ITAM.AppCore.Interfaces
     {
         Task<TaiSanDinhDanh?> GetByIdAsync(long id);
         Task<List<TaiSanDinhDanh>> GetAllAsync();
+        Task<List<TaiSanDinhDanh>> GetAllAsync(long phongBanId);
 
         /// <summary>Danh sách tài sản đang ở 1 vị trí (kho/phòng ban) cụ thể.</summary>
         Task<List<TaiSanDinhDanh>> GetByViTriAsync(long viTriTaiSanId);

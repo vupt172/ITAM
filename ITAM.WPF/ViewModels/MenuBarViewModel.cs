@@ -42,6 +42,11 @@ namespace ITAM.WPF.ViewModels
         [RelayCommand]
         private void NavigateLoNhap() => _navigationService.NavigateTo<LoNhapViewModel>();
         [RelayCommand]
+        private void NavigateTaiSanDinhDanh() => _navigationService.NavigateTo<TaiSanDinhDanhListViewModel>();
+
+        [RelayCommand]
+        private void NavigateVatTu() => _navigationService.NavigateTo<VatTuListViewModel>();
+        [RelayCommand]
         private void NavigateUserManagement()
         {
             _navigationService.NavigateTo<UserManagementViewModel>();

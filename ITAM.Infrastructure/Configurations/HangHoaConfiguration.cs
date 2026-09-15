@@ -10,9 +10,11 @@ namespace ITAM.Infrastructure.Configurations
         {
             builder.ToTable("HangHoa");
             builder.ConfigureCatalog();
+            builder.Property(f => f.Code).IsRequired().HasMaxLength(50);
             builder.HasIndex(x => x.Code).IsUnique();
-            builder.Property(x => x.HangSanXuat).HasMaxLength(200).IsRequired();
-            builder.Property(x => x.Model).HasMaxLength(100).IsRequired();
+            builder.Property(x => x.HangSanXuat).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.Model).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.DonViTinh).HasMaxLength(255).IsRequired();
             builder.HasOne(x => x.DMTaiSan).WithMany().HasForeignKey(x => x.DMTaiSanId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

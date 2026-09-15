@@ -27,6 +27,7 @@ namespace ITAM.Infrastructure.Services
                 .Include(x => x.HangHoa)
                 .Include(x => x.LoaiTaiSan)
                 .Include(x => x.ViTriTaiSan)
+                .Include(x => x.LoNhapChiTiet)   // thêm dòng này
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -37,6 +38,19 @@ namespace ITAM.Infrastructure.Services
                 .Include(x => x.HangHoa)
                 .Include(x => x.LoaiTaiSan)
                 .Include(x => x.ViTriTaiSan)
+                .Include(x => x.LoNhapChiTiet)   // thêm dòng này
+                .OrderBy(x => x.Code)
+                .ToListAsync();
+        }
+        public async Task<List<TaiSanDinhDanh>> GetAllAsync(long phongBanId)
+        {
+            return await _context.TaiSanDinhDanh
+                .AsNoTracking()
+                .Include(x => x.HangHoa)
+                .Include(x => x.LoaiTaiSan)
+                .Include(x => x.ViTriTaiSan)
+                .Include(x => x.LoNhapChiTiet)
+                .Where(x => x.ViTriTaiSan.PhongBanId == phongBanId)
                 .OrderBy(x => x.Code)
                 .ToListAsync();
         }
@@ -70,8 +84,12 @@ namespace ITAM.Infrastructure.Services
 
             taiSan.Name = dto.Name;
             taiSan.Serial = dto.Serial;
+            taiSan.NamSuDung = dto.NamSuDung;
+            taiSan.GhiChu = dto.GhiChu;
 
             await _context.SaveChangesAsync();
         }
+
+
     }
 }

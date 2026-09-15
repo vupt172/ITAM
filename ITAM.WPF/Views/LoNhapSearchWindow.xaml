@@ -37,14 +37,28 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"/>
         </StackPanel>
 
-        <DataGrid Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True"
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="40"
                   ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Số phiếu" Binding="{Binding SoLo}" Width="130"/>
                 <DataGridTextColumn Header="Ngày nhập" Binding="{Binding NgayNhap, StringFormat=d}" Width="110"/>
                 <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding TenNhaCungCap}" Width="*"/>
                 <DataGridTextColumn Header="Người lập phiếu" Binding="{Binding TenNguoiLapPhieu}" Width="160"/>
-                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="110"/>
+                <DataGridTemplateColumn Header="Trạng thái" Width="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Padding="8,3" HorizontalAlignment="Left"
+              Background="{Binding TrangThai, Converter={StaticResource TrangThaiLoNhapToBrushConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="{Binding TrangThai, Converter={StaticResource TrangThaiLoNhapToIconKindConverter}}"
+                                    Foreground="White" Width="14" Height="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TrangThai}" Width="100"
+                     Foreground="White" FontSize="12" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ChonCommand}"/>

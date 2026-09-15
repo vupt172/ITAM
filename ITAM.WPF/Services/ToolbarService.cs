@@ -36,7 +36,8 @@ namespace ITAM.WPF.Services
                 SaveCommand = DisableCommand,
                 CancelCommand = DisableCommand,
                 CloseCommand = DisableCommand,
-                RefreshCommand= DisableCommand
+                RefreshCommand= DisableCommand,
+                SearchCommand= DisableCommand
             });
 
         }

@@ -62,13 +62,8 @@
                     Grid.Row="2"
                     GridLinesVisibility="All"
                     AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    CanUserResizeRows="False"
                     IsReadOnly="True"
                     IsEnabled="{Binding IsReadOnly}"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
                     ItemsSource="{Binding Items}"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>

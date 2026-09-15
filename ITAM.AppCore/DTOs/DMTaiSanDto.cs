@@ -29,10 +29,6 @@ namespace ITAM.AppCore.DTOs
         private bool isActive = true;
 
         [ObservableProperty]
-        private bool isTrackedById;
-        [ObservableProperty]
-        private bool requireSerial;
-        [ObservableProperty]
         private int displayOrder = 0;
         public bool Validate()
         {
@@ -48,8 +44,6 @@ namespace ITAM.AppCore.DTOs
                 Name = Name,
                 Description = Description,
                 IsActive = IsActive,
-                IsTrackedById = IsTrackedById,
-                RequireSerial = RequireSerial,
                 DisplayOrder = DisplayOrder
             };
         }

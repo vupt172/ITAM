@@ -32,15 +32,13 @@ namespace ITAM.Domain.Entities
 
         /// <summary>
         /// Người dùng chọn khi nhập dòng chi tiết (combobox filter theo DonGia gợi ý, không tự suy luận).
-        /// Bắt buộc khi DMTaiSan.IsTrackedById = true, bỏ qua (null) nếu là Vật Tư.
         /// </summary>
-        public long? LoaiTaiSanId { get; set; }
-        public LoaiTaiSan? LoaiTaiSan { get; set; }
+        public long LoaiTaiSanId { get; set; }
+        public LoaiTaiSan LoaiTaiSan { get; set; }
 
         /// <summary>Tính toán ở tầng ứng dụng, không lưu DB — tránh lệch dữ liệu với DonGia/SoLuongNhap.</summary>
         public decimal ThanhTien => SoLuongNhap * DonGia;
 
-        /// <summary>Chỉ có dữ liệu khi DMTaiSan.IsTrackedById = true.</summary>
         public ICollection<TaiSanDinhDanh> TaiSanDinhDanhs { get; set; } = new List<TaiSanDinhDanh>();
     }
 }

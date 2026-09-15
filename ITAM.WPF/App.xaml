@@ -24,7 +24,8 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Converters dùng toàn cục -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-
+            <converters:TrangThaiLoNhapToBrushConverter x:Key="TrangThaiLoNhapToBrushConverter"/>
+            <converters:TrangThaiLoNhapToIconKindConverter x:Key="TrangThaiLoNhapToIconKindConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

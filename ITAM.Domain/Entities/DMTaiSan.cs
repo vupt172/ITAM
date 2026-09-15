@@ -8,8 +8,6 @@ namespace ITAM.Domain.Entities
 {
     public class DMTaiSan : CatalogEntity
     {
-        public bool IsTrackedById { get; set; }
-        public bool RequireSerial { get; set; }
         public int DisplayOrder { get; set; }= 0;
 
     }

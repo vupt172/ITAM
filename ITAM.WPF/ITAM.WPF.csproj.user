@@ -19,6 +19,12 @@
     <Compile Update="Views\RoleManagementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\TaiSanDinhDanhEditWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TaiSanDinhDanhListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ThamSoNguoiDungView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -56,6 +62,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UserManagementView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VatTuEditWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\VatTuListView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

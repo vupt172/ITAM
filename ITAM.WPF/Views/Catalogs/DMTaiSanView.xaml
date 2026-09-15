@@ -44,14 +44,10 @@
                     <TextBox Width="250" Margin="0,0,20,0" materialDesign:HintAssist.Hint="Display Order" IsReadOnly="{Binding IsReadOnly}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
            Text="{Binding CurrentItem.DisplayOrder,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
                 </StackPanel>
-
+         
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <CheckBox  Content="IsTrackedById" IsEnabled="{Binding IsEditing}" Margin="0,0,24,0"
-                         IsChecked="{Binding CurrentItem.IsTrackedById, Mode=TwoWay}"  />
-                    <CheckBox  Content="RequireSerial" IsEnabled="{Binding IsEditing}" Margin="0,0,24,0"
-                         IsChecked="{Binding CurrentItem.RequireSerial, Mode=TwoWay}"   />
                     <CheckBox Content="IsActive" IsEnabled="{Binding IsEditing}"
-                         IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"   />
+                 IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"   />
                 </StackPanel>
             </Grid>
 
@@ -90,8 +86,6 @@
                         <DataGridTextColumn Width="150" Header="Mã danh mục" Binding="{Binding Code}" />
                         <DataGridTextColumn Width="250" Header="Tên danh mục" Binding="{Binding Name}" />
                         <DataGridTextColumn Width="100" Header="DisplayOrder" Binding="{Binding DisplayOrder}" />
-                        <DataGridCheckBoxColumn Width="100" Header="RequireSerial" Binding="{Binding RequireSerial}" />
-                        <DataGridCheckBoxColumn Width="100" Header="IsTrackedById" Binding="{Binding IsTrackedById}" />
                         <DataGridTextColumn Width="*" Header="Mô tả" Binding="{Binding Description}" />
                         <DataGridCheckBoxColumn Width="100" Header="IsActive" Binding="{Binding IsActive}" />
                     </DataGrid.Columns>

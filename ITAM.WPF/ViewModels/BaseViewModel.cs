@@ -10,6 +10,7 @@ namespace ITAM.WPF.ViewModels
         public virtual string Title => string.Empty;
         public ToolbarContext ToolbarContext { get; set; }
         protected readonly INavigationService _navigationService;
+        protected readonly IErrorDialogService _errorDialogService;
         // Cờ chỉnh sửa chung — Add/Edit bật lên, Save/Cancel tắt đi.
         [ObservableProperty]
         private bool isEditing;
@@ -25,6 +26,13 @@ namespace ITAM.WPF.ViewModels
             InitToolbarState();
             ToolbarContext = GetToolbarContext();
         }
+        public BaseViewModel(INavigationService navigationService,IErrorDialogService errorDialogService)
+        {
+            _navigationService = navigationService;
+            _errorDialogService = errorDialogService;
+            InitToolbarState();
+            ToolbarContext = GetToolbarContext();
+        }
 
         public virtual ToolbarContext GetToolbarContext()
         {
@@ -36,11 +44,12 @@ namespace ITAM.WPF.ViewModels
                 SaveCommand = SaveCommand,
                 CancelCommand = CancelCommand,
                 CloseCommand = CloseCommand,
+                SearchCommand=SearchCommand,
                 RefreshCommand = RefreshCommand
             };
         }
 
-        // Dùng để set canClose/canRefresh (2 cờ không phụ thuộc IsEditing).
+        // Dùng để set canClose/canRefresh/CanSearch (3 cờ không phụ thuộc IsEditing).
         // Add/Edit/Delete/Save/Cancel giờ tự suy ra từ IsEditing + HasSelection,
         // không cần gán tay trong hàm này nữa.
         protected virtual void InitToolbarState() { }
@@ -76,6 +85,11 @@ namespace ITAM.WPF.ViewModels
         protected bool canRefresh;
         [RelayCommand(CanExecute = nameof(CanRefresh))]
         protected virtual void Refresh() { }
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SearchCommand))]
+        protected bool canSearch;
+        [RelayCommand(CanExecute = nameof(CanSearch))]
+        protected virtual void Search() { }
 
         partial void OnIsEditingChanged(bool value)
         {

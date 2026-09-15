@@ -21,7 +21,9 @@ namespace ITAM.Domain.Entities
         // Giả định User.Id kiểu long để đồng bộ CatalogEntity — chỉnh lại nếu thực tế là int.
         public long NguoiLapPhieuId { get; set; }
         public User NguoiLapPhieu { get; set; } = null!;
-
+        /// <summary>Người bấm Duyệt/Từ chối — gán tự động, null khi phiếu còn PENDING.</summary>
+        public long? NguoiDuyetId { get; set; }
+        public User? NguoiDuyet { get; set; }
         public TrangThaiLoNhap TrangThai { get; set; } = TrangThaiLoNhap.PENDING;
         public string? GhiChu { get; set; }
 

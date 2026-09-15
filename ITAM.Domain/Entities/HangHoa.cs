@@ -6,6 +6,8 @@ namespace ITAM.Domain.Entities
         public string HangSanXuat { get; set; }
         public string Model { get; set; }
         public long DMTaiSanId { get; set; }
+        public string DonViTinh { get; set; }
+        public bool RequireSerial { get; set; }
         public DMTaiSan DMTaiSan { get; set; } = null!;
     }
 }

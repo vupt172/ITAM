@@ -19,6 +19,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Width="200" Margin="0,0,16,0" materialDesign:HintAssist.Hint="Mã hàng hóa"
@@ -37,6 +38,9 @@
                              Text="{Binding CurrentItem.Model, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBox Width="200" Margin="0,0,16,0" materialDesign:HintAssist.Hint="Đơn vị tính"
+                          IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                          Text="{Binding CurrentItem.DonViTinh, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
                     <ComboBox Width="300" ItemsSource="{Binding DsDMTaiSan}" DisplayMemberPath="Name"
                               SelectedValuePath="Id" IsEnabled="{Binding IsEditing}"
                               SelectedValue="{Binding CurrentItem.DMTaiSanId, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
@@ -47,6 +51,10 @@
                     <TextBox Width="516" materialDesign:HintAssist.Hint="Mô tả"
                              IsReadOnly="{Binding IsReadOnly}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Orientation="Horizontal">
+                    <CheckBox  Content="RequireSerial" IsEnabled="{Binding IsEditing}" Margin="0,0,24,0"
+     IsChecked="{Binding CurrentItem.RequireSerial, Mode=TwoWay}"   />
                     <CheckBox Margin="16,0,0,0" Content="Đang sử dụng" IsEnabled="{Binding IsEditing}"
                               IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"/>
                 </StackPanel>
@@ -76,8 +84,10 @@
                         <DataGridTextColumn Width="220" Header="Tên hàng hóa" Binding="{Binding Name}"/>
                         <DataGridTextColumn Width="130" Header="Hãng SX" Binding="{Binding HangSanXuat}"/>
                         <DataGridTextColumn Width="130" Header="Model" Binding="{Binding Model}"/>
+                        <DataGridTextColumn Width="130" Header="Đơn vị tính" Binding="{Binding DonViTinh}"/>
                         <DataGridTextColumn Width="180" Header="Danh mục tài sản" Binding="{Binding DMTaiSanName}"/>
-                        <DataGridTextColumn Width="*" Header="Mô tả" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Width="300" Header="Mô tả" Binding="{Binding Description}"/>
+                        <DataGridCheckBoxColumn Width="100" Header="RequireSerial" Binding="{Binding RequireSerial}" />
                         <DataGridCheckBoxColumn Width="100" Header="Sử dụng" Binding="{Binding IsActive}"/>
                     </DataGrid.Columns>
                 </DataGrid>

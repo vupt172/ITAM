@@ -33,7 +33,10 @@
             <MenuItem Header="Quản Lý Tài Sản">
                 <MenuItem Header="Nhập Tài Sản Từ NCC"
                           Command="{Binding NavigateLoNhapCommand}"/>
-                <MenuItem Header="Danh Sách Tài Sản"/>
+                <MenuItem Header="Danh Sách Tài Sản Định Danh" Icon="{materialDesign:PackIcon Kind=FormatListBulletedSquare}"
+          Command="{Binding NavigateTaiSanDinhDanhCommand}"/>
+                <MenuItem Header="Danh Sách Vật Tư" Icon="{materialDesign:PackIcon Kind=PackageVariant}"
+          Command="{Binding NavigateVatTuCommand}"/>
                 <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}"/>
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
                 </MenuItem>

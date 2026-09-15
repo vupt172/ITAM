@@ -1,46 +1,60 @@
-﻿using ITAM.Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ITAM.Domain.Enums;
 
 namespace ITAM.AppCore.DTOs
 {
-    public class CreateLoNhapDto
-    {
-        public DateTime NgayNhap { get; set; }
-        public long NhaCungCapId { get; set; }
-        public long NguoiLapPhieuId { get; set; }
-        public string? GhiChu { get; set; }
-    }
-
-    public class CreateLoNhapChiTietDto
-    {
-        public long HangHoaId { get; set; }
-        public int SoLuongNhap { get; set; }
-        public decimal DonGia { get; set; }
-
-        /// <summary>
-        /// Người dùng chọn từ combobox (đã filter theo DonGia ở UI).
-        /// Bắt buộc nếu DMTaiSan.IsTrackedById = true.
-        /// </summary>
-        public long? LoaiTaiSanId { get; set; }
-    }
-
     public class LoNhapFormDto
     {
         public long Id { get; set; }
         public string SoLo { get; set; } = string.Empty;
         public DateTime NgayNhap { get; set; } = DateTime.Today;
-
         public long NhaCungCapId { get; set; }
         public string? TenNhaCungCap { get; set; }
-
         public long NguoiLapPhieuId { get; set; }
         public string TenNguoiLapPhieu { get; set; } = string.Empty;
-
+        public string TenNguoiDuyet { get; set; } = "Chưa duyệt";   // ⬅ mới
         public string? GhiChu { get; set; }
         public string TrangThai { get; set; } = "PENDING";
     }
-    /// <summary>Tiêu chí tìm kiếm Lô Nhập — dùng cho ILoNhapService.TimKiemAsync.</summary>
+
+    /// <summary>Dòng chi tiết hiển thị/soạn trên UI. Id = null nghĩa là dòng mới, chưa có trong DB.</summary>
+    public class LoNhapChiTietFormDto
+    {
+        public long? Id { get; set; }
+        public string SoLo { get; set; } = string.Empty;
+        public long HangHoaId { get; set; }
+        public string MaHangHoa { get; set; } = string.Empty;
+        public string TenVatPham { get; set; } = string.Empty;
+        public int SoLuongNhap { get; set; }
+        public decimal DonGia { get; set; }
+        public long LoaiTaiSanId { get; set; }
+        public string TenLoaiTaiSan { get; set; }   // ⬅ mới
+        public decimal ThanhTien => SoLuongNhap * DonGia;
+    }
+
+    /// <summary>Gói toàn bộ Phiếu Nhập (header + chi tiết) để lưu 1 lần khi bấm "Lưu".</summary>
+    public class SaveLoNhapDto
+    {
+        public long? Id { get; set; } // null = tạo mới
+        public DateTime NgayNhap { get; set; }
+        public long NhaCungCapId { get; set; }
+        public long NguoiLapPhieuId { get; set; }
+        public string? GhiChu { get; set; }
+        public List<SaveLoNhapChiTietDto> ChiTiets { get; set; } = new();
+        public List<long> ChiTietIdsXoa { get; set; } = new();
+    }
+
+    public class SaveLoNhapChiTietDto
+    {
+        public long? Id { get; set; }
+        public long HangHoaId { get; set; }
+        public string TenVatPham { get; set; } = string.Empty;   // ⬅ mới
+        public int SoLuongNhap { get; set; }
+        public decimal DonGia { get; set; }
+        public long LoaiTaiSanId { get; set; }
+    }
+
     public class LoNhapSearchDto
     {
         public string? SoLo { get; set; }
@@ -48,15 +62,20 @@ namespace ITAM.AppCore.DTOs
         public DateTime? DenNgay { get; set; }
         public TrangThaiLoNhap? TrangThai { get; set; }
     }
-    public class LoNhapChiTietFormDto
+
+    // KHONG SU DUNG
+    public class CreateLoNhapDto
     {
-        public long Id { get; set; }
-        public string SoLo { get; set; } = string.Empty;
+        public DateTime NgayNhap { get; set; }
+        public long NhaCungCapId { get; set; }
+        public long NguoiLapPhieuId { get; set; }
+        public string? GhiChu { get; set; }
+    }
+    public class CreateLoNhapChiTietDto
+    {
         public long HangHoaId { get; set; }
-        public string TenVatPham { get; set; } = string.Empty;
         public int SoLuongNhap { get; set; }
         public decimal DonGia { get; set; }
-        public long? LoaiTaiSanId { get; set; }
-        public decimal ThanhTien => SoLuongNhap * DonGia;
+        public long LoaiTaiSanId { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace ITAM.Infrastructure.Services
                 .AsNoTracking()
                 .Include(x => x.HangHoa)
                 .Include(x => x.ViTriTaiSan)
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
 
@@ -44,7 +44,7 @@ namespace ITAM.Infrastructure.Services
                 .AsNoTracking()
                 .Include(x => x.HangHoa)
                 .Where(x => x.ViTriTaiSanId == viTriTaiSanId)
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
         public async Task UpdateAsync(UpdateVatTuDto dto)
@@ -54,6 +54,7 @@ namespace ITAM.Infrastructure.Services
 
             vatTu.Name = dto.Name;
             vatTu.DonViTinh = dto.DonViTinh;
+            vatTu.GhiChu = dto.GhiChu;
 
             await _context.SaveChangesAsync();
         }

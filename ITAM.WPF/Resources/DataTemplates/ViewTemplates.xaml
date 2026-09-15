@@ -16,6 +16,13 @@
     <DataTemplate DataType="{x:Type viewModels:LoNhapViewModel}">
         <views:LoNhapView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:TaiSanDinhDanhListViewModel}">
+        <views:TaiSanDinhDanhListView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:VatTuListViewModel}">
+        <views:VatTuListView />
+    </DataTemplate>
+
 
     <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
     <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">

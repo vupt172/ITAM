@@ -4,8 +4,6 @@ namespace ITAM.Domain.Entities
 {
     /// <summary>
     /// Tài sản quản lý theo định danh riêng lẻ — mỗi dòng là 1 tài sản cụ thể (số lượng luôn = 1).
-    /// Sinh ra từ DMTaiSan có IsTrackedById = true khi duyệt Lô Nhập.
-    /// Vật Tư (IsTrackedById = false) quản lý theo số lượng ở bảng riêng (VatTu), không nằm ở đây.
     /// </summary>
     public class TaiSanDinhDanh
     {
@@ -43,10 +41,7 @@ namespace ITAM.Domain.Entities
         public long ViTriTaiSanId { get; set; }
         public ViTriTaiSan ViTriTaiSan { get; set; } = null!;
 
-        // ---- Cho mượn ----
+        public string? GhiChu { get; set; }
 
-        /// <summary>Đang được phòng ban khác mượn hay không.</summary>
-        public bool DangChoMuon { get; set; } = false;
-
-    }
+        }
 }
