@@ -37,7 +37,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"/>
         </StackPanel>
 
-        <DataGrid Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="40"
+        <DataGrid Grid.Row="2" RowHeight="34"
                   ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Số phiếu" Binding="{Binding SoLo}" Width="130"/>

@@ -59,14 +59,10 @@
                 </DockPanel>
                 <!-- DataGrid -->
                 <DataGrid
-                    Grid.Row="2"
-                    GridLinesVisibility="All"
-                    AutoGenerateColumns="False"
-                    IsReadOnly="True"
-                    IsEnabled="{Binding IsReadOnly}"
-                    ItemsSource="{Binding Items}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    Grid.Row="2" IsEnabled="{Binding IsReadOnly}"
+                    ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>
+    
                         <DataGridTextColumn Width="150" Header="Mã phòng ban" Binding="{Binding Code}" />
                         <DataGridTextColumn Width="250" Header="Tên phòng ban" Binding="{Binding Name}" />
                         <DataGridTextColumn Width="*" Header="Mô tả" Binding="{Binding Description}" />

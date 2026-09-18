@@ -70,19 +70,10 @@
                 </DockPanel>
                 <!-- DataGrid -->
                 <DataGrid
-                    Grid.Row="2"
-                    GridLinesVisibility="All"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    CanUserResizeRows="False"
-                    IsReadOnly="True"
-                    IsEnabled="{Binding IsReadOnly}"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
-                    ItemsSource="{Binding Items}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    Grid.Row="2" IsEnabled="{Binding IsReadOnly}"
+                    ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>
+
                         <DataGridTextColumn Width="150" Header="Mã VTTS" Binding="{Binding Code}" />
                         <DataGridTextColumn Width="250" Header="Tên VTTS" Binding="{Binding Name}" />
                         <DataGridTextColumn Width="250" Header="Tên Phòng ban" Binding="{Binding PhongBanName}" />

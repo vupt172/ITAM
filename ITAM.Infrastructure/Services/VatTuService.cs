@@ -37,7 +37,17 @@ namespace ITAM.Infrastructure.Services
                 .OrderBy(x => x.Id)
                 .ToListAsync();
         }
-
+        public async Task<List<VatTu>> GetAllAsync(long phongBanId)
+        {
+            return await _context.VatTu
+                .AsNoTracking()
+                .Include(x => x.HangHoa)
+                .ThenInclude(h => h.DMTaiSan)   // ⬅ thêm
+                .Include(x => x.ViTriTaiSan)
+                .Where(x => x.ViTriTaiSan.PhongBanId == phongBanId)
+                .OrderBy(x => x.Id)
+                .ToListAsync();
+        }
         public async Task<List<VatTu>> GetByViTriAsync(long viTriTaiSanId)
         {
             return await _context.VatTu

@@ -14,6 +14,8 @@
         public decimal GiaNhap { get; set; }
         public string SoLoNhapChiTiet { get; set; } = string.Empty; // lấy từ LoNhapChiTiet.SoLo
         public string? GhiChu { get; set; }
+        public string TenDanhMuc { get; set; } = string.Empty; // ⬅ mới — lấy từ HangHoa.DMTaiSan.Name
+
     }
 
     public class UpdateTaiSanDinhDanhDto

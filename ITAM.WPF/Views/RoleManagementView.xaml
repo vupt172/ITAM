@@ -7,14 +7,10 @@
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="12">
         <DataGrid ItemsSource="{Binding Roles}"
-                  SelectedItem="{Binding SelectedRole}"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  CanUserAddRows="False"
-                  materialDesign:DataGridAssist.CellPadding="8"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                  SelectedItem="{Binding SelectedRole}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã" Binding="{Binding Code}" Width="120"/>
+      
+                <DataGridTextColumn Header="Mã vai trò" Binding="{Binding Code}" Width="120"/>
                 <DataGridTextColumn Header="Tên vai trò" Binding="{Binding Name}" Width="250"/>
                 <DataGridTextColumn Header="Số quyền" Binding="{Binding FeatureCount}" Width="100"/>
                 <DataGridTextColumn Header="Số người dùng" Binding="{Binding UserCount}" Width="120"/>

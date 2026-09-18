@@ -9,6 +9,7 @@
         public int SoLuongTon { get; set; }
         public string TenViTri { get; set; } = string.Empty;
         public string? GhiChu { get; set; }
+        public string TenDanhMuc { get; set; } = string.Empty; // ⬅ mới
     }
 
     public class UpdateVatTuDto

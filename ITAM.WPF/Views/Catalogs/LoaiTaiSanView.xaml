@@ -78,19 +78,10 @@
                 </DockPanel>
                 <!-- DataGrid -->
                 <DataGrid
-                    Grid.Row="2"
-                    GridLinesVisibility="All"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    CanUserResizeRows="False"
-                    IsReadOnly="True"
-                    IsEnabled="{Binding IsReadOnly}"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
-                    ItemsSource="{Binding ItemsView}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    Grid.Row="2" IsEnabled="{Binding IsReadOnly}"
+                    ItemsSource="{Binding ItemsView}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>
+                
                         <DataGridTextColumn Width="150" Header="Mã loại tài sản" Binding="{Binding Code}" />
                         <DataGridTextColumn Width="250" Header="Tên loại tài sản" Binding="{Binding Name}" />
                         <DataGridTextColumn Width="150" Header="Giá trị tối thiểu"  Binding="{Binding MinValue, StringFormat={}{0:N2}}">

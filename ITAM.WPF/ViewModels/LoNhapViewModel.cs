@@ -81,6 +81,8 @@ namespace ITAM.WPF.ViewModels
                 Id = p.Id,
                 SoLo = p.SoLo,
                 NgayNhap = p.NgayNhap,
+                MaHoaDon = p.MaHoaDon,
+                NguoiGiao = p.NguoiGiao,
                 NhaCungCapId = p.NhaCungCapId,
                 TenNhaCungCap = p.NhaCungCap?.Name,
                 NguoiLapPhieuId = p.NguoiLapPhieuId,
@@ -97,12 +99,12 @@ namespace ITAM.WPF.ViewModels
                     Id = x.Id,
                     SoLo = x.SoLo,
                     HangHoaId = x.HangHoaId,
-                    MaHangHoa = x.HangHoa?.Code ?? string.Empty,
+                    MaHangHoa = x.HangHoa.Code,
                     TenVatPham = x.TenVatPham,
                     SoLuongNhap = x.SoLuongNhap,
                     DonGia = x.DonGia,
                     LoaiTaiSanId = x.LoaiTaiSanId,
-                    TenLoaiTaiSan = x.LoaiTaiSan?.Name          // ⬅ mới
+                    TenLoaiTaiSan = x.LoaiTaiSan.Name          // ⬅ mới
                 });
 
             _chiTietIdsXoa.Clear();
@@ -144,7 +146,7 @@ namespace ITAM.WPF.ViewModels
         {
             if (CurrentPhieu.NhaCungCapId == 0 || _currentUser.Instance == null)
             {
-                MessageBox.Show("Chọn nhà cung cấp và đăng nhập lại trước khi lập phiếu.");
+                MessageBox.Show("Chưa chọn nhà cung cấp");
                 return;
             }
             if (ChiTiets.Count == 0)
@@ -157,6 +159,8 @@ namespace ITAM.WPF.ViewModels
             {
                 Id = CurrentPhieu.Id == 0 ? null : CurrentPhieu.Id,
                 NgayNhap = CurrentPhieu.NgayNhap,
+                NguoiGiao = CurrentPhieu.NguoiGiao,
+                MaHoaDon = CurrentPhieu.MaHoaDon,
                 NhaCungCapId = CurrentPhieu.NhaCungCapId,
                 NguoiLapPhieuId = _currentUser.Instance.Id,
                 GhiChu = CurrentPhieu.GhiChu,

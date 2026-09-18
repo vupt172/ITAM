@@ -12,9 +12,10 @@ namespace ITAM.AppCore.Interfaces
     /// </summary>
     public interface ITaiSanDinhDanhService
     {
-        Task<TaiSanDinhDanh?> GetByIdAsync(long id);
         Task<List<TaiSanDinhDanh>> GetAllAsync();
         Task<List<TaiSanDinhDanh>> GetAllAsync(long phongBanId);
+        Task<TaiSanDinhDanh?> GetByCodeAsync(string code);
+        Task<TaiSanDinhDanh?> GetByIdAsync(long id);
 
         /// <summary>Danh sách tài sản đang ở 1 vị trí (kho/phòng ban) cụ thể.</summary>
         Task<List<TaiSanDinhDanh>> GetByViTriAsync(long viTriTaiSanId);

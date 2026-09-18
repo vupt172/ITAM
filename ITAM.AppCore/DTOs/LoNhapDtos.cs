@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.Domain.Enums;
+using System;
+using System.Collections.Generic;
 
 namespace ITAM.AppCore.DTOs
 {
@@ -11,10 +12,12 @@ namespace ITAM.AppCore.DTOs
         public DateTime NgayNhap { get; set; } = DateTime.Today;
         public long NhaCungCapId { get; set; }
         public string? TenNhaCungCap { get; set; }
+        public string? NguoiGiao { get; set; } = string.Empty;
+        public string? MaHoaDon { get; set; } = string.Empty;
         public long NguoiLapPhieuId { get; set; }
         public string TenNguoiLapPhieu { get; set; } = string.Empty;
         public string TenNguoiDuyet { get; set; } = "Chưa duyệt";   // ⬅ mới
-        public string? GhiChu { get; set; }
+        public string? GhiChu { get; set; } = string.Empty;
         public string TrangThai { get; set; } = "PENDING";
     }
 
@@ -38,6 +41,8 @@ namespace ITAM.AppCore.DTOs
     {
         public long? Id { get; set; } // null = tạo mới
         public DateTime NgayNhap { get; set; }
+        public string? NguoiGiao { get; set; }
+        public string? MaHoaDon { get; set; }
         public long NhaCungCapId { get; set; }
         public long NguoiLapPhieuId { get; set; }
         public string? GhiChu { get; set; }

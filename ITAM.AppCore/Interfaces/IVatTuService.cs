@@ -15,6 +15,7 @@ namespace ITAM.AppCore.Interfaces
     {
         Task<VatTu?> GetByIdAsync(long id);
         Task<List<VatTu>> GetAllAsync();
+        Task<List<VatTu>> GetAllAsync(long phongBanId);
 
         /// <summary>Danh sách vật tư đang ở 1 vị trí (kho/phòng ban) cụ thể.</summary>
         Task<List<VatTu>> GetByViTriAsync(long viTriTaiSanId);

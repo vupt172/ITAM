@@ -42,13 +42,20 @@
               materialDesign:HintAssist.Hint="Nhà cung cấp"
               Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                     </UniformGrid>
-                    
+                    <!-- Hàng 2: Người giao, Mã hóa đơn-->
+                    <UniformGrid Columns="2" Margin="0 0 0 16">
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.NguoiGiao, Mode=OneWay}" IsReadOnly="True"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.Hint="Người giao hàng"/>
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.MaHoaDon, Mode=OneWay}" IsReadOnly="True"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Mã hóa đơn"/>
+                    </UniformGrid>
+                    <!-- Hàng 3: Ghi chú -->
                     <TextBox Text="{Binding CurrentPhieu.GhiChu}" IsReadOnly="{Binding IsReadOnly}" Margin="0,0,0,16"
-                             AcceptsReturn="True" TextWrapping="Wrap" Height="50"
-                             materialDesign:HintAssist.Hint="Ghi chú"
+                             AcceptsReturn="True" materialDesign:HintAssist.Hint="Ghi chú"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    
-                    <!-- Hàng 3: Người lập phiếu, Người duyệt, Trạng thái — đều chỉ hiển thị, không cho sửa -->
+                    <!-- Hàng 4: Người lập phiếu, Người duyệt, Trạng thái — đều chỉ hiển thị, không cho sửa -->
                     <UniformGrid Columns="3" >
                         <StackPanel Margin="0,0,12,0">
                             <TextBlock Text="Người lập phiếu" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
@@ -148,7 +155,7 @@
   </StackPanel>
 </materialDesign:Card>
 
-                <DataGrid Grid.Row="2" AutoGenerateColumns="False" RowHeight="40" IsReadOnly="True" ItemsSource="{Binding ChiTiets}">
+                <DataGrid Grid.Row="2" AutoGenerateColumns="False" RowHeight="36" IsReadOnly="True" ItemsSource="{Binding ChiTiets}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã PNCT" Binding="{Binding SoLo}" Width="110"/>
                         <DataGridTextColumn Header="Mã hàng hóa" Binding="{Binding MaHangHoa}" Width="120"/>
@@ -161,21 +168,21 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Width="24" Height="24" Padding="0"
+                                        <Button Width="16" Height="16" Padding="0"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Sửa dòng"
                 Command="{Binding DataContext.SuaDongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 CommandParameter="{Binding}"
                 Visibility="{Binding DataContext.IsEditing, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                            <materialDesign:PackIcon Kind="PencilOutline" Width="16" Height="16"/>
+                                            <materialDesign:PackIcon Kind="PencilOutline" Width="14" Height="14"/>
                                         </Button>
-                                        <Button Width="24" Height="24" Padding="0" Margin="2,0,0,0"
+                                        <Button Width="16" Height="16" Padding="0" Margin="2,0,0,0"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Xóa dòng"
                 Command="{Binding DataContext.XoaDongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 CommandParameter="{Binding}"
                 Visibility="{Binding DataContext.IsEditing, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                            <materialDesign:PackIcon Kind="TrashCanOutline" Width="16" Height="16" Foreground="#D32F2F"/>
+                                            <materialDesign:PackIcon Kind="TrashCanOutline" Width="14" Height="14" Foreground="#D32F2F"/>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>

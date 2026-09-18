@@ -1,18 +1,84 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:behaviors="clr-namespace:ITAM.WPF.Behaviors">
 
     <!-- TEXTBOX -->
     <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
         <Setter Property="Height" Value="36"/>
     </Style>
-    <Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+    <!--<Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
         <Setter Property="RowHeight" Value="32"/>
         <Setter Property="ColumnHeaderHeight" Value="36"/>
-    </Style>
+    </Style>-->
     <Style x:Key="SearchableComboBoxStyle" TargetType="ComboBox"
        BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
         <Setter Property="IsEditable" Value="True"/>
         <Setter Property="IsTextSearchEnabled" Value="False"/>
         <Setter Property="StaysOpenOnEdit" Value="True"/>
+    </Style>
+
+    <!-- DATAGRID -->
+    <Style x:Key="CompactDataGridRowStyle" TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="#007ACC"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CompactDataGridCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style x:Key="CompactDataGridColumnHeaderStyle" TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+        <Setter Property="Background" Value="#F1F3F5"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <DataTemplate x:Key="DataGridRowNumberTemplate">
+        <TextBlock
+        Text="{Binding RelativeSource={
+            RelativeSource AncestorType=DataGridRow},
+            Path=Header}"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Margin="10,0"/>
+    </DataTemplate>
+
+
+    <Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+        <Setter Property="behaviors:DataGridBehavior.AutoIndex" Value="True"/>
+        <Setter Property="HeadersVisibility" Value="All"/>
+        <Setter Property="RowHeaderTemplate" Value="{StaticResource DataGridRowNumberTemplate}"/>
+        <Setter Property="RowHeaderWidth" Value="45"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="RowHeight" Value="32"/>
+        <Setter Property="ColumnHeaderHeight" Value="34"/>
+        <Setter Property="AlternationCount" Value="2"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+        <Setter Property="AlternatingRowBackground" Value="{DynamicResource MaterialDesignChipBackground}"/>
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+        <Setter Property="RowStyle" Value="{StaticResource CompactDataGridRowStyle}"/>
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource CompactDataGridColumnHeaderStyle}"/>
+        <Setter Property="CellStyle" Value="{StaticResource CompactDataGridCellStyle}"/>
+    </Style>
+
+    <!-- TABS -->
+    <!-- TabItem gọn: giảm padding, font nhỏ hơn -->
+        <Style x:Key="CompactTabItem" TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+        <Setter Property="Padding" Value="12,4"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="28"/>
+    </Style>
+
+        <!-- TabControl gọn: áp dụng CompactTabItem + giảm chiều cao thanh tab -->
+    <Style x:Key="CompactTabControl" TargetType="TabControl" BasedOn="{StaticResource MaterialDesignTabControl}">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource CompactTabItem}"/>
+        <Setter Property="Padding" Value="0"/>
     </Style>
 </ResourceDictionary>

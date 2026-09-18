@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ITAM.Domain.Enums;
 using ITAM.WPF.Services.Interfaces;
 
 namespace ITAM.WPF.ViewModels
@@ -11,6 +12,7 @@ namespace ITAM.WPF.ViewModels
         public CatalogViewModel(IErrorDialogService errorDialogService)
         {
             _errorDialogService = errorDialogService;
+
         }
         #region Fields & Properties
         [ObservableProperty]

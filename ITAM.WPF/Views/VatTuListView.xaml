@@ -2,22 +2,167 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
     <Grid Margin="16">
-        <materialDesign:Card Padding="12">
-            <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
-                ItemsSource="{Binding DanhSach}" SelectedItem="{Binding SelectedItem}">
-                <DataGrid.InputBindings>
-                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding EditCommand}"/>
-                </DataGrid.InputBindings>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã Hàng hóa" Binding="{Binding MaHangHoa}" Width="150"/>
-                    <DataGridTextColumn Header="Tên vật tư" Binding="{Binding Name}" Width="500"/>
-                    <DataGridTextColumn Header="ĐVT" Binding="{Binding DonViTinh}" Width="80"/>
-                    <DataGridTextColumn Header="SL tồn" Binding="{Binding SoLuongTon}" Width="80"/>
-                    <DataGridTextColumn Header="Vị trí" Binding="{Binding TenViTri}" Width="150"/>
-                    <DataGridTextColumn Header="Ghi Chú" Binding="{Binding GhiChu}" Width="300"/>
-                </DataGrid.Columns>
-            </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="3*" MaxHeight="250"/>
+        </Grid.RowDefinitions>
+
+        <!-- Hàng 1: Filter trái + Search/DataGrid phải -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT: FILTER -->
+            <materialDesign:Card Grid.Column="0" Padding="8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1"
+                                CornerRadius="4" Margin="0,0,0,8" Padding="6">
+                            <StackPanel>
+                                <TextBlock Text="Danh Mục Tài Sản" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <ComboBox ItemsSource="{Binding DanhMucFilters}"
+                                          SelectedItem="{Binding SelectedDanhMuc}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1"
+                                CornerRadius="4" Padding="6">
+                            <StackPanel>
+                                <TextBlock Text="Vị Trí Tài Sản" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <ItemsControl ItemsSource="{Binding ViTriFilters}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsChecked}" Margin="0,2">
+                                                <TextBlock Text="{Binding Value}"/>
+                                            </CheckBox>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </materialDesign:Card>
+
+            <!-- RIGHT: SEARCH + DATAGRID -->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="8"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0"
+                         materialDesign:HintAssist.Hint="Tìm theo Tên, Mã Hàng Hóa, Ghi Chú..."
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+                <materialDesign:Card Grid.Row="2" Padding="8">
+                    <DataGrid ItemsSource="{Binding DanhSach}" 
+                              SelectedItem="{Binding SelectedItem}">
+                        <DataGrid.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding EditCommand}"/>
+                        </DataGrid.InputBindings>
+                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã Hàng hóa" Binding="{Binding MaHangHoa}" Width="150"/>
+                            <DataGridTextColumn Header="Tên vật tư" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="ĐVT" Binding="{Binding DonViTinh}" Width="80"/>
+                            <DataGridTextColumn Header="SL tồn" Binding="{Binding SoLuongTon}" Width="80"/>
+                            <DataGridTextColumn Header="Vị trí" Binding="{Binding TenViTri}" Width="150"/>
+                            <DataGridTextColumn Header="Ghi Chú" Binding="{Binding GhiChu}" Width="300"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="6" Background="Transparent"/>
+
+        <!-- Hàng 2 (Bottom): Tabs -->
+        <materialDesign:Card Grid.Row="2" Padding="0">
+            <TabControl Style="{StaticResource CompactTabControl}">
+                <TabItem Header="Thông tin chi tiết">
+                    <Border BorderBrush="#D0D5DD" BorderThickness="2">
+                        <Grid Margin="6" Background="#FAF3DD">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Hàng 1: Mã Hàng Hóa | Đơn Vị Tính | Số Lượng Tồn -->
+                            <Grid Grid.Row="0" Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                    <TextBlock Text="MÃ HÀNG HÓA" FontSize="11" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding SelectedItem.MaHangHoa}" FontSize="13" FontWeight="Bold" Foreground="#1565C0"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Margin="0,0,16,0">
+                                    <TextBlock Text="ĐƠN VỊ TÍNH" FontSize="11" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding SelectedItem.DonViTinh}" FontSize="13"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="SỐ LƯỢNG TỒN" FontSize="11" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding SelectedItem.SoLuongTon}" FontSize="16" FontWeight="Bold" Foreground="#2E7D32"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Hàng 2: Tên Vật Tư (full width) -->
+                            <StackPanel Grid.Row="1" Margin="6">
+                                <TextBlock Text="TÊN VẬT TƯ" FontSize="11" Foreground="Gray"/>
+                                <TextBlock Text="{Binding SelectedItem.Name}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <!-- Hàng 3: Vị Trí | Danh Mục -->
+                            <Grid Grid.Row="2" Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                    <TextBlock Text="VỊ TRÍ" FontSize="11" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding SelectedItem.TenViTri}" FontSize="13"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="DANH MỤC" FontSize="11" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding SelectedItem.TenDanhMuc}" FontSize="13" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Hàng 4: Ghi Chú (full width) -->
+                            <StackPanel Grid.Row="3" Margin="6">
+                                <TextBlock Text="GHI CHÚ" FontSize="11" Foreground="Gray"/>
+                                <TextBlock Text="{Binding SelectedItem.GhiChu}" FontSize="13" TextWrapping="Wrap" FontStyle="Italic"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                </TabItem>
+
+                <TabItem Header="Lịch Sử Nhập Xuất">
+                    <Grid>
+                        <TextBlock Text="Đang xây dựng" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="16" Opacity="0.6"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </materialDesign:Card>
     </Grid>
 </UserControl>

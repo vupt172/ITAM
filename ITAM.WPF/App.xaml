@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:CustomColorTheme BaseTheme="Light" 
-                                 PrimaryColor="#1E3A8A" 
+                                 PrimaryColor="#006db7" 
                                  SecondaryColor="#FF8C42" />
                 <!--<materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
@@ -20,7 +20,7 @@
                 <ResourceDictionary Source="/Resources/Themes/MenuTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/ToolbarTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/HeThongDMTheme.xaml"/>
-                
+
             </ResourceDictionary.MergedDictionaries>
             <!-- Converters dùng toàn cục -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

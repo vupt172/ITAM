@@ -39,7 +39,7 @@ namespace ITAM.Infrastructure.Services
                 .Include(x => x.LoaiTaiSan)
                 .Include(x => x.ViTriTaiSan)
                 .Include(x => x.LoNhapChiTiet)   // thêm dòng này
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
         public async Task<List<TaiSanDinhDanh>> GetAllAsync(long phongBanId)
@@ -47,11 +47,12 @@ namespace ITAM.Infrastructure.Services
             return await _context.TaiSanDinhDanh
                 .AsNoTracking()
                 .Include(x => x.HangHoa)
+                .ThenInclude(h => h.DMTaiSan)   // ⬅ thêm
                 .Include(x => x.LoaiTaiSan)
                 .Include(x => x.ViTriTaiSan)
                 .Include(x => x.LoNhapChiTiet)
                 .Where(x => x.ViTriTaiSan.PhongBanId == phongBanId)
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
 
@@ -62,8 +63,25 @@ namespace ITAM.Infrastructure.Services
                 .Include(x => x.HangHoa)
                 .Include(x => x.LoaiTaiSan)
                 .Where(x => x.ViTriTaiSanId == viTriTaiSanId)
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
+        }
+        public async Task<TaiSanDinhDanh?> GetByCodeAsync(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+                return null;
+
+            var ma = code.Trim();
+
+            return await _context.TaiSanDinhDanh
+                .AsNoTracking()
+                .Include(x => x.HangHoa)
+                    .ThenInclude(h => h.DMTaiSan)
+                .Include(x => x.LoaiTaiSan)
+                .Include(x => x.ViTriTaiSan)
+                    .ThenInclude(v => v.PhongBan)   // ⬅ cần thêm để lấy tên khoa phòng khi báo sai lệch
+                .Include(x => x.LoNhapChiTiet)
+                .FirstOrDefaultAsync(x => x.Code == ma);
         }
 
         public async Task<List<TaiSanDinhDanh>> GetByTrangThaiAsync(TrangThaiTaiSan trangThai)
@@ -74,7 +92,7 @@ namespace ITAM.Infrastructure.Services
                 .Include(x => x.LoaiTaiSan)
                 .Include(x => x.ViTriTaiSan)
                 .Where(x => x.TrangThaiTaiSan == trangThai)
-                .OrderBy(x => x.Code)
+                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
         public async Task UpdateAsync(UpdateTaiSanDinhDanhDto dto)

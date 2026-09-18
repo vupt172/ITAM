@@ -82,19 +82,10 @@
                 </DockPanel>
                 <!-- DataGrid -->
                 <DataGrid
-                    Grid.Row="2"
-                    GridLinesVisibility="All"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    CanUserResizeRows="False"
-                    IsReadOnly="True"
-                    IsEnabled="{Binding IsReadOnly}"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
-                    ItemsSource="{Binding ItemsView}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    Grid.Row="2" IsEnabled="{Binding IsReadOnly}"
+                    ItemsSource="{Binding ItemsView}"  SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>
+                      
                         <DataGridTextColumn Width="150" Header="Mã NCC" Binding="{Binding Code}" />
                         <DataGridTextColumn Width="250" Header="Tên NCC" Binding="{Binding Name}" />
                         <DataGridTextColumn Width="150" Header="Số ĐT" Binding="{Binding PhoneNumber}" />

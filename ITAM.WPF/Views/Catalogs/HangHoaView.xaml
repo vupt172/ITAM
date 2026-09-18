@@ -74,12 +74,10 @@
                              materialDesign:HintAssist.Hint="Tìm kiếm..."
                              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
                 </DockPanel>
-                <DataGrid Grid.Row="2" GridLinesVisibility="All" AutoGenerateColumns="False"
-                          CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
-                          IsReadOnly="True" IsEnabled="{Binding IsReadOnly}" SelectionMode="Single"
-                          SelectionUnit="FullRow" ItemsSource="{Binding ItemsView}"
-                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                <DataGrid Grid.Row="2" IsEnabled="{Binding IsReadOnly}"
+                          ItemsSource="{Binding ItemsView}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <DataGrid.Columns>
+                  
                         <DataGridTextColumn Width="120" Header="Mã" Binding="{Binding Code}"/>
                         <DataGridTextColumn Width="220" Header="Tên hàng hóa" Binding="{Binding Name}"/>
                         <DataGridTextColumn Width="130" Header="Hãng SX" Binding="{Binding HangSanXuat}"/>

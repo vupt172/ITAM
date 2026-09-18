@@ -17,7 +17,8 @@ namespace ITAM.Domain.Entities
 
         public long NhaCungCapId { get; set; }
         public NhaCungCap NhaCungCap { get; set; } = null!;
-
+        public string? NguoiGiao { get; set; }
+        public string? MaHoaDon { get; set; }
         // Giả định User.Id kiểu long để đồng bộ CatalogEntity — chỉnh lại nếu thực tế là int.
         public long NguoiLapPhieuId { get; set; }
         public User NguoiLapPhieu { get; set; } = null!;
