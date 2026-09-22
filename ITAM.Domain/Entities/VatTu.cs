@@ -1,6 +1,6 @@
-﻿using ITAM.Domain.Entities;
+﻿using ITAM.Domain.Entities.Catalogs;
 
-public class VatTu
+public class VatTu: AuditableEntity
 {
     public long Id { get; set; }
     public string Name { get; set; } = string.Empty;

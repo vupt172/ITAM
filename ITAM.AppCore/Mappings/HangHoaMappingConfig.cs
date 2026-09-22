@@ -1,5 +1,5 @@
 using ITAM.AppCore.DTOs;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using Mapster;
 
 namespace ITAM.AppCore.Mappings

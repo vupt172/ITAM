@@ -155,100 +155,215 @@
         <materialDesign:Card Grid.Row="2" Padding="0">
             <TabControl Style="{StaticResource CompactTabControl}" >
                 <TabItem Header="Thông Tin Chi Tiết">
-                    <Border BorderBrush="#D0D5DD" BorderThickness="2">
-                        <Grid  Margin="6" Background="#FAF3DD">
+                    <Border BorderBrush="#D0D5DD" BorderThickness="2" Background="#FAF3DD">
+                        <Grid Margin="6">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Hàng 1: Mã Tài Sản | Serial | Năm Sử Dụng -->
-                            <Grid Grid.Row="0" Margin="6">
+                            <!-- ==================== HÀNG 1 ==================== -->
+                            <Grid Grid.Row="0" Margin="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
+                                    <!-- Hình ảnh -->
+                                    <ColumnDefinition Width="100"/>
+                                    <!-- Thông tin -->
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                                    <TextBlock Text="MÃ TÀI SẢN" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.Code}" FontSize="13" FontWeight="Bold" Foreground="#1565C0"/>
+
+                                <!-- HÌNH ẢNH -->
+                                <Border Grid.Column="0"
+                        Width="100"
+                        Height="100"
+                        HorizontalAlignment="Left"
+                        BorderBrush="#D0D5DD"
+                        BorderThickness="1"
+                        Background="White">
+
+                                    <Image Source="{Binding SelectedItem.ImagePath}"
+                           Stretch="Uniform"
+                           Margin="6"/>
+                                </Border>
+
+
+                                <!-- THÔNG TIN CƠ BẢN -->
+                                <Grid Grid.Column="1" Margin="6,0,0,0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <!-- Mã | Serial | Năm sử dụng -->
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="MÃ TÀI SẢN"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.Code}"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#1565C0"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="1"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="SERIAL"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.Serial}"
+                                       FontSize="13"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="2">
+
+                                            <TextBlock Text="NĂM SỬ DỤNG"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.NamSuDung}"
+                                       FontSize="13"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                    <!-- Tên tài sản -->
+                                    <StackPanel Grid.Row="1" Margin="0,6,0,0">
+
+                                        <TextBlock Text="TÊN TÀI SẢN"
+                                   FontSize="11"
+                                   Foreground="Gray"/>
+
+                                        <TextBlock Text="{Binding SelectedItem.Name}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <!-- Vị trí | Loại | Trạng thái -->
+                                    <Grid Grid.Row="2" Margin="0,6,0,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <StackPanel Grid.Column="0"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="VỊ TRÍ"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.TenViTri}"
+                                       FontSize="13"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="1"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="LOẠI TÀI SẢN"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.TenLoaiTaiSan}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="2">
+
+                                            <TextBlock Text="TRẠNG THÁI"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.TrangThaiTaiSan}"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#2E7D32"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </Grid>
+
+                            </Grid>
+                            <!-- ==================== HÀNG 2 ==================== -->
+                            <Grid Grid.Row="1" Margin="0,6,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <StackPanel Grid.Column="0"
+                            Margin="0,0,16,0">
+
+                                    <TextBlock Text="MÃ HÀNG HÓA"
+                               FontSize="11"
+                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding SelectedItem.MaHangHoa}"
+                               FontSize="13"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="1" Margin="0,0,16,0">
-                                    <TextBlock Text="SERIAL" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.Serial}" FontSize="13"/>
+
+                                <StackPanel Grid.Column="1"
+                            Margin="0,0,16,0">
+
+                                    <TextBlock Text="GIÁ NHẬP"
+                               FontSize="11"
+                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding SelectedItem.GiaNhap, StringFormat=N0}"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               Foreground="#B71C1C"/>
                                 </StackPanel>
+
 
                                 <StackPanel Grid.Column="2">
-                                    <TextBlock Text="NĂM SỬ DỤNG" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.NamSuDung}" FontSize="13"/>
-                                </StackPanel>
-                            </Grid>
 
-                            <!-- Hàng 2: Tên Tài Sản (full width) -->
-                            <StackPanel Grid.Row="1" Margin="6">
-                                <TextBlock Text="TÊN TÀI SẢN" FontSize="11" Foreground="Gray"/>
-                                <TextBlock Text="{Binding SelectedItem.Name}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="SỐ PHIẾU NHẬP CHI TIẾT"
+                               FontSize="11"
+                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding SelectedItem.SoLoNhapChiTiet}"
+                               FontSize="13"/>
+                                </StackPanel>
+
+                            </Grid>
+                            <!-- ==================== HÀNG 3 ==================== -->
+                            <StackPanel Grid.Row="2" Margin="0,6,0,0">
+                                <TextBlock Text="GHI CHÚ"
+                           FontSize="11"
+                           Foreground="Gray"/>
+                                <TextBlock Text="{Binding SelectedItem.GhiChu}"
+                           FontSize="13"
+                           TextWrapping="Wrap"
+                           FontStyle="Italic"/>
                             </StackPanel>
-
-                            <!-- Hàng 3: Vị Trí | Loại Tài Sản | Trạng Thái -->
-                            <Grid Grid.Row="2" Margin="6">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                                    <TextBlock Text="VỊ TRÍ" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.TenViTri}" FontSize="13"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="0,0,16,0">
-                                    <TextBlock Text="LOẠI TÀI SẢN" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.TenLoaiTaiSan}" FontSize="13" FontWeight="SemiBold"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2">
-                                    <TextBlock Text="TRẠNG THÁI" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.TrangThaiTaiSan}" FontSize="13" FontWeight="Bold" Foreground="#2E7D32"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Hàng 4: Mã Hàng Hóa | Giá Nhập | Số Phiếu Nhập Chi Tiết -->
-                            <Grid Grid.Row="3" Margin="6">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                                    <TextBlock Text="MÃ HÀNG HÓA" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.MaHangHoa}" FontSize="13"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="0,0,16,0">
-                                    <TextBlock Text="GIÁ NHẬP" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.GiaNhap, StringFormat=N0}" FontSize="13" FontWeight="Bold" Foreground="#B71C1C"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2">
-                                    <TextBlock Text="SỐ PHIẾU NHẬP CHI TIẾT" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.SoLoNhapChiTiet}" FontSize="13"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Hàng 5: Ghi Chú (full width) -->
-                            <StackPanel Grid.Row="4" Margin="6">
-                                <TextBlock Text="GHI CHÚ" FontSize="11" Foreground="Gray"/>
-                                <TextBlock Text="{Binding SelectedItem.GhiChu}" FontSize="13" TextWrapping="Wrap" FontStyle="Italic"/>
-                            </StackPanel>
-
                         </Grid>
 
                     </Border>

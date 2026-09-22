@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.AppCore.DTOs;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
@@ -64,10 +64,17 @@ namespace ITAM.WPF.ViewModels.Catalogs
 
         protected override async Task Delete()
         {
-            await _hangHoaService.DeleteAsync(SelectedItem!.Id);
-            await LoadAsync();
-            SelectedItem = null;
-            CurrentItem = new HangHoaDto();
+            try
+            {
+                await _hangHoaService.DeleteAsync(SelectedItem!.Id);
+                await LoadAsync();
+                SelectedItem = null;
+                CurrentItem = new HangHoaDto();
+            }
+            catch (Exception ex)
+            {
+                _errorDialogService.Show(ex);
+            }
         }
 
         protected override async Task Save()

@@ -26,6 +26,8 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <converters:TrangThaiLoNhapToBrushConverter x:Key="TrangThaiLoNhapToBrushConverter"/>
             <converters:TrangThaiLoNhapToIconKindConverter x:Key="TrangThaiLoNhapToIconKindConverter"/>
+            <converters:TrangThaiDieuChuyenToBrushConverter x:Key="TrangThaiDieuChuyenToBrushConverter"/>
+            <converters:TrangThaiDieuChuyenToIconKindConverter x:Key="TrangThaiDieuChuyenToIconKindConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

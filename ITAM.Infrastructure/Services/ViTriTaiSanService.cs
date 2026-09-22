@@ -1,4 +1,4 @@
-﻿using ITAM.Domain.Entities;
+﻿using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
@@ -33,6 +33,7 @@ namespace ITAM.Infrastructure.Services
         public override async Task<ViTriTaiSan?> GetByIdAsync(long id)
         {
             return await _context.Set<ViTriTaiSan>()
+                .AsNoTracking()
                 .Include(x => x.PhongBan)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -60,11 +61,6 @@ namespace ITAM.Infrastructure.Services
             {
                 throw new InvalidBusinessRuleException("Phòng ban được chọn không tồn tại hoặc đã ngừng hoạt động!");
             }
-        }
-
-        public override Task<bool> DeleteAsync(long id)
-        {
-            throw new NotImplementedException();
         }
 
 

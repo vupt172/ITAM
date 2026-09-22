@@ -1,4 +1,4 @@
-namespace ITAM.Domain.Entities
+namespace ITAM.Domain.Entities.Catalogs
 {
     /// <summary>Hàng hóa cụ thể được chọn trên chứng từ, ví dụ Mực HP 12A.</summary>
     public class HangHoa : CatalogEntity

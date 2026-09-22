@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="ITAM.WPF.Views.DieuChuyenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:ITAM.WPF.Converters">
+
+    <UserControl.Resources>
+        <converters:TrangThaiDieuChuyenToBrushConverter x:Key="TrangThaiDieuChuyenToBrushConverter"/>
+        <converters:TrangThaiDieuChuyenToIconKindConverter x:Key="TrangThaiDieuChuyenToIconKindConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+            <Button Content="←" Width="32" Height="32" Command="{Binding CloseCommand}"
+              Style="{StaticResource MaterialDesignIconButton}" ToolTip="Quay lại"/>
+            <TextBlock Text="Phiếu điều chuyển" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </StackPanel>
+
+        <!-- THÔNG TIN PHIẾU -->
+        <materialDesign:Card Grid.Row="1" Padding="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="THÔNG TIN PHIẾU" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                    <UniformGrid Columns="3" Margin="0,0,0,16">
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.SoPhieu, Mode=OneWay}" IsReadOnly="True"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.Hint="Số phiếu"/>
+                        <ComboBox Margin="0,0,12,0" ItemsSource="{Binding PhongBansChuyenDiHopLe}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding CurrentPhieu.PhongBanChuyenDiId}" IsHitTestVisible="False" Focusable="False"
+                                  materialDesign:HintAssist.Hint="Phòng Ban Chuyển Đi"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                        <ComboBox ItemsSource="{Binding PhongBansChuyenDenHopLe}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding PhongBanChuyenDenChonId}" IsEnabled="{Binding CoTheDoiPhongBanChuyenDen}"
+                                  materialDesign:HintAssist.Hint="Phòng Ban Chuyển Đến"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                    </UniformGrid>
+
+                    <UniformGrid Columns="2" Margin="0,0,0,16">
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.NguoiGiao}" IsReadOnly="{Binding IsReadOnly}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.Hint="Người giao (không bắt buộc)"/>
+                        <TextBox Text="{Binding CurrentPhieu.NguoiNhan}" IsReadOnly="{Binding IsReadOnly}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.Hint="Người nhận (không bắt buộc)"/>
+                    </UniformGrid>
+
+                    <TextBox Text="{Binding CurrentPhieu.GhiChu}" IsReadOnly="{Binding IsReadOnly}" Margin="0,0,0,16"
+                             AcceptsReturn="True" materialDesign:HintAssist.Hint="Ghi chú"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                    <UniformGrid Columns="3">
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Người tạo phiếu" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding CurrentPhieu.TenNguoiTao}" FontSize="14"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Người duyệt" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding CurrentPhieu.TenNguoiDuyet}" FontSize="14"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Text="Trạng thái" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
+                            <Border CornerRadius="12" Padding="10,4" HorizontalAlignment="Left"
+                                    Background="{Binding CurrentPhieu.TrangThai, Converter={StaticResource TrangThaiDieuChuyenToBrushConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="{Binding CurrentPhieu.TrangThai, Converter={StaticResource TrangThaiDieuChuyenToIconKindConverter}}"
+                                                              Foreground="White" Width="16" Height="16" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding CurrentPhieu.TrangThai}"
+                                               Foreground="White" FontWeight="Medium" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="16,28,0,0" VerticalAlignment="Top"
+                            Visibility="{Binding IsPending, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button Command="{Binding DuyetCommand}" Margin="0,0,0,8" Width="140"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Background="#2E7D32" BorderBrush="#2E7D32" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CheckCircleOutline" Width="18" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock Width="100" Text="Duyệt phiếu" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding TuChoiCommand}" Width="140"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            BorderBrush="#D32F2F" Foreground="#D32F2F">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CloseCircleOutline" Width="18" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock Width="100" Text="Từ chối" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- CHI TIẾT PHIẾU -->
+        <materialDesign:Card Grid.Row="3" Padding="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,8">
+                    <TextBlock Text="CHI TIẾT PHIẾU (TÀI SẢN ĐIỀU CHUYỂN)" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button Content="+ Thêm tài sản" HorizontalAlignment="Right" Command="{Binding ThemTaiSanCommand}"
+                            IsEnabled="{Binding IsEditing}"
+                            Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+
+                <materialDesign:Card Grid.Row="1" Margin="0,0,0,12" Padding="12"
+                                     Visibility="{Binding IsAddingChiTiet, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Width="260"
+                                      ItemsSource="{Binding TaiSansTaiPhongBanDi}"
+                                      SelectedItem="{Binding TaiSanDangChon}"
+                                      DisplayMemberPath="Code"
+                                      Visibility="{Binding DangThemMoiDong, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      materialDesign:HintAssist.Hint="Tài sản (theo Mã, thuộc Phòng Ban Chuyển Đi)"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                            <TextBox Width="260"
+                                     Text="{Binding CurrentChiTiet.MaTaiSan, Mode=OneWay}"
+                                     IsReadOnly="True"
+                                     Visibility="{Binding DangSuaDong, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     materialDesign:HintAssist.Hint="Tài sản (không đổi được khi sửa dòng)"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <ComboBox Width="220" Margin="8,0" ItemsSource="{Binding ViTriTaiSansChuyenDen}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                                      SelectedValue="{Binding CurrentChiTiet.ViTriChuyenDenId}"
+                                      materialDesign:HintAssist.Hint="Vị Trí Chuyển Đến"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                        </StackPanel>
+                        <TextBlock Margin="0,4,0,0" FontSize="11" Foreground="Gray"
+                                   Text="{Binding TaiSanDangChon.Name}"
+                                   Visibility="{Binding DangThemMoiDong, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <TextBox Width="420" Text="{Binding CurrentChiTiet.GhiChu, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     materialDesign:HintAssist.Hint="Ghi chú (không bắt buộc)"/>
+                            <Button Margin="12,0,0,0" Content="Lưu dòng" Command="{Binding LuuDongCommand}"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+                            <Button Margin="8,0,0,0" Content="Hủy" Command="{Binding HuyDongCommand}"
+                                    Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <DataGrid Grid.Row="2" AutoGenerateColumns="False" RowHeight="36" IsReadOnly="True" ItemsSource="{Binding ChiTiets}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã tài sản" Binding="{Binding MaTaiSan}" Width="130"/>
+                        <DataGridTextColumn Header="Tên tài sản" Binding="{Binding TenTaiSan}" Width="*"/>
+                        <DataGridTextColumn Header="Vị trí chuyển đi" Binding="{Binding TenViTriChuyenDi}" Width="150"/>
+                        <DataGridTextColumn Header="Vị trí chuyển đến" Binding="{Binding TenViTriChuyenDen}" Width="150"/>
+                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding GhiChu}" Width="180"/>
+                        <DataGridTemplateColumn Header="Thao tác" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Width="16" Height="16" Padding="0"
+                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                ToolTip="Sửa dòng"
+                                                Command="{Binding DataContext.SuaDongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"
+                                                Visibility="{Binding DataContext.IsEditing, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <materialDesign:PackIcon Kind="PencilOutline" Width="14" Height="14"/>
+                                        </Button>
+                                        <Button Width="16" Height="16" Padding="0" Margin="2,0,0,0"
+                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                ToolTip="Xóa dòng"
+                                                Command="{Binding DataContext.XoaDongCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}"
+                                                Visibility="{Binding DataContext.IsEditing, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <materialDesign:PackIcon Kind="TrashCanOutline" Width="14" Height="14" Foreground="#D32F2F"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

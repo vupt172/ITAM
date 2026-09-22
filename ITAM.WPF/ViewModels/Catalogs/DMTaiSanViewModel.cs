@@ -2,7 +2,7 @@
 using ITAM.AppCore.Common;
 using ITAM.AppCore.DTOs;
 using ITAM.AppCore.Interfaces;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
@@ -69,10 +69,17 @@ namespace ITAM.WPF.ViewModels.Catalogs
         }
         protected override async Task Delete()
         {
-            await _dmTaiSanService.DeleteAsync(SelectedItem!.Id);
-            await LoadAsync();
-            SelectedItem = null;
-            CurrentItem = new DMTaiSanDto();
+            try
+            {
+                await _dmTaiSanService.DeleteAsync(SelectedItem!.Id);
+                await LoadAsync();
+                SelectedItem = null;
+                CurrentItem = new DMTaiSanDto();
+            }
+            catch(Exception e)
+            {
+                _errorDialogService.Show(e);
+            }
 
         }
 

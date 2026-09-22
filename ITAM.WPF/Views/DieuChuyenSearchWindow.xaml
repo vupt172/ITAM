@@ -1,0 +1,82 @@
+﻿<Window x:Class="ITAM.WPF.Views.DieuChuyenSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="clr-namespace:ITAM.WPF.Converters"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Tìm kiếm Phiếu Điều Chuyển"
+        Height="560" Width="900"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <converters:TrangThaiDieuChuyenToBrushConverter x:Key="TrangThaiDieuChuyenToBrushConverter"/>
+        <converters:TrangThaiDieuChuyenToIconKindConverter x:Key="TrangThaiDieuChuyenToIconKindConverter"/>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="160" Text="{Binding SoPhieu, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Số phiếu"/>
+            <DatePicker Width="140" Margin="8,0" SelectedDate="{Binding TuNgay}"
+                        materialDesign:HintAssist.Hint="Từ ngày"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <DatePicker Width="140" SelectedDate="{Binding DenNgay}"
+                        materialDesign:HintAssist.Hint="Đến ngày"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <ComboBox Width="140" Margin="8,0" ItemsSource="{Binding TrangThaiOptions}"
+                      SelectedItem="{Binding SelectedTrangThai}"
+                      materialDesign:HintAssist.Hint="Trạng thái"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <Button Content="Tìm" Command="{Binding SearchCommand}" Margin="8,0,0,0"
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" RowHeight="34"
+                  ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Số phiếu" Binding="{Binding SoPhieu}" Width="120"/>
+                <DataGridTextColumn Header="Ngày tạo" Binding="{Binding NgayTao, StringFormat=d}" Width="100"/>
+                <DataGridTextColumn Header="Phòng ban đi" Binding="{Binding TenPhongBanChuyenDi}" Width="140"/>
+                <DataGridTextColumn Header="Phòng ban đến" Binding="{Binding TenPhongBanChuyenDen}" Width="140"/>
+                <DataGridTextColumn Header="Người tạo" Binding="{Binding TenNguoiTao}" Width="140"/>
+                <DataGridTemplateColumn Header="Trạng thái" Width="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Padding="8,3" HorizontalAlignment="Left"
+                                    Background="{Binding TrangThai, Converter={StaticResource TrangThaiDieuChuyenToBrushConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="{Binding TrangThai, Converter={StaticResource TrangThaiDieuChuyenToIconKindConverter}}"
+                                                              Foreground="White" Width="14" Height="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TrangThai}" Width="100"
+                                               Foreground="White" FontSize="12" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ChonCommand}"/>
+            </DataGrid.InputBindings>
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Chọn" Command="{Binding ChonCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
+            <Button Content="Đóng" Command="{Binding CancelCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window>

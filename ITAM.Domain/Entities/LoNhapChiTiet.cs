@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ITAM.Domain.Entities.Catalogs;
+using System.Collections.Generic;
 
 namespace ITAM.Domain.Entities
 {
@@ -8,7 +9,7 @@ namespace ITAM.Domain.Entities
     ///           GiaNhap = DonGia, LoaiTaiSanId tự tính theo ngưỡng MinValue/MaxValue, ViTriTaiSanId = "Kho nhập").
     /// - false → cộng dồn SoLuongNhap vào SoLuongTon của bản ghi VatTu tương ứng HangHoaId.
     /// </summary>
-    public class LoNhapChiTiet
+    public class LoNhapChiTiet: AuditableEntity
     {
         public long Id { get; set; }
 
@@ -34,10 +35,11 @@ namespace ITAM.Domain.Entities
         /// Người dùng chọn khi nhập dòng chi tiết (combobox filter theo DonGia gợi ý, không tự suy luận).
         /// </summary>
         public long LoaiTaiSanId { get; set; }
-        public LoaiTaiSan LoaiTaiSan { get; set; }
+        public LoaiTaiSan LoaiTaiSan { get; set; } = null!;
 
         /// <summary>Tính toán ở tầng ứng dụng, không lưu DB — tránh lệch dữ liệu với DonGia/SoLuongNhap.</summary>
         public decimal ThanhTien => SoLuongNhap * DonGia;
+        public string GhiChu { get; set; } = string.Empty;
 
         public ICollection<TaiSanDinhDanh> TaiSanDinhDanhs { get; set; } = new List<TaiSanDinhDanh>();
     }

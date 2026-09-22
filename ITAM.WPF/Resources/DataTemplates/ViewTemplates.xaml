@@ -22,6 +22,9 @@
     <DataTemplate DataType="{x:Type viewModels:VatTuListViewModel}">
         <views:VatTuListView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:DieuChuyenViewModel}">
+        <views:DieuChuyenView />
+    </DataTemplate>
 
 
     <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->

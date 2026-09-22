@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.Domain.Entities
+namespace ITAM.Domain.Entities.Catalogs
 {
     public class NhaCungCap : CatalogEntity
     {

@@ -1,4 +1,4 @@
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 
 namespace ITAM.Domain.Interfaces
 {

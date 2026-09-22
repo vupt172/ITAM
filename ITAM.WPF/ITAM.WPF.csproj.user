@@ -13,6 +13,12 @@
     <Compile Update="Views\ChangePhongBanWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DieuChuyenSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DieuChuyenView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\LoNhapSearchWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

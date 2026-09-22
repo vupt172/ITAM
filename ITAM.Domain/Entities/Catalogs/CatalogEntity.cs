@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.Domain.Entities
+namespace ITAM.Domain.Entities.Catalogs
 {
-    public abstract class CatalogEntity
+    public abstract class CatalogEntity:AuditableEntity
     {
         public long Id { get; set; }
         public string Code { get; set; } = string.Empty;

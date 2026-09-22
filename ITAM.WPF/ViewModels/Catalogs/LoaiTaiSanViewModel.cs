@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.AppCore.DTOs;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
@@ -32,7 +32,7 @@ namespace ITAM.WPF.ViewModels.Catalogs
         protected override bool HasSelection => SelectedItem != null;
         #endregion
         #region Contructor & Initialization
-        public LoaiTaiSanViewModel(ICatalogService<LoaiTaiSan> loaiTaiSanService,IErrorDialogService errorDialogService):base(errorDialogService)
+        public LoaiTaiSanViewModel(ICatalogService<LoaiTaiSan> loaiTaiSanService, IErrorDialogService errorDialogService) : base(errorDialogService)
         {
             _loaiTaiSanService = loaiTaiSanService;
             ItemsView = CollectionViewSource.GetDefaultView(Items);
@@ -67,10 +67,17 @@ namespace ITAM.WPF.ViewModels.Catalogs
         }
         protected override async Task Delete()
         {
-            await _loaiTaiSanService.DeleteAsync(SelectedItem!.Id);
-            await LoadAsync();
-            SelectedItem = null;
-            CurrentItem = new LoaiTaiSanDto();
+            try
+            {
+                await _loaiTaiSanService.DeleteAsync(SelectedItem!.Id);
+                await LoadAsync();
+                SelectedItem = null;
+                CurrentItem = new LoaiTaiSanDto();
+            }
+            catch (Exception ex)
+            {
+                _errorDialogService.Show(ex);
+            }
 
         }
 

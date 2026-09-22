@@ -44,10 +44,10 @@
                     </UniformGrid>
                     <!-- Hàng 2: Người giao, Mã hóa đơn-->
                     <UniformGrid Columns="2" Margin="0 0 0 16">
-                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.NguoiGiao, Mode=OneWay}" IsReadOnly="True"
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.NguoiGiao, Mode=OneWay}" 
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  materialDesign:HintAssist.Hint="Người giao hàng"/>
-                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.MaHoaDon, Mode=OneWay}" IsReadOnly="True"
+                        <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.MaHoaDon, Mode=OneWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="Mã hóa đơn"/>
                     </UniformGrid>

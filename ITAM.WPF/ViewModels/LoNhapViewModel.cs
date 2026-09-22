@@ -3,9 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Common;
 using ITAM.AppCore.DTOs;
 using ITAM.AppCore.Interfaces;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
+using ITAM.Shared.Constants;
 using ITAM.WPF.Services;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
@@ -51,12 +52,14 @@ namespace ITAM.WPF.ViewModels
             IHangHoaService hangHoaService, ICatalogService<LoaiTaiSan> loaiTaiSanService,
             ICurrentUserContext currentUser,IErrorDialogService errorDialogService, INavigationService navigationService) : base(navigationService,errorDialogService)
         {
-            _loNhapService = loNhapService; _nhaCungCapService = nhaCungCapService;
-            _hangHoaService = hangHoaService; _loaiTaiSanService = loaiTaiSanService; _currentUser = currentUser;
+            _loNhapService = loNhapService;
+            _nhaCungCapService = nhaCungCapService;
+            _hangHoaService = hangHoaService;
+            _loaiTaiSanService = loaiTaiSanService;
+            _currentUser = currentUser;
             _ = LoadDanhMucAsync();
+
         }
-
-
 
         protected override void InitToolbarState()
         {

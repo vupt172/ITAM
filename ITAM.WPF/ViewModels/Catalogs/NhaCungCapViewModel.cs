@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.AppCore.DTOs;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
@@ -67,10 +67,17 @@ namespace ITAM.WPF.ViewModels.Catalogs
         }
         protected override async Task Delete()
         {
-            await _nhaCungCapService.DeleteAsync(SelectedItem!.Id);
-            await LoadAsync();
-            SelectedItem = null;
-            CurrentItem = new NhaCungCapDto();
+            try
+            {
+                await _nhaCungCapService.DeleteAsync(SelectedItem!.Id);
+                await LoadAsync();
+                SelectedItem = null;
+                CurrentItem = new NhaCungCapDto();
+            }
+            catch (Exception e)
+            {
+                _errorDialogService.Show(e);
+            }
 
         }
 

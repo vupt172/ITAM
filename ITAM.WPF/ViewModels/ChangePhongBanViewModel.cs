@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Interfaces;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
 using System.Collections.ObjectModel;

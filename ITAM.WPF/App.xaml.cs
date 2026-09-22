@@ -54,6 +54,8 @@ namespace ITAM.WPF
             services.AddTransient<IFeatureService, FeatureService>();
             services.AddTransient<ITaiSanDinhDanhService, TaiSanDinhDanhService>();
             services.AddTransient<IVatTuService, VatTuService>();
+            services.AddScoped<IDieuChuyenService, DieuChuyenService>();
+            services.AddScoped<ILichSuDieuChuyenService, LichSuDieuChuyenService>();
 
             // DI ViewModels
             services.AddTransient<LoginViewModel>();          // ⬅ thêm
@@ -80,6 +82,8 @@ namespace ITAM.WPF
             services.AddTransient<TaiSanDinhDanhEditViewModel>();
             services.AddTransient<VatTuListViewModel>();
             services.AddTransient<VatTuEditViewModel>();
+            services.AddTransient<DieuChuyenViewModel>();
+            services.AddTransient<DieuChuyenSearchViewModel>();
             // DI Windows
             services.AddTransient<LoginWindow>();              // ⬅ đổi Transient (mở lại được khi logout)
             services.AddSingleton<MainWindow>();
@@ -89,6 +93,9 @@ namespace ITAM.WPF
             services.AddTransient<LoNhapSearchWindow>();
             services.AddTransient<TaiSanDinhDanhEditWindow>();
             services.AddTransient<VatTuEditWindow>();
+            services.AddTransient<DieuChuyenView>();
+            services.AddTransient<DieuChuyenSearchWindow>();
+
             Services = services.BuildServiceProvider();
         }
 

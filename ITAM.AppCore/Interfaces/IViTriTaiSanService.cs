@@ -1,4 +1,4 @@
-﻿using ITAM.Domain.Entities;
+﻿using ITAM.Domain.Entities.Catalogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

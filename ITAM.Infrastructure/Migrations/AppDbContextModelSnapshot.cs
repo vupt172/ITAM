@@ -22,7 +22,7 @@ namespace ITAM.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ITAM.Domain.Entities.DMTaiSan", b =>
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.DMTaiSan", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +34,12 @@ namespace ITAM.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -52,12 +58,18 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.ToTable("DMTaiSan");
                 });
 
-            modelBuilder.Entity("ITAM.Domain.Entities.HangHoa", b =>
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.HangHoa", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,6 +81,12 @@ namespace ITAM.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("DMTaiSanId")
                         .HasColumnType("bigint");
@@ -105,6 +123,12 @@ namespace ITAM.Infrastructure.Migrations
                     b.Property<bool>("RequireSerial")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
@@ -113,6 +137,336 @@ namespace ITAM.Infrastructure.Migrations
                     b.HasIndex("DMTaiSanId");
 
                     b.ToTable("HangHoa", (string)null);
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.LoaiTaiSan", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<decimal>("MaxValue")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MinValue")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoaiTaiSan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.NhaCungCap", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NhaCungCap");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.PhongBan", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhongBan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsSystem")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<long>("PhongBanId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhongBanId");
+
+                    b.ToTable("ViTriTaiSan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.DieuChuyen", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgayDuyet")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("NguoiDuyetId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NguoiGiao")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NguoiNhan")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<long>("NguoiTaoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PhongBanChuyenDenId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PhongBanChuyenDiId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SoPhieu")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("TrangThai")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NguoiDuyetId");
+
+                    b.HasIndex("NguoiTaoId");
+
+                    b.HasIndex("PhongBanChuyenDenId");
+
+                    b.HasIndex("PhongBanChuyenDiId");
+
+                    b.HasIndex("SoPhieu")
+                        .IsUnique();
+
+                    b.ToTable("DieuChuyen");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.DieuChuyenChiTiet", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DieuChuyenId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("TaiSanDinhDanhId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ViTriChuyenDenId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ViTriChuyenDiId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DieuChuyenId");
+
+                    b.HasIndex("TaiSanDinhDanhId");
+
+                    b.HasIndex("ViTriChuyenDenId");
+
+                    b.HasIndex("ViTriChuyenDiId");
+
+                    b.ToTable("DieuChuyenChiTiet");
                 });
 
             modelBuilder.Entity("ITAM.Domain.Entities.Identity.Feature", b =>
@@ -193,6 +547,12 @@ namespace ITAM.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -212,6 +572,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasColumnType("nvarchar(60)");
 
                     b.Property<long?>("PhongBanId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Username")
@@ -259,6 +625,50 @@ namespace ITAM.Infrastructure.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("ITAM.Domain.Entities.LichSuDieuChuyenTaiSan", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("DieuChuyenChiTietId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NgayDuyet")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("NguoiDuyetId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TaiSanDinhDanhId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ViTriChuyenDenId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ViTriChuyenDiId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DieuChuyenChiTietId");
+
+                    b.HasIndex("NguoiDuyetId");
+
+                    b.HasIndex("TaiSanDinhDanhId");
+
+                    b.HasIndex("ViTriChuyenDenId");
+
+                    b.HasIndex("ViTriChuyenDiId");
+
+                    b.ToTable("LichSuDieuChuyenTaiSan");
+                });
+
             modelBuilder.Entity("ITAM.Domain.Entities.LoNhap", b =>
                 {
                     b.Property<long>("Id")
@@ -266,6 +676,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("GhiChu")
                         .HasMaxLength(1000)
@@ -299,6 +715,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NguoiDuyetId");
@@ -321,8 +743,18 @@ namespace ITAM.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("DonGia")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("GhiChu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("HangHoaId")
                         .HasColumnType("bigint");
@@ -346,6 +778,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HangHoaId");
@@ -360,125 +798,6 @@ namespace ITAM.Infrastructure.Migrations
                     b.ToTable("LoNhapChiTiet", (string)null);
                 });
 
-            modelBuilder.Entity("ITAM.Domain.Entities.LoaiTaiSan", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<decimal>("MaxValue")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MinValue")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LoaiTaiSan");
-                });
-
-            modelBuilder.Entity("ITAM.Domain.Entities.NhaCungCap", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TaxCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NhaCungCap");
-                });
-
-            modelBuilder.Entity("ITAM.Domain.Entities.PhongBan", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PhongBan");
-                });
-
             modelBuilder.Entity("ITAM.Domain.Entities.TaiSanDinhDanh", b =>
                 {
                     b.Property<long>("Id")
@@ -491,6 +810,12 @@ namespace ITAM.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
@@ -524,6 +849,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ViTriTaiSanId")
                         .HasColumnType("bigint");
 
@@ -545,43 +876,6 @@ namespace ITAM.Infrastructure.Migrations
                     b.ToTable("TaiSanDinhDanh", (string)null);
                 });
 
-            modelBuilder.Entity("ITAM.Domain.Entities.ViTriTaiSan", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<long>("PhongBanId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PhongBanId");
-
-                    b.ToTable("ViTriTaiSan");
-                });
-
             modelBuilder.Entity("VatTu", b =>
                 {
                     b.Property<long>("Id")
@@ -589,6 +883,12 @@ namespace ITAM.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("DonViTinh")
                         .HasMaxLength(50)
@@ -608,6 +908,12 @@ namespace ITAM.Infrastructure.Migrations
                     b.Property<int>("SoLuongTon")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ViTriTaiSanId")
                         .HasColumnType("bigint");
 
@@ -621,15 +927,95 @@ namespace ITAM.Infrastructure.Migrations
                     b.ToTable("VatTu", (string)null);
                 });
 
-            modelBuilder.Entity("ITAM.Domain.Entities.HangHoa", b =>
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.HangHoa", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.DMTaiSan", "DMTaiSan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.DMTaiSan", "DMTaiSan")
                         .WithMany()
                         .HasForeignKey("DMTaiSanId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("DMTaiSan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", b =>
+                {
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.PhongBan", "PhongBan")
+                        .WithMany("ViTriTaiSans")
+                        .HasForeignKey("PhongBanId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PhongBan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.DieuChuyen", b =>
+                {
+                    b.HasOne("ITAM.Domain.Entities.Identity.User", "NguoiDuyet")
+                        .WithMany()
+                        .HasForeignKey("NguoiDuyetId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ITAM.Domain.Entities.Identity.User", "NguoiTao")
+                        .WithMany()
+                        .HasForeignKey("NguoiTaoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.PhongBan", "PhongBanChuyenDen")
+                        .WithMany()
+                        .HasForeignKey("PhongBanChuyenDenId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.PhongBan", "PhongBanChuyenDi")
+                        .WithMany()
+                        .HasForeignKey("PhongBanChuyenDiId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDuyet");
+
+                    b.Navigation("NguoiTao");
+
+                    b.Navigation("PhongBanChuyenDen");
+
+                    b.Navigation("PhongBanChuyenDi");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.DieuChuyenChiTiet", b =>
+                {
+                    b.HasOne("ITAM.Domain.Entities.DieuChuyen", "DieuChuyen")
+                        .WithMany("ChiTiets")
+                        .HasForeignKey("DieuChuyenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.TaiSanDinhDanh", "TaiSanDinhDanh")
+                        .WithMany()
+                        .HasForeignKey("TaiSanDinhDanhId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriChuyenDen")
+                        .WithMany()
+                        .HasForeignKey("ViTriChuyenDenId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriChuyenDi")
+                        .WithMany()
+                        .HasForeignKey("ViTriChuyenDiId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DieuChuyen");
+
+                    b.Navigation("TaiSanDinhDanh");
+
+                    b.Navigation("ViTriChuyenDen");
+
+                    b.Navigation("ViTriChuyenDi");
                 });
 
             modelBuilder.Entity("ITAM.Domain.Entities.Identity.RoleFeature", b =>
@@ -653,7 +1039,7 @@ namespace ITAM.Infrastructure.Migrations
 
             modelBuilder.Entity("ITAM.Domain.Entities.Identity.User", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.PhongBan", "PhongBan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.PhongBan", "PhongBan")
                         .WithMany()
                         .HasForeignKey("PhongBanId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -663,7 +1049,7 @@ namespace ITAM.Infrastructure.Migrations
 
             modelBuilder.Entity("ITAM.Domain.Entities.Identity.UserPhongBan", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.PhongBan", "PhongBan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.PhongBan", "PhongBan")
                         .WithMany()
                         .HasForeignKey("PhongBanId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -699,6 +1085,47 @@ namespace ITAM.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ITAM.Domain.Entities.LichSuDieuChuyenTaiSan", b =>
+                {
+                    b.HasOne("ITAM.Domain.Entities.DieuChuyenChiTiet", "DieuChuyenChiTiet")
+                        .WithMany()
+                        .HasForeignKey("DieuChuyenChiTietId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ITAM.Domain.Entities.Identity.User", "NguoiDuyet")
+                        .WithMany()
+                        .HasForeignKey("NguoiDuyetId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.TaiSanDinhDanh", "TaiSanDinhDanh")
+                        .WithMany()
+                        .HasForeignKey("TaiSanDinhDanhId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriChuyenDen")
+                        .WithMany()
+                        .HasForeignKey("ViTriChuyenDenId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriChuyenDi")
+                        .WithMany()
+                        .HasForeignKey("ViTriChuyenDiId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("DieuChuyenChiTiet");
+
+                    b.Navigation("NguoiDuyet");
+
+                    b.Navigation("TaiSanDinhDanh");
+
+                    b.Navigation("ViTriChuyenDen");
+
+                    b.Navigation("ViTriChuyenDi");
+                });
+
             modelBuilder.Entity("ITAM.Domain.Entities.LoNhap", b =>
                 {
                     b.HasOne("ITAM.Domain.Entities.Identity.User", "NguoiDuyet")
@@ -711,7 +1138,7 @@ namespace ITAM.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ITAM.Domain.Entities.NhaCungCap", "NhaCungCap")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.NhaCungCap", "NhaCungCap")
                         .WithMany()
                         .HasForeignKey("NhaCungCapId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -726,7 +1153,7 @@ namespace ITAM.Infrastructure.Migrations
 
             modelBuilder.Entity("ITAM.Domain.Entities.LoNhapChiTiet", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.HangHoa", "HangHoa")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.HangHoa", "HangHoa")
                         .WithMany()
                         .HasForeignKey("HangHoaId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -738,7 +1165,7 @@ namespace ITAM.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ITAM.Domain.Entities.LoaiTaiSan", "LoaiTaiSan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.LoaiTaiSan", "LoaiTaiSan")
                         .WithMany()
                         .HasForeignKey("LoaiTaiSanId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -752,7 +1179,7 @@ namespace ITAM.Infrastructure.Migrations
 
             modelBuilder.Entity("ITAM.Domain.Entities.TaiSanDinhDanh", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.HangHoa", "HangHoa")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.HangHoa", "HangHoa")
                         .WithMany()
                         .HasForeignKey("HangHoaId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -764,13 +1191,13 @@ namespace ITAM.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ITAM.Domain.Entities.LoaiTaiSan", "LoaiTaiSan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.LoaiTaiSan", "LoaiTaiSan")
                         .WithMany()
                         .HasForeignKey("LoaiTaiSanId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ITAM.Domain.Entities.ViTriTaiSan", "ViTriTaiSan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriTaiSan")
                         .WithMany()
                         .HasForeignKey("ViTriTaiSanId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -785,26 +1212,15 @@ namespace ITAM.Infrastructure.Migrations
                     b.Navigation("ViTriTaiSan");
                 });
 
-            modelBuilder.Entity("ITAM.Domain.Entities.ViTriTaiSan", b =>
-                {
-                    b.HasOne("ITAM.Domain.Entities.PhongBan", "PhongBan")
-                        .WithMany("ViTriTaiSans")
-                        .HasForeignKey("PhongBanId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("PhongBan");
-                });
-
             modelBuilder.Entity("VatTu", b =>
                 {
-                    b.HasOne("ITAM.Domain.Entities.HangHoa", "HangHoa")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.HangHoa", "HangHoa")
                         .WithMany()
                         .HasForeignKey("HangHoaId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ITAM.Domain.Entities.ViTriTaiSan", "ViTriTaiSan")
+                    b.HasOne("ITAM.Domain.Entities.Catalogs.ViTriTaiSan", "ViTriTaiSan")
                         .WithMany()
                         .HasForeignKey("ViTriTaiSanId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -813,6 +1229,16 @@ namespace ITAM.Infrastructure.Migrations
                     b.Navigation("HangHoa");
 
                     b.Navigation("ViTriTaiSan");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.Catalogs.PhongBan", b =>
+                {
+                    b.Navigation("ViTriTaiSans");
+                });
+
+            modelBuilder.Entity("ITAM.Domain.Entities.DieuChuyen", b =>
+                {
+                    b.Navigation("ChiTiets");
                 });
 
             modelBuilder.Entity("ITAM.Domain.Entities.Identity.Feature", b =>
@@ -842,11 +1268,6 @@ namespace ITAM.Infrastructure.Migrations
             modelBuilder.Entity("ITAM.Domain.Entities.LoNhapChiTiet", b =>
                 {
                     b.Navigation("TaiSanDinhDanhs");
-                });
-
-            modelBuilder.Entity("ITAM.Domain.Entities.PhongBan", b =>
-                {
-                    b.Navigation("ViTriTaiSans");
                 });
 #pragma warning restore 612, 618
         }

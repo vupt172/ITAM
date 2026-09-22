@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITAM.Domain.Entities.Identity
 {
-    public class Role 
+    public class Role
     {
         public long Id { get; set; }
         public string Code { get; set; } = null!;   // VD: "ADMIN", "IT", "MANAGER"

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.DTOs;
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
@@ -19,7 +19,7 @@ namespace ITAM.WPF.ViewModels.Catalogs
         private readonly IViTriTaiSanService _viTriTaiSanService;
         private readonly ICatalogService<PhongBan> _phongBanService;
 
-        
+
         public ObservableCollection<ViTriTaiSanDto> Items { get; } = [];
         // Danh sách nguồn cho ComboBox - load 1 lần, không đổi liên tục theo CurrentItem
         [ObservableProperty]
@@ -38,7 +38,7 @@ namespace ITAM.WPF.ViewModels.Catalogs
         public ViTriTaiSanViewModel(IViTriTaiSanService viTriTaiSanService, ICatalogService<PhongBan> phongBanService, IErrorDialogService errorDialogService) : base(errorDialogService)
         {
             _viTriTaiSanService = viTriTaiSanService;
-            _phongBanService= phongBanService;
+            _phongBanService = phongBanService;
             ItemsView = CollectionViewSource.GetDefaultView(Items);
             ItemsView.Filter = FilterData;
             _ = LoadAsync();
@@ -75,10 +75,17 @@ namespace ITAM.WPF.ViewModels.Catalogs
         }
         protected override async Task Delete()
         {
-            await _viTriTaiSanService.DeleteAsync(SelectedItem!.Id);
-            await LoadAsync();
-            SelectedItem = null;
-            CurrentItem = new ViTriTaiSanDto();
+            try
+            {
+                await _viTriTaiSanService.DeleteAsync(SelectedItem!.Id);
+                await LoadAsync();
+                SelectedItem = null;
+                CurrentItem = new ViTriTaiSanDto();
+            }
+            catch (Exception e)
+            {
+                _errorDialogService.Show(e);
+            }
 
         }
 

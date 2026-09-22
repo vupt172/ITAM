@@ -1,4 +1,4 @@
-using ITAM.Domain.Entities;
+using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

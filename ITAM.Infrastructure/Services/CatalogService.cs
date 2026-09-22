@@ -1,4 +1,4 @@
-﻿using ITAM.Domain.Entities;
+﻿using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
@@ -34,7 +34,7 @@ namespace ITAM.Infrastructure.Services
         }
         public virtual async Task<T?> GetByIdAsync(long id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
         public virtual async Task<T> CreateAsync(T entity)
         {
@@ -67,12 +67,19 @@ namespace ITAM.Infrastructure.Services
 
         public virtual async Task<bool> DeleteAsync(long id)
         {
+
             var existing = await _context.Set<T>().FindAsync(id);
             if (existing == null) return false;
-
-            _context.Set<T>().Remove(existing);
-            await _context.SaveChangesAsync();
-            return true;
+            try
+            {
+                _context.Set<T>().Remove(existing);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch {
+                _context.ChangeTracker.Clear();   // dọn sạch entity bị đánh dấu Deleted khi SaveChanges thất bại
+                throw;
+            }
         }
         public async Task<bool> IsCodeExistsAsync(string code, long? excludeId = null)
         {

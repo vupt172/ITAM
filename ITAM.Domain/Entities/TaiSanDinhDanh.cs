@@ -1,11 +1,12 @@
-﻿using ITAM.Domain.Enums;
+﻿using ITAM.Domain.Entities.Catalogs;
+using ITAM.Domain.Enums;
 
 namespace ITAM.Domain.Entities
 {
     /// <summary>
     /// Tài sản quản lý theo định danh riêng lẻ — mỗi dòng là 1 tài sản cụ thể (số lượng luôn = 1).
     /// </summary>
-    public class TaiSanDinhDanh
+    public class TaiSanDinhDanh: AuditableEntity
     {
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;

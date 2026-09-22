@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ITAM.Shared.Constants;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,15 +14,16 @@ using System.Windows.Input;
 
 namespace ITAM.WPF.ViewModels
 {
-    public partial class MenuBarViewModel:ObservableObject
+    public partial class MenuBarViewModel : ObservableObject
     {
         private readonly INavigationService _navigationService;
         private readonly ICurrentUserContext _currentUserContext;
-        public bool HasFeatureDashboard =>_currentUserContext.HasFeature("DASHBOARD");
+        public bool HasFeatureDashboard => _currentUserContext.HasFeature("DASHBOARD");
         public bool HasFeatureHeThongDM => _currentUserContext.HasFeature("HETHONG_DANHMUC");
         public bool HasFeatureUserManagement => _currentUserContext.HasFeature("HETHONG_NGUOIDUNG");
         public bool HasFeatureRoleManagement => _currentUserContext.HasFeature("HETHONG_QUYEN");
-        
+        public bool HasFeatureDieuChuyen => _currentUserContext.HasFeature("DIEUCHUYEN");
+
         public MenuBarViewModel(INavigationService navigationService, ICurrentUserContext currentUserContext)
         {
             _navigationService = navigationService;
@@ -40,12 +42,23 @@ namespace ITAM.WPF.ViewModels
             _navigationService.NavigateTo<HeThongDMViewModel>();
         }
         [RelayCommand]
-        private void NavigateLoNhap() => _navigationService.NavigateTo<LoNhapViewModel>();
+        private void NavigateLoNhap()
+        {
+            if (_currentUserContext.Instance?.PhongBan?.Code != PhongBanCodes.KHO_LUU_TRU)
+            {
+                MessageBox.Show("Phòng ban hiện tại không có quyền truy cập chức năng này.", "Truy cập bị từ chối", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            _navigationService.NavigateTo<LoNhapViewModel>();
+        }
         [RelayCommand]
         private void NavigateTaiSanDinhDanh() => _navigationService.NavigateTo<TaiSanDinhDanhListViewModel>();
 
         [RelayCommand]
         private void NavigateVatTu() => _navigationService.NavigateTo<VatTuListViewModel>();
+
+        [RelayCommand]
+        private void NavigateDieuChuyen() => _navigationService.NavigateTo<DieuChuyenViewModel>();
         [RelayCommand]
         private void NavigateUserManagement()
         {
@@ -124,6 +137,7 @@ namespace ITAM.WPF.ViewModels
             OnPropertyChanged(nameof(HasFeatureHeThongDM));
             OnPropertyChanged(nameof(HasFeatureUserManagement));
             OnPropertyChanged(nameof(HasFeatureRoleManagement));
+            OnPropertyChanged(nameof(HasFeatureDieuChuyen)); // MỚI
         }
     }
 }

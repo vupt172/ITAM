@@ -1,4 +1,5 @@
-﻿using ITAM.Domain.Entities.Identity;
+﻿using ITAM.Domain.Entities.Catalogs;
+using ITAM.Domain.Entities.Identity;
 using ITAM.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace ITAM.Domain.Entities
     /// Lô nhập kho (header) — 1 lô có thể gồm nhiều dòng chi tiết,
     /// nhập cả Tài Sản Định Danh (TSCĐ/CCDC) lẫn Vật Tư trong cùng 1 lô.
     /// </summary>
-    public class LoNhap
+    public class LoNhap:AuditableEntity
     {
         public long Id { get; set; }
         public string SoLo { get; set; } = string.Empty;

@@ -235,6 +235,20 @@ namespace ITAM.Infrastructure.Services
                 foreach (var (taiSan, maDanhMuc) in taiSanMoiTao)
                 {
                     taiSan.Code = $"TS-{maDanhMuc}-{taiSan.Id:D6}";
+
+                    // MỚI: ghi Lịch Sử Điều Chuyển ban đầu — tài sản mới sinh ra, nhận vào Kho Lưu Trữ.
+                    // ViTriChuyenDi = null vì tài sản chưa từng có vị trí trước đó.
+                    // khoNhap ở đây chính là Kho Lưu Trữ (Code = VT_KHO_LUU_TRU) — biến đã có sẵn phía trên trong hàm.
+                    _context.LichSuDieuChuyenTaiSan.Add(new LichSuDieuChuyenTaiSan
+                    {
+                        TaiSanDinhDanhId = taiSan.Id,
+                        ViTriChuyenDiId = null,
+                        ViTriChuyenDenId = khoNhap.Id,
+                        NgayDuyet = DateTime.Now,
+                        NguoiDuyetId = nguoiDuyetId,
+                        DieuChuyenChiTietId = null,
+                        GhiChu=$"Tài sản mới sinh ra từ lô nhập chi tiết {taiSan.LoNhapChiTiet.SoLo}"
+                    });
                 }
 
                 if (taiSanMoiTao.Count > 0)
