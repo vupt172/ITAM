@@ -3,8 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:viewModels="clr-namespace:ITAM.WPF.ViewModels"
     xmlns:catalogViewModels="clr-namespace:ITAM.WPF.ViewModels.Catalogs"
+    xmlns:reportViewModels="clr-namespace:ITAM.WPF.ViewModels.Reports"
     xmlns:views="clr-namespace:ITAM.WPF.Views"
     xmlns:catalogViews="clr-namespace:ITAM.WPF.Views.Catalogs"
+    xmlns:reportViews="clr-namespace:ITAM.WPF.Views.Reports"
     >
 
     <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
@@ -25,19 +27,10 @@
     <DataTemplate DataType="{x:Type viewModels:DieuChuyenViewModel}">
         <views:DieuChuyenView />
     </DataTemplate>
-
-
-    <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
-    <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">
-        <views:UserManagementView />
+    <DataTemplate DataType="{x:Type viewModels:LichSuDieuChuyenViewModel}">
+        <views:LichSuDieuChuyenView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewModels:RoleManagementViewModel}">
-        <views:RoleManagementView />
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type viewModels:ThamSoNguoiDungViewModel}">
-        <views:ThamSoNguoiDungView />
-    </DataTemplate>
-
+    <!-- Danh Mục -->
     <DataTemplate DataType="{x:Type catalogViewModels:DMTaiSanViewModel}">
         <catalogViews:DMTaiSanView />
     </DataTemplate>
@@ -56,4 +49,29 @@
     <DataTemplate DataType="{x:Type catalogViewModels:HangHoaViewModel}">
         <catalogViews:HangHoaView />
     </DataTemplate>
+    <!-- Báo cáo -->
+    <DataTemplate DataType="{x:Type viewModels:HeThongBaoCaoViewModel}">
+        <views:HeThongBaoCaoView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type reportViewModels:BaoCaoTaiSanViewModel}">
+        <reportViews:BaoCaoTaiSanView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type reportViewModels:SoTaiSanCoDinhViewModel}">
+        <reportViews:SoTaiSanCoDinhView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type reportViewModels:TongHopTaiSanViewModel}">
+        <reportViews:TongHopTaiSanView/>
+    </DataTemplate>
+    <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
+    <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">
+        <views:UserManagementView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:RoleManagementViewModel}">
+        <views:RoleManagementView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:ThamSoNguoiDungViewModel}">
+        <views:ThamSoNguoiDungView />
+    </DataTemplate>
+
+
 </ResourceDictionary>

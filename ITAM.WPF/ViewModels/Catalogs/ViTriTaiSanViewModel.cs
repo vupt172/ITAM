@@ -16,21 +16,21 @@ namespace ITAM.WPF.ViewModels.Catalogs
     public partial class ViTriTaiSanViewModel : CatalogViewModel
     {
         #region Fields & Properties
+        //services
         private readonly IViTriTaiSanService _viTriTaiSanService;
         private readonly ICatalogService<PhongBan> _phongBanService;
-
-
+        public ICollectionView ItemsView { get; }
+        //lists
         public ObservableCollection<ViTriTaiSanDto> Items { get; } = [];
         // Danh sách nguồn cho ComboBox - load 1 lần, không đổi liên tục theo CurrentItem
         [ObservableProperty]
         private ObservableCollection<PhongBanDto> _dsPhongBan = new();
-
+        // UI bindings
         [ObservableProperty]
         private ViTriTaiSanDto? selectedItem; // Bản ghi đang được chọn trong DataGrid
         [ObservableProperty]
         private ViTriTaiSanDto currentItem = new(); // Bản ghi đang hiển thị trên form để chỉnh sửa hoặc thêm mới
         protected override bool HasSelection => SelectedItem != null;
-        public ICollectionView ItemsView { get; }
         [ObservableProperty]
         private string? searchText;
         #endregion

@@ -1,0 +1,19 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=192.168.1.4,1433;Database=ITAM;User Id=softw;Password=123456@aA;TrustServerCertificate=True;"
+  },
+  "Storage": {
+    "ServerRoot": "\\\\192.168.1.4\\ITAM",
+    "HangHoaFolder": "Images\\HangHoa"
+  }
+}
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.;Database=QLTS;User Id=sa;Password=Nonamebk172@;TrustServerCertificate=True;"
+  },
+  "Storage": {
+    "ServerRoot": @"H:\LocalServer\ITAM\Images",
+    "HangHoaFolder": "Images\\HangHoa"
+  }
+}

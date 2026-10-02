@@ -1,4 +1,5 @@
 ﻿using ITAM.WPF;
+using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;

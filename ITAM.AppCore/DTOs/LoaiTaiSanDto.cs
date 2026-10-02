@@ -35,6 +35,7 @@ namespace ITAM.AppCore.DTOs
         private decimal? maxValue;
         [ObservableProperty]
         private int displayOrder = 0;
+        [ObservableProperty] private decimal? tyLeHaoMon;
 
         public bool Validate()
         {
@@ -52,7 +53,8 @@ namespace ITAM.AppCore.DTOs
                 IsActive = IsActive,
                 MinValue=MinValue,
                 MaxValue=MaxValue,
-                DisplayOrder=DisplayOrder
+                DisplayOrder=DisplayOrder,
+                TyLeHaoMon= TyLeHaoMon
             };
         }
     }

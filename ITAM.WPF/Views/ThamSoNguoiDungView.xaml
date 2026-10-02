@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:ITAM.WPF.Views.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="900">
     <Grid Margin="16">
@@ -19,32 +20,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Người Sử Dụng" VerticalAlignment="Center" Margin="0,0,12,0" FontWeight="Bold"/>
-            <ComboBox Grid.Column="1"
-          IsEditable="True"
-          IsTextSearchEnabled="False"
-          StaysOpenOnEdit="True"
-          IsSynchronizedWithCurrentItem="True"
-          ItemsSource="{Binding UserSearch.View}"
-          SelectedItem="{Binding UserSearch.HighlightedItem, Mode=TwoWay}"
-          Text="{Binding UserSearch.SearchText, UpdateSourceTrigger=PropertyChanged}"
-          IsEnabled="{Binding IsReadonly}"
-          DropDownClosed="UserComboBox_DropDownClosed"
-          materialDesign:HintAssist.Hint="Gõ để tìm theo họ tên hoặc tài khoản..."
-          Style="{StaticResource SearchableComboBoxStyle}"
-          MaxWidth="420" HorizontalAlignment="Left">
-                <ComboBox.InputBindings>
-                    <KeyBinding Key="Return" Command="{Binding ConfirmUserSearchCommand}"/>
-                </ComboBox.InputBindings>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                <Run Text="{Binding FullName}"/>
-                <Run Text=" - "/>
-                <Run Text="{Binding Username}"/>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <controls:MultiColumnSearchComboBox Grid.Column="1"
+       ItemsSource="{Binding Users}"
+       DisplayMemberPath="FullName" SelectedItem="{Binding SelectedUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+       IsEnabled="{Binding CoTheDoiPhongBanChuyenDen}" Hint="Người Dùng">
+                <controls:MultiColumnSearchComboBox.Columns>
+                    <controls:SearchColumn Header="Mã" Binding="Username" Width="150"/>
+                    <controls:SearchColumn Header="Tên" Binding="FullName" Width="300"/>
+                </controls:MultiColumnSearchComboBox.Columns>
+            </controls:MultiColumnSearchComboBox>
         </Grid>
 
         <!-- 2. Thông tin chính -->

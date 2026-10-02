@@ -13,16 +13,12 @@ namespace ITAM.AppCore.DTOs
         public DateTime NgayTao { get; set; }
         public long NguoiTaoId { get; set; }
         public string TenNguoiTao { get; set; } = string.Empty;
-
-
         [ObservableProperty] private long phongBanChuyenDiId;
         public string TenPhongBanChuyenDi { get; set; } = string.Empty;
         public long PhongBanChuyenDenId { get; set; }
         public string TenPhongBanChuyenDen { get; set; } = string.Empty;
-
         public string? NguoiGiao { get; set; }
         public string? NguoiNhan { get; set; }
-
         public string TrangThai { get; set; } = "PENDING";
         public long? NguoiDuyetId { get; set; }
         public string TenNguoiDuyet { get; set; } = "Chưa duyệt";
@@ -114,9 +110,20 @@ namespace ITAM.AppCore.DTOs
 
         /// <summary>Lọc theo Vị Trí liên quan — khớp cả ViTriChuyenDi lẫn ViTriChuyenDen (VD: "mọi thứ đi/đến Phòng Kế Toán").</summary>
         public long? ViTriTaiSanId { get; set; }
-
         public long? NguoiDuyetId { get; set; }
         public DateTime? TuNgay { get; set; }
         public DateTime? DenNgay { get; set; }
+        // Thêm các property này vào LichSuDieuChuyenSearchDto hiện có
+        // (giữ nguyên các property khác: TaiSanDinhDanhId, ViTriTaiSanId, NguoiDuyetId, TuNgay, DenNgay)
+        public long? PhongBanChuyenDiId { get; set; }
+        public long? PhongBanChuyenDenId { get; set; }
+
+        // Lọc riêng theo Vị Trí Đi/Đến (khác ViTriTaiSanId cũ — field cũ OR cả 2 chiều,
+        // còn 2 field này match trực tiếp đúng 1 chiều, dùng cho màn hình Lịch Sử Điều Chuyển).
+        public long? ViTriChuyenDiId { get; set; }
+        public long? ViTriChuyenDenId { get; set; }
+
+        // Tìm theo Mã hoặc Tên Tài Sản (LIKE/Contains) — cho ô "Tài Sản" trên UI.
+        public string? TuKhoaTaiSan { get; set; }
     }
 }

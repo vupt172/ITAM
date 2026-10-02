@@ -4,21 +4,15 @@
 
     <!-- TEXTBOX -->
     <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-        <Setter Property="Height" Value="36"/>
+        <Setter Property="Height" Value="30"/>
     </Style>
     <!--<Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
         <Setter Property="RowHeight" Value="32"/>
         <Setter Property="ColumnHeaderHeight" Value="36"/>
     </Style>-->
-    <Style x:Key="SearchableComboBoxStyle" TargetType="ComboBox"
-       BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-        <Setter Property="IsEditable" Value="True"/>
-        <Setter Property="IsTextSearchEnabled" Value="False"/>
-        <Setter Property="StaysOpenOnEdit" Value="True"/>
-    </Style>
 
     <!-- DATAGRID -->
-    <Style x:Key="CompactDataGridRowStyle" TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+    <!--<Style x:Key="CompactDataGridRowStyle" TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
         <Setter Property="Padding" Value="0"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
@@ -66,7 +60,7 @@
         <Setter Property="RowStyle" Value="{StaticResource CompactDataGridRowStyle}"/>
         <Setter Property="ColumnHeaderStyle" Value="{StaticResource CompactDataGridColumnHeaderStyle}"/>
         <Setter Property="CellStyle" Value="{StaticResource CompactDataGridCellStyle}"/>
-    </Style>
+    </Style>-->
 
     <!-- TABS -->
     <!-- TabItem gọn: giảm padding, font nhỏ hơn -->
@@ -80,5 +74,14 @@
     <Style x:Key="CompactTabControl" TargetType="TabControl" BasedOn="{StaticResource MaterialDesignTabControl}">
         <Setter Property="ItemContainerStyle" Value="{StaticResource CompactTabItem}"/>
         <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <!-- COMBOBOX -->
+    <Style x:Key="EditingModeCombobox" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+        <Setter Property="IsHitTestVisible" Value="{Binding IsEditing}"/>
+        <Setter Property="Focusable" Value="{Binding IsEditing}"/>
+    </Style>
+    <Style x:Key="SearchableEditingModeCombobox" TargetType="ComboBox" BasedOn="{StaticResource EditingModeCombobox}">
+        <Setter Property="IsEditable" Value="true"/>
     </Style>
 </ResourceDictionary>

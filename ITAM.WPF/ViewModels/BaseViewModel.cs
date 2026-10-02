@@ -11,6 +11,7 @@ namespace ITAM.WPF.ViewModels
         public ToolbarContext ToolbarContext { get; set; }
         protected readonly INavigationService _navigationService;
         protected readonly IErrorDialogService _errorDialogService;
+        protected readonly ICurrentUserContext _currentUserContext;
         // Cờ chỉnh sửa chung — Add/Edit bật lên, Save/Cancel tắt đi.
         [ObservableProperty]
         private bool isEditing;
@@ -20,16 +21,30 @@ namespace ITAM.WPF.ViewModels
         protected virtual bool HasSelection => false;
         public bool IsReadOnly => !IsEditing;
 
-        public BaseViewModel(INavigationService navigationService)
+        public BaseViewModel()
         {
-            _navigationService = navigationService;
             InitToolbarState();
             ToolbarContext = GetToolbarContext();
         }
-        public BaseViewModel(INavigationService navigationService,IErrorDialogService errorDialogService)
+        public BaseViewModel(INavigationService navigationService,ICurrentUserContext currentUserContext)
+        {
+            _navigationService = navigationService;
+            _currentUserContext = currentUserContext;
+            InitToolbarState();
+            ToolbarContext = GetToolbarContext();
+        }
+        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService)
         {
             _navigationService = navigationService;
             _errorDialogService = errorDialogService;
+            InitToolbarState();
+            ToolbarContext = GetToolbarContext();
+        }
+        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService, ICurrentUserContext currentUserContext)
+        {
+            _navigationService = navigationService;
+            _errorDialogService = errorDialogService;
+            _currentUserContext = currentUserContext;
             InitToolbarState();
             ToolbarContext = GetToolbarContext();
         }
@@ -44,7 +59,7 @@ namespace ITAM.WPF.ViewModels
                 SaveCommand = SaveCommand,
                 CancelCommand = CancelCommand,
                 CloseCommand = CloseCommand,
-                SearchCommand=SearchCommand,
+                SearchCommand = SearchCommand,
                 RefreshCommand = RefreshCommand
             };
         }
@@ -54,7 +69,7 @@ namespace ITAM.WPF.ViewModels
         // không cần gán tay trong hàm này nữa.
         protected virtual void InitToolbarState() { }
 
-   
+
 
         [RelayCommand(CanExecute = nameof(CanAdd))]
         protected virtual void Add() => IsEditing = true;

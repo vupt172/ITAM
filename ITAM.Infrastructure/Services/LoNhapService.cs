@@ -8,20 +8,16 @@ using ITAM.Domain.Entities;
 using ITAM.Domain.Enums;
 using ITAM.Domain.Exceptions;
 using ITAM.Infrastructure.Data;
+using ITAM.Shared.Constants;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITAM.Infrastructure.Services
 {
     public class LoNhapService : ILoNhapService
     {
-        // Code cố định của bản ghi LoaiTaiSan đại diện Vật Tư trong DbSeeder.
-        private const string MA_LOAI_VAT_TU = "VATTU";
 
         private readonly AppDbContext _context;
 
-        // Code cố định gán lúc seed cho ViTriTaiSan "Kho nhập" — dùng Code thay vì Name
-        // để tránh phụ thuộc vào chuỗi hiển thị (có thể đổi tên sau này).
-        private const string MA_VI_TRI_KHO_NHAP = "VT_KHO_LUU_TRU";
 
         public LoNhapService(AppDbContext context)
         {
@@ -53,6 +49,8 @@ namespace ITAM.Infrastructure.Services
                         SoLo = string.Empty,
                         NgayNhap = dto.NgayNhap,
                         NhaCungCapId = dto.NhaCungCapId,
+                        MaHoaDon = dto.MaHoaDon,
+                        NguoiGiao=dto.NguoiGiao,
                         NguoiLapPhieuId = dto.NguoiLapPhieuId,
                         GhiChu = dto.GhiChu,
                         TrangThai = TrangThaiLoNhap.PENDING
@@ -74,6 +72,8 @@ namespace ITAM.Infrastructure.Services
                         throw new InvalidBusinessRuleException("Chỉ được sửa phiếu khi đang ở trạng thái Chờ duyệt.");
 
                     loNhap.NhaCungCapId = dto.NhaCungCapId;
+                    loNhap.NguoiGiao = dto.NguoiGiao;
+                    loNhap.MaHoaDon = dto.MaHoaDon;
                     loNhap.GhiChu = dto.GhiChu;
                 }
 
@@ -173,16 +173,16 @@ namespace ITAM.Infrastructure.Services
                     throw new InvalidBusinessRuleException("Lô Nhập chưa có dòng chi tiết nào.");
 
                 var khoNhap = await _context.ViTriTaiSan
-                    .FirstOrDefaultAsync(x => x.Code == MA_VI_TRI_KHO_NHAP)
+                    .FirstOrDefaultAsync(x => x.Code == ViTriTaiSanCodes.KHO_LUU_TRU)
                     ?? throw new InvalidBusinessRuleException(
-                        $"Chưa cấu hình Vị Trí Tài Sản có Code = '{MA_VI_TRI_KHO_NHAP}' (Kho nhập) — kiểm tra lại DbSeeder.");
+                        $"Chưa cấu hình Vị Trí Tài Sản có Code = '{ViTriTaiSanCodes.KHO_LUU_TRU}' (Kho nhập) — kiểm tra lại DbSeeder.");
 
                 // Lưu kèm mã danh mục để dùng khi cập nhật Code ở bước 2 (sau khi có Id).
                 var taiSanMoiTao = new List<(TaiSanDinhDanh TaiSan, string MaDanhMuc)>();
 
                 foreach (var chiTiet in loNhap.ChiTiets)
                 {
-                    if (chiTiet.LoaiTaiSan.Code != MA_LOAI_VAT_TU)
+                    if (chiTiet.LoaiTaiSan.Code != LoaiTaiSanCodes.VatTu)
                     {
                         var maDanhMuc = chiTiet.HangHoa.DMTaiSan.Code;
 
@@ -199,7 +199,8 @@ namespace ITAM.Infrastructure.Services
                                 LoaiTaiSanId = chiTiet.LoaiTaiSanId,
                                 TrangThaiTaiSan = TrangThaiTaiSan.IN_STOCK,
                                 LoNhapChiTietId = chiTiet.Id,
-                                ViTriTaiSanId = khoNhap.Id
+                                ViTriTaiSanId = khoNhap.Id,
+                                GhiChu = loNhap.GhiChu
                             };
 
                             _context.TaiSanDinhDanh.Add(taiSan);
@@ -229,6 +230,7 @@ namespace ITAM.Infrastructure.Services
                 }
 
                 loNhap.TrangThai = TrangThaiLoNhap.APPROVED;
+                loNhap.NgayDuyet = DateTime.Now;
                 loNhap.NguoiDuyetId = nguoiDuyetId;
                 await _context.SaveChangesAsync();
 

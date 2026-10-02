@@ -5,6 +5,8 @@ using ITAM.AppCore.DTOs;
 using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
+using ITAM.Infrastructure.Services;
+using ITAM.Shared.Helpers;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,19 +14,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ITAM.WPF.ViewModels
 {
     public partial class TaiSanDinhDanhListViewModel : BaseViewModel
     {
         private readonly ITaiSanDinhDanhService _taiSanDinhDanhService;
-        private readonly ICurrentUserContext _currentUserContext;
+        private readonly ILichSuDieuChuyenService _lichSuDieuChuyenService;
+        private readonly IFileStorageService _fileStorageService;
 
         public override string Title => "Danh Sách Tài Sản Định Danh";
-
+        [ObservableProperty]
+        private ObservableCollection<LichSuDieuChuyenTaiSanDto> lichSuDieuChuyen = new();
         [ObservableProperty] private ObservableCollection<TaiSanDinhDanhListDto> danhSach = new();
         [ObservableProperty] private TaiSanDinhDanhListDto? selectedItem;
         [ObservableProperty] private string searchText = string.Empty;
@@ -38,17 +45,21 @@ namespace ITAM.WPF.ViewModels
         public ObservableCollection<FilterOptionViewModel> TrangThaiFilters { get; } = new();
 
         private List<TaiSanDinhDanhListDto> _danhSachGoc = new();
-
+        [ObservableProperty]
+        private ImageSource? imageSource;
         protected override bool HasSelection => SelectedItem != null;
 
         public TaiSanDinhDanhListViewModel(
             ITaiSanDinhDanhService taiSanDinhDanhService,
+            ILichSuDieuChuyenService lichSuDieuChuyenService,
+            IFileStorageService fileStorageService,
             IErrorDialogService errorDialogService,
             ICurrentUserContext currentUserContext,
-            INavigationService navigationService) : base(navigationService,errorDialogService)
+            INavigationService navigationService) : base(navigationService, errorDialogService, currentUserContext)
         {
             _taiSanDinhDanhService = taiSanDinhDanhService;
-            _currentUserContext = currentUserContext;
+            _lichSuDieuChuyenService = lichSuDieuChuyenService;
+            _fileStorageService = fileStorageService;
             _ = LoadAsync();
         }
 
@@ -77,6 +88,7 @@ namespace ITAM.WPF.ViewModels
                     Name = x.Name,
                     Serial = x.Serial,
                     MaHangHoa = x.HangHoa?.Code ?? string.Empty,
+                    SoHieuTSCD= x.SoHieuTSCD,
                     TenLoaiTaiSan = x.LoaiTaiSan?.Name ?? string.Empty,
                     TrangThaiTaiSan = x.TrangThaiTaiSan.ToString(),
                     TenViTri = x.ViTriTaiSan?.Name ?? string.Empty,
@@ -84,6 +96,7 @@ namespace ITAM.WPF.ViewModels
                     GiaNhap = x.GiaNhap,
                     GhiChu=x.GhiChu,
                     SoLoNhapChiTiet = x.LoNhapChiTiet?.SoLo ?? string.Empty,
+                    ImagePath = x.HangHoa?.ImagePath,
                     TenDanhMuc = x.HangHoa?.DMTaiSan?.Name ?? string.Empty   // ⬅ thêm
                 }).ToList();
 
@@ -159,7 +172,56 @@ namespace ITAM.WPF.ViewModels
 
         protected override async void Refresh() => await LoadAsync();
 
-        partial void OnSelectedItemChanged(TaiSanDinhDanhListDto? value) => NotifySelectionChanged();
+        partial void OnSelectedItemChanged(TaiSanDinhDanhListDto? value)
+        {
+            NotifySelectionChanged();
+            LoadCurrentImage(value);
+
+            _ = LoadLichSuDieuChuyenAsync(value?.Id);
+        }
+        private void LoadCurrentImage(TaiSanDinhDanhListDto? value)
+        {
+            if (string.IsNullOrWhiteSpace(value?.ImagePath))
+            {
+                ImageSource = null;
+                return;
+            }
+            try
+            {
+                var fullPath =_fileStorageService.GetFullPath(value.ImagePath);
+                if (!File.Exists(fullPath))
+                {
+                    ImageSource = null;
+                    return;
+                }
+
+                ImageSource = FileUtils.LoadImage(fullPath);
+            }
+            catch
+            {
+                ImageSource = null;
+            }
+        }
+        private async Task LoadLichSuDieuChuyenAsync(long? taiSanDinhDanhId)
+        {
+            try
+            {
+                LichSuDieuChuyen.Clear();
+
+                if (!taiSanDinhDanhId.HasValue)
+                    return;
+
+                var list = await _lichSuDieuChuyenService
+                    .GetByTaiSanIdAsync(taiSanDinhDanhId.Value, 5);
+
+                foreach (var item in list)
+                    LichSuDieuChuyen.Add(item);
+            }
+            catch (Exception ex)
+            {
+                _errorDialogService.Show(ex);
+            }
+        }
 
         [RelayCommand]
         private async Task QuetMaAsync()

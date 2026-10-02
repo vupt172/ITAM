@@ -1,8 +1,10 @@
 ﻿<UserControl x:Class="ITAM.WPF.Views.DieuChuyenView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:controls="clr-namespace:ITAM.WPF.Views.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:ITAM.WPF.Converters">
+             xmlns:converters="clr-namespace:ITAM.WPF.Converters" >
 
     <UserControl.Resources>
         <converters:TrangThaiDieuChuyenToBrushConverter x:Key="TrangThaiDieuChuyenToBrushConverter"/>
@@ -39,14 +41,26 @@
                         <TextBox Margin="0,0,12,0" Text="{Binding CurrentPhieu.SoPhieu, Mode=OneWay}" IsReadOnly="True"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  materialDesign:HintAssist.Hint="Số phiếu"/>
-                        <ComboBox Margin="0,0,12,0" ItemsSource="{Binding PhongBansChuyenDiHopLe}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                        <ComboBox Margin="0,0,12,0" ItemsSource="{Binding PhongBansChuyenDi}" DisplayMemberPath="Name" SelectedValuePath="Id"
                                   SelectedValue="{Binding CurrentPhieu.PhongBanChuyenDiId}" IsHitTestVisible="False" Focusable="False"
                                   materialDesign:HintAssist.Hint="Phòng Ban Chuyển Đi"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
-                        <ComboBox ItemsSource="{Binding PhongBansChuyenDenHopLe}" DisplayMemberPath="Name" SelectedValuePath="Id"
-                                  SelectedValue="{Binding PhongBanChuyenDenChonId}" IsEnabled="{Binding CoTheDoiPhongBanChuyenDen}"
+                        <ComboBox IsEditable="True" IsTextSearchEnabled="False" ItemsSource="{Binding PhongBansChuyenDenView.View}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding PhongBanChuyenDenChonId,UpdateSourceTrigger=PropertyChanged}" 
+                                  Text="{Binding PhongBansChuyenDenView.SearchText,UpdateSourceTrigger=PropertyChanged}"
+                                  IsHitTestVisible="{Binding CoTheDoiPhongBanChuyenDen}" Focusable="{Binding CoTheDoiPhongBanChuyenDen}"
                                   materialDesign:HintAssist.Hint="Phòng Ban Chuyển Đến"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+
+                        <!--<controls:MultiColumnSearchComboBox
+                            ItemsSource="{Binding PhongBansChuyenDen}"
+                            DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding PhongBanChuyenDenChonId, UpdateSourceTrigger=PropertyChanged}"
+                            IsEnabled="{Binding CoTheDoiPhongBanChuyenDen}" Hint="Phòng Ban Chuyển Đến">
+                            <controls:MultiColumnSearchComboBox.Columns>
+                                <controls:SearchColumn Header="Mã" Binding="Code" Width="150"/>
+                                <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                            </controls:MultiColumnSearchComboBox.Columns>
+                        </controls:MultiColumnSearchComboBox>-->
                     </UniformGrid>
 
                     <UniformGrid Columns="2" Margin="0,0,0,16">
@@ -62,7 +76,7 @@
                              AcceptsReturn="True" materialDesign:HintAssist.Hint="Ghi chú"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
-                    <UniformGrid Columns="3">
+                    <UniformGrid Columns="4">
                         <StackPanel Margin="0,0,12,0">
                             <TextBlock Text="Người tạo phiếu" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding CurrentPhieu.TenNguoiTao}" FontSize="14"/>
@@ -71,6 +85,11 @@
                         <StackPanel Margin="0,0,12,0">
                             <TextBlock Text="Người duyệt" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding CurrentPhieu.TenNguoiDuyet}" FontSize="14"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Ngày duyệt" FontSize="11" Foreground="Gray" Margin="0,0,0,4"/>
+                            <TextBlock FontSize="14"
+                                       Text="{Binding CurrentPhieu.NgayDuyet, StringFormat='dd/MM/yyyy HH:mm', TargetNullValue='—'}"/>
                         </StackPanel>
 
                         <StackPanel>
@@ -131,29 +150,49 @@
                                      Visibility="{Binding IsAddingChiTiet, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Width="260"
+                            <!--<ComboBox Width="260"
                                       ItemsSource="{Binding TaiSansTaiPhongBanDi}"
                                       SelectedItem="{Binding TaiSanDangChon}"
                                       DisplayMemberPath="Code"
                                       Visibility="{Binding DangThemMoiDong, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       materialDesign:HintAssist.Hint="Tài sản (theo Mã, thuộc Phòng Ban Chuyển Đi)"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>-->
+                            <controls:MultiColumnSearchComboBox Width="260"
+                   ItemsSource="{Binding TaiSansTaiPhongBanDi}"
+                   DisplayMemberPath="Code" SelectedItem="{Binding TaiSanDangChon, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                   Visibility="{Binding DangThemMoiDong, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Hint="Tài sản (theo Mã, thuộc Phòng Ban Chuyển Đi)">
+                                <controls:MultiColumnSearchComboBox.Columns>
+                                    <controls:SearchColumn Header="Mã" Binding="Code" Width="200"/>
+                                    <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                                    <controls:SearchColumn Header="Vị Trí" Binding="ViTriTaiSan.Name" Width="300"/>
+                                </controls:MultiColumnSearchComboBox.Columns>
+                            </controls:MultiColumnSearchComboBox>
                             <TextBox Width="260"
                                      Text="{Binding CurrentChiTiet.MaTaiSan, Mode=OneWay}"
                                      IsReadOnly="True"
                                      Visibility="{Binding DangSuaDong, Converter={StaticResource BooleanToVisibilityConverter}}"
                                      materialDesign:HintAssist.Hint="Tài sản (không đổi được khi sửa dòng)"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                            <ComboBox Width="220" Margin="8,0" ItemsSource="{Binding ViTriTaiSansChuyenDen}" DisplayMemberPath="Name" SelectedValuePath="Id"
+                            <!--<ComboBox Width="220" Margin="8,0" ItemsSource="{Binding ViTriTaiSansChuyenDen}" DisplayMemberPath="Name" SelectedValuePath="Id"
                                       SelectedValue="{Binding CurrentChiTiet.ViTriChuyenDenId}"
                                       materialDesign:HintAssist.Hint="Vị Trí Chuyển Đến"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>-->
+                            <controls:MultiColumnSearchComboBox Width="260"
+                   ItemsSource="{Binding ViTriTaiSansChuyenDen}"
+                   DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding CurrentChiTiet.ViTriChuyenDenId, UpdateSourceTrigger=PropertyChanged}"
+                   Hint="Vị Trí Chuyển Đến">
+                                <controls:MultiColumnSearchComboBox.Columns>
+                                    <controls:SearchColumn Header="Mã" Binding="Code" Width="200"/>
+                                    <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                                </controls:MultiColumnSearchComboBox.Columns>
+                            </controls:MultiColumnSearchComboBox>
                         </StackPanel>
                         <TextBlock Margin="0,4,0,0" FontSize="11" Foreground="Gray"
                                    Text="{Binding TaiSanDangChon.Name}"
                                    Visibility="{Binding DangThemMoiDong, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                            <TextBox Width="420" Text="{Binding CurrentChiTiet.GhiChu, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBox Width="600" Text="{Binding CurrentChiTiet.GhiChu, UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="Ghi chú (không bắt buộc)"/>
                             <Button Margin="12,0,0,0" Content="Lưu dòng" Command="{Binding LuuDongCommand}"

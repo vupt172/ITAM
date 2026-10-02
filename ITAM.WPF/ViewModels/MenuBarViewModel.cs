@@ -1,11 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.Shared.Constants;
+using ITAM.ViewModels;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +25,43 @@ namespace ITAM.WPF.ViewModels
         public bool HasFeatureHeThongDM => _currentUserContext.HasFeature("HETHONG_DANHMUC");
         public bool HasFeatureUserManagement => _currentUserContext.HasFeature("HETHONG_NGUOIDUNG");
         public bool HasFeatureRoleManagement => _currentUserContext.HasFeature("HETHONG_QUYEN");
+        public bool HasFeaturePhieuNhapNCC => _currentUserContext.HasFeature("PHIEUNHAP_NCC");
         public bool HasFeatureDieuChuyen => _currentUserContext.HasFeature("DIEUCHUYEN");
+        public bool HasFeatureBaoCao => _currentUserContext.HasFeature("HETHONG_BAOCAO");
+        public bool HasFeatureLichSuTaiSan => _currentUserContext.HasFeature("LICHSU_TAISAN");
+        public bool HasFeatureDanhSachTaiSan => _currentUserContext.HasFeature("DANHSACH_TAISAN");
+        public bool HasFeatureDanhSachVatTu => _currentUserContext.HasFeature("DANHSACH_VATU");
+        public ObservableCollection<OpenedWindowItem> Windows { get; } = new();
+
 
         public MenuBarViewModel(INavigationService navigationService, ICurrentUserContext currentUserContext)
         {
             _navigationService = navigationService;
             _currentUserContext = currentUserContext;
+
+            _navigationService.OpenedViews.CollectionChanged += (_, _) => RebuildWindows();
+            _navigationService.PropertyChanged += (_, e) =>
+            {
+                if (e.PropertyName == nameof(INavigationService.CurrentView))
+                    RebuildWindows();
+            };
+            RebuildWindows();
+        }
+        private void RebuildWindows()
+        {
+            Windows.Clear();
+            int i = 1;
+            foreach (var vm in _navigationService.OpenedViews)
+            {
+                Windows.Add(new OpenedWindowItem(
+                    i++, vm,
+                    ReferenceEquals(vm, _navigationService.CurrentView),
+                    _navigationService.ActivateView));
+            }
         }
         #region Commands
-
+        [RelayCommand]
+        private void CloseAllWindows() => _navigationService.Reset();
         [RelayCommand]
         private void NavigateDashboard()
         {
@@ -53,12 +84,19 @@ namespace ITAM.WPF.ViewModels
         }
         [RelayCommand]
         private void NavigateTaiSanDinhDanh() => _navigationService.NavigateTo<TaiSanDinhDanhListViewModel>();
-
+        [RelayCommand]
+        private void NavigateLichSuDieuChuyen()
+        {
+            _navigationService.NavigateTo<LichSuDieuChuyenViewModel>();
+            // TODO xác nhận: đúng cách gọi NavigationService như NavigateDieuChuyenCommand đang dùng
+        }
         [RelayCommand]
         private void NavigateVatTu() => _navigationService.NavigateTo<VatTuListViewModel>();
 
         [RelayCommand]
         private void NavigateDieuChuyen() => _navigationService.NavigateTo<DieuChuyenViewModel>();
+        [RelayCommand]
+        private void NavigateBaoCao() => _navigationService.NavigateTo<HeThongBaoCaoViewModel>();
         [RelayCommand]
         private void NavigateUserManagement()
         {
@@ -79,6 +117,16 @@ namespace ITAM.WPF.ViewModels
         [RelayCommand]
         private async Task ChangePhongBan()
         {
+            if (_navigationService.OpenedViews.Count > 0)
+            {
+                MessageBox.Show(
+                    "Vui lòng đóng tất cả cửa sổ đang mở trước khi thay đổi Khoa/Phòng Ban.",
+                    "Không thể thay đổi",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
             var dialogVm = App.Services.GetRequiredService<ChangePhongBanViewModel>();
 
             var window = App.Services.GetRequiredService<ChangePhongBanWindow>();
@@ -98,6 +146,7 @@ namespace ITAM.WPF.ViewModels
                 App.Services.GetRequiredService<MainViewModel>().RefreshCurrentUser();
             }
         }
+
         [RelayCommand]
         private void Logout()
         {
@@ -138,6 +187,7 @@ namespace ITAM.WPF.ViewModels
             OnPropertyChanged(nameof(HasFeatureUserManagement));
             OnPropertyChanged(nameof(HasFeatureRoleManagement));
             OnPropertyChanged(nameof(HasFeatureDieuChuyen)); // MỚI
+            RebuildWindows();
         }
     }
 }

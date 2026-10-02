@@ -46,7 +46,7 @@
                 </StackPanel>
          
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <CheckBox Content="IsActive" IsEnabled="{Binding IsEditing}"
+                    <CheckBox Content="IsActive" IsHitTestVisible="{Binding IsEditing}" Focusable="{Binding IsEditing}"
                  IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"   />
                 </StackPanel>
             </Grid>

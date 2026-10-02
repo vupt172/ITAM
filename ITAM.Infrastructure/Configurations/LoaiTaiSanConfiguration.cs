@@ -16,6 +16,7 @@ namespace ITAM.Infrastructure.Configurations
             builder.ConfigureCatalog();
             builder.Property(x => x.MinValue).HasPrecision(18, 2);
             builder.Property(x => x.MaxValue).HasPrecision(18, 2);
+            builder.Property(x => x.TyLeHaoMon).HasPrecision(5, 2);
         }
     }
 }

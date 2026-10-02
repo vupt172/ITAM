@@ -4,6 +4,7 @@ using ITAM.AppCore.DTOs;
 using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
+using ITAM.Shared.Helpers;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,16 +12,19 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ITAM.WPF.ViewModels
 {
     public partial class VatTuListViewModel : BaseViewModel
     {
         private readonly IVatTuService _vatTuService;
-        private readonly ICurrentUserContext _currentUserContext;
+        private readonly IFileStorageService _fileStorageService;
+
 
         private List<VatTuListDto> _danhSachGoc = new();
         [ObservableProperty] private ObservableCollection<VatTuListDto> danhSach = new();
@@ -34,17 +38,19 @@ namespace ITAM.WPF.ViewModels
         public ObservableCollection<FilterOptionViewModel> ViTriFilters { get; } = new();
         public ObservableCollection<string> DanhMucFilters { get; } = new();
 
-
+        [ObservableProperty]
+        private ImageSource? imageSource;
         protected override bool HasSelection => SelectedItem != null;
 
         public VatTuListViewModel(
             IVatTuService vatTuService,
+            IFileStorageService fileStorageService,
             IErrorDialogService errorDialogService,
             ICurrentUserContext currentUserContext,
-            INavigationService navigationService) : base(navigationService,errorDialogService)
+            INavigationService navigationService) : base(navigationService, errorDialogService, currentUserContext)
         {
             _vatTuService = vatTuService;
-            _currentUserContext = currentUserContext;
+            _fileStorageService = fileStorageService;
             _ = LoadAsync();
         }
 
@@ -75,6 +81,7 @@ namespace ITAM.WPF.ViewModels
                     SoLuongTon = x.SoLuongTon,
                     GhiChu = x.GhiChu,
                     TenViTri = x.ViTriTaiSan?.Name ?? string.Empty,
+                    ImagePath = x.HangHoa?.ImagePath,
                     TenDanhMuc = x.HangHoa?.DMTaiSan?.Name ?? string.Empty   // ⬅ thêm
                 }).ToList();
 
@@ -126,7 +133,33 @@ namespace ITAM.WPF.ViewModels
 
         protected override async void Refresh() => await LoadAsync();
 
-        partial void OnSelectedItemChanged(VatTuListDto? value) => NotifySelectionChanged();
+        partial void OnSelectedItemChanged(VatTuListDto? value) {
+            NotifySelectionChanged();
+            LoadCurrentImage(value?.ImagePath);
+        }
+        private void LoadCurrentImage(string? imagePath)
+        {
+            if (string.IsNullOrWhiteSpace(imagePath))
+            {
+                ImageSource = null;
+                return;
+            }
+            try
+            {
+                var fullPath = _fileStorageService.GetFullPath(imagePath);
+                if (!File.Exists(fullPath))
+                {
+                    ImageSource = null;
+                    return;
+                }
+
+                ImageSource = FileUtils.LoadImage(fullPath);
+            }
+            catch
+            {
+                ImageSource = null;
+            }
+        }
 
         protected override void Edit()
         {

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ITAM.WPF.Services.Interfaces
 {
-    public interface INavigationService
+    public interface INavigationService : INotifyPropertyChanged
     {
         BaseViewModel? CurrentView { get; }
         string CurrentTitle { get; }

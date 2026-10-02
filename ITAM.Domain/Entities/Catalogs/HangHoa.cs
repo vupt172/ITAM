@@ -8,6 +8,8 @@ namespace ITAM.Domain.Entities.Catalogs
         public long DMTaiSanId { get; set; }
         public string DonViTinh { get; set; }
         public bool RequireSerial { get; set; }
+        /// <summary>Đường dẫn tương đối đến ảnh đại diện của hàng hóa.</summary>
+        public string? ImagePath { get; set; }
         public DMTaiSan DMTaiSan { get; set; } = null!;
     }
 }

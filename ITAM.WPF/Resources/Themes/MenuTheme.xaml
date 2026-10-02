@@ -163,6 +163,15 @@
 
     </Style>
 
-    <!-- TOOLBAR -->
-    
+    <!-- CONTEXT MENU -->
+    <Style TargetType="ContextMenu">
+        <Setter Property="Background" Value="{StaticResource MenuPopupBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SeparatorBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource MenuForegroundBrush}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
+    </Style>
 </ResourceDictionary>

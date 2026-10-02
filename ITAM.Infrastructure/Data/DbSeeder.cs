@@ -18,12 +18,25 @@ namespace ITAM.Infrastructure.Data
             ("HETHONG_QUYEN","Quản trị phân quyền"),
             ("PHIEUNHAP_NCC","Nhập từ nhà cung cấp"),   // MỚI
             ("DIEUCHUYEN","Điều chuyển tài sản"),        // MỚI
+            ("HETHONG_BAOCAO","Hệ thống báo cáo"),
+            ("LICHSU_TAISAN","Lịch sử tài sản"),
+            ("DANHSACH_TAISAN","Danh sách tài sản"),
+            ("DANHSACH_VATU","Danh sách vật tư")
         };
+        private static Role? adminRole = null!;
 
         public static async Task SeedAsync(AppDbContext context)
         {
             await context.Database.MigrateAsync(); // đảm bảo DB đã tạo/migrate
+            await SeedFeatureAsync(context);
+            await SeedRoleAsync(context);
+            await SeedUserAsync(context);
+            await SeedPhongBanAndViTriTaiSanAsync(context);
+            await SeedLoaiTaiSanAsync(context);
 
+        }
+        private static async Task SeedFeatureAsync(AppDbContext context)
+        {
             // 1. Seed Features
             foreach (var (code, name) in DefaultFeatures)
             {
@@ -31,9 +44,11 @@ namespace ITAM.Infrastructure.Data
                     context.Features.Add(new Feature { Code = code, Name = name });
             }
             await context.SaveChangesAsync();
-
+        }
+        private static async Task SeedRoleAsync(AppDbContext context)
+        {
             // 2. Seed Role "ADMIN" với đầy đủ quyền
-            var adminRole = await context.Roles
+             adminRole = await context.Roles
                 .Include(r => r.RoleFeatures)
                 .FirstOrDefaultAsync(r => r.Code == "ADMIN");
 
@@ -57,8 +72,9 @@ namespace ITAM.Infrastructure.Data
 
                 await context.SaveChangesAsync();
             }
-
-            // 3. Seed tài khoản Admin mặc định
+        }
+        private static async Task SeedUserAsync(AppDbContext context)
+        {
             if (!await context.Users.AnyAsync(u => u.Username == "admin"))
             {
                 var adminUser = new User
@@ -68,21 +84,21 @@ namespace ITAM.Infrastructure.Data
                     FullName = "Quản trị hệ thống",
                     IsActive = true
                 };
-                adminUser.UserRoles.Add(new UserRole { Role = adminRole });
+                adminUser.UserRoles.Add(new UserRole { Role = adminRole! });
 
                 context.Users.Add(adminUser);
                 await context.SaveChangesAsync();
             }
-            // 4. Seed các Phòng Ban + Vị Trí Tài Sản hệ thống (quan hệ 1-1: mỗi Phòng Ban hệ thống có đúng
-            // 1 Vị Trí Tài Sản cùng vai trò). Idempotent theo Code — không tạo trùng nếu đã có sẵn (VD: DB test
-            // đã được tạo tay qua UI Danh Mục Phòng Ban trước khi có bước seed này).
+        }
+        private static async Task SeedPhongBanAndViTriTaiSanAsync(AppDbContext context)
+        {
             var phongBanHeThong = new (string PhongBanCode, string PhongBanName, string ViTriCode, string ViTriName)[]
-            {
+{
     (PhongBanCodes.KHO_LUU_TRU,      "Kho Lưu Trữ",      ViTriTaiSanCodes.KHO_LUU_TRU,      "Kho Lưu Trữ"),
     (PhongBanCodes.KHO_THAT_LAC,     "Kho Thất Lạc",     ViTriTaiSanCodes.KHO_THAT_LAC,     "Kho Thất Lạc"),
     (PhongBanCodes.KHO_CHO_THANH_LY, "Kho Chờ Thanh Lý", ViTriTaiSanCodes.KHO_CHO_THANH_LY, "Kho Chờ Thanh Lý"),
     (PhongBanCodes.KHO_THANH_LY,     "Kho Đã Thanh Lý",  ViTriTaiSanCodes.KHO_THANH_LY,     "Kho Đã Thanh Lý"),
-            };
+};
 
             foreach (var (phongBanCode, phongBanName, viTriCode, viTriName) in phongBanHeThong)
             {
@@ -111,6 +127,21 @@ namespace ITAM.Infrastructure.Data
                     viTri.IsSystem = true;
                 }
             }
+            await context.SaveChangesAsync();
+        }
+        private static async Task SeedLoaiTaiSanAsync(AppDbContext context)
+        {
+            LoaiTaiSan[] loaiTaiSans =
+            {
+        new LoaiTaiSan{Code= LoaiTaiSanCodes.TaiSanCoDinh, Name= "Tài Sản Cố Định", MinValue=10000000, MaxValue= 999999999, TyLeHaoMon=20}, // > 10 triệu
+        new LoaiTaiSan{Code= LoaiTaiSanCodes.CongCuDungCu, Name= "Công Cụ Dụng Cụ", MinValue=0, MaxValue= 9999999},
+        new LoaiTaiSan{Code= LoaiTaiSanCodes.VatTu, Name= "Vật Tư", MinValue=0, MaxValue= 9999999},
+            };
+
+            foreach (var loaiTaiSan in loaiTaiSans)
+            {
+                if (!await context.LoaiTaiSan.AnyAsync(l => l.Code == loaiTaiSan.Code)) context.LoaiTaiSan.AddRange(loaiTaiSans);
+            } 
             await context.SaveChangesAsync();
         }
     }

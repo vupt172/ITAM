@@ -8,6 +8,7 @@ using ITAM.Domain.Enums;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.Shared.Constants;
+using ITAM.WPF.Helpers;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,12 +38,13 @@ namespace ITAM.WPF.ViewModels
         /// Khi tạo phiếu mới sẽ tự chọn phòng ban mặc định của user.
         /// Khi mở phiếu cũ sẽ hiển thị phòng ban thực tế của phiếu.
         /// </summary>
-        public ObservableCollection<PhongBan> PhongBansChuyenDiHopLe { get; } = [];
+        public ObservableCollection<PhongBan> PhongBansChuyenDi { get; } = [];
 
         /// <summary>
         /// Tất cả phòng ban hợp lệ dùng cho Phòng Ban Chuyển Đến.
         /// </summary>
-        public ObservableCollection<PhongBan> PhongBansChuyenDenHopLe { get; } = [];
+        public ObservableCollection<PhongBan> PhongBansChuyenDen { get; } = [];
+        public SearchableCollectionView<PhongBan> PhongBansChuyenDenView { get; set; }
 
         /// <summary>
         /// Vị trí tài sản thuộc Phòng Ban Chuyển Đến.
@@ -141,7 +143,7 @@ namespace ITAM.WPF.ViewModels
             _viTriTaiSanService = viTriTaiSanService;
             _taiSanDinhDanhService = taiSanDinhDanhService;
             _currentUser = currentUser;
-
+            PhongBansChuyenDenView = new SearchableCollectionView<PhongBan>(PhongBansChuyenDen, x => x.Code, x => x.Name);
             _ = LoadDanhMucAsync();
         }
 
@@ -165,16 +167,14 @@ namespace ITAM.WPF.ViewModels
                 .ToList();
 
             // Phòng Ban Chuyển Đi
-            PhongBansChuyenDiHopLe.Clear();
-
+            PhongBansChuyenDi.Clear();
             foreach (var pb in phongBansHopLe)
-                PhongBansChuyenDiHopLe.Add(pb);
+                PhongBansChuyenDi.Add(pb);
 
             // Phòng Ban Chuyển Đến
-            PhongBansChuyenDenHopLe.Clear();
-
+            PhongBansChuyenDen.Clear();
             foreach (var pb in phongBansHopLe)
-                PhongBansChuyenDenHopLe.Add(pb);
+                PhongBansChuyenDen.Add(pb);
 
             // Tải tài sản thuộc phòng ban mặc định của user.
             if (PhongBanMacDinhId is long phongBanId)
@@ -227,28 +227,14 @@ namespace ITAM.WPF.ViewModels
                 SoPhieu = p.SoPhieu,
                 NgayTao = p.NgayTao,
                 NguoiTaoId = p.NguoiTaoId,
-
-                TenNguoiTao =
-                    p.NguoiTao?.FullName ?? string.Empty,
-
-                PhongBanChuyenDiId =
-                    p.PhongBanChuyenDiId,
-
-                TenPhongBanChuyenDi =
-                    p.PhongBanChuyenDi?.Name ?? string.Empty,
-
-                PhongBanChuyenDenId =
-                    p.PhongBanChuyenDenId,
-
-                TenPhongBanChuyenDen =
-                    p.PhongBanChuyenDen?.Name ?? string.Empty,
-
+                TenNguoiTao =p.NguoiTao?.FullName ?? string.Empty,
+                PhongBanChuyenDiId =p.PhongBanChuyenDiId,
+                TenPhongBanChuyenDi =p.PhongBanChuyenDi?.Name ?? string.Empty,
+                PhongBanChuyenDenId =p.PhongBanChuyenDenId,
+                TenPhongBanChuyenDen =p.PhongBanChuyenDen?.Name ?? string.Empty,
                 NguoiGiao = p.NguoiGiao,
                 NguoiNhan = p.NguoiNhan,
-
-                TenNguoiDuyet =
-                    p.NguoiDuyet?.FullName ?? "Chưa duyệt",
-
+                TenNguoiDuyet =p.NguoiDuyet?.FullName ?? "Chưa duyệt",
                 NgayDuyet = p.NgayDuyet,
                 GhiChu = p.GhiChu,
                 TrangThai = p.TrangThai.ToString()

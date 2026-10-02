@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Interfaces;
+using ITAM.WPF.Helpers;
 using ITAM.WPF.Services.Interfaces;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ITAM.WPF.ViewModels
         private bool isLoading;
 
         public ObservableCollection<PhongBan> AccessiblePhongBans { get; } = new();
-
+        public SearchableCollectionView<PhongBan> AccessiblePhongBansView { get; set; }
         public event EventHandler<bool>? RequestClose;
 
         public ChangePhongBanViewModel(
@@ -36,33 +37,20 @@ namespace ITAM.WPF.ViewModels
             _phongBanService = phongBanService;
             _currentUserContext = currentUserContext;
             _errorDialogService = errorDialogService;
+            AccessiblePhongBansView = new SearchableCollectionView<PhongBan>(AccessiblePhongBans, x => x.Code, x => x.Name);
         }
 
         public async Task InitializeAsync()
         {
             IsLoading = true;
-            try
-            {
-                var currentUser = _currentUserContext.Instance
-                    ?? throw new InvalidOperationException("Phiên đăng nhập không hợp lệ.");
+            var currentUser = _currentUserContext.Instance
+                ?? throw new InvalidOperationException("Phiên đăng nhập không hợp lệ.");
+            var accessibleIds = (await _userService.GetAccessiblePhongBanIdsAsync(currentUser.Id)).ToHashSet();
+            var allPhongBans = await _phongBanService.GetAllAsync();
 
-                var accessibleIds = (await _userService.GetAccessiblePhongBanIdsAsync(currentUser.Id)).ToHashSet();
-                var allPhongBans = await _phongBanService.GetAllAsync();
-
-                AccessiblePhongBans.Clear();
-                foreach (var pb in allPhongBans.Where(p => accessibleIds.Contains(p.Id)))
-                    AccessiblePhongBans.Add(pb);
-
-                SelectedPhongBanId = currentUser.PhongBanId;
-            }
-            catch (Exception ex)
-            {
-                _errorDialogService.Show(ex);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            AccessiblePhongBans.Clear();
+            foreach (var pb in allPhongBans.Where(p => accessibleIds.Contains(p.Id)))
+                AccessiblePhongBans.Add(pb);
         }
 
         [RelayCommand]

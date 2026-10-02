@@ -62,6 +62,7 @@ namespace ITAM.Infrastructure.Services
                 .AsNoTracking()
                 .Include(x => x.HangHoa)
                 .Include(x => x.LoaiTaiSan)
+                .Include(x => x.ViTriTaiSan)
                 .Where(x => x.ViTriTaiSanId == viTriTaiSanId)
                 .OrderBy(x => x.Id)
                 .ToListAsync();
@@ -99,7 +100,7 @@ namespace ITAM.Infrastructure.Services
         {
             var taiSan = await _context.TaiSanDinhDanh.FindAsync(dto.Id)
                 ?? throw new InvalidBusinessRuleException("Không tìm thấy Tài Sản Định Danh.");
-
+            taiSan.SoHieuTSCD= dto.SoHieuTSCD;
             taiSan.Name = dto.Name;
             taiSan.Serial = dto.Serial;
             taiSan.NamSuDung = dto.NamSuDung;

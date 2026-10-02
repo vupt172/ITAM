@@ -29,7 +29,7 @@ namespace ITAM.WPF.ViewModels
         public UserManagementViewModel(
             INavigationService navigationService,
             IUserService userService,
-            IErrorDialogService errorDialogService) : base(navigationService)
+            IErrorDialogService errorDialogService, ICurrentUserContext currentUserContext) : base(navigationService, currentUserContext)
         {
             _userService = userService;
             _errorDialogService = errorDialogService;

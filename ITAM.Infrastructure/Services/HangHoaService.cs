@@ -21,5 +21,6 @@ namespace ITAM.Infrastructure.Services
 
             return await query.OrderBy(x => x.Code).ToListAsync();
         }
+
     }
 }

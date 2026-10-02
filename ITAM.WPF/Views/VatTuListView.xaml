@@ -89,71 +89,166 @@
         <materialDesign:Card Grid.Row="2" Padding="0">
             <TabControl Style="{StaticResource CompactTabControl}">
                 <TabItem Header="Thông tin chi tiết">
-                    <Border BorderBrush="#D0D5DD" BorderThickness="2">
-                        <Grid Margin="6" Background="#FAF3DD">
+                    <Border BorderBrush="#D0D5DD"
+            BorderThickness="2"
+            Background="#FAF3DD">
+
+                        <Grid Margin="6">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Hàng 1: Mã Hàng Hóa | Đơn Vị Tính | Số Lượng Tồn -->
-                            <Grid Grid.Row="0" Margin="6">
+                            <!-- ==================== HÀNG 1 ==================== -->
+                            <Grid Grid.Row="0" Margin="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <!-- Hình ảnh -->
+                                    <ColumnDefinition Width="200"/>
+                                    <!-- Thông tin -->
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                                    <TextBlock Text="MÃ HÀNG HÓA" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.MaHangHoa}" FontSize="13" FontWeight="Bold" Foreground="#1565C0"/>
-                                </StackPanel>
+                                <!-- ==================== HÌNH ẢNH ==================== -->
+                                <Border Grid.Column="0"
+                        Width="180"
+                        Height="130"
+                        HorizontalAlignment="Center"
+                        BorderThickness="1"
+                        BorderBrush="#B0B0B0"
+                        Background="#F5F5F5">
 
-                                <StackPanel Grid.Column="1" Margin="0,0,16,0">
-                                    <TextBlock Text="ĐƠN VỊ TÍNH" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.DonViTinh}" FontSize="13"/>
-                                </StackPanel>
+                                    <Image Source="{Binding ImageSource}"
+                           Stretch="Uniform"
+                           Margin="6"/>
+                                </Border>
 
-                                <StackPanel Grid.Column="2">
-                                    <TextBlock Text="SỐ LƯỢNG TỒN" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.SoLuongTon}" FontSize="16" FontWeight="Bold" Foreground="#2E7D32"/>
-                                </StackPanel>
+                                <!-- ==================== THÔNG TIN ==================== -->
+                                <Grid Grid.Column="1"
+                      Margin="6,0,0,0">
+
+                                    <Grid.RowDefinitions>
+                                        <!-- Mã | ĐVT | SL tồn -->
+                                        <RowDefinition Height="Auto"/>
+                                        <!-- Tên vật tư -->
+                                        <RowDefinition Height="Auto"/>
+                                        <!-- Vị trí | Danh mục -->
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Mã hàng hóa | Đơn vị tính | Số lượng tồn -->
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="MÃ HÀNG HÓA"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.MaHangHoa}"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#1565C0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="ĐƠN VỊ TÍNH"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.DonViTinh}"
+                                       FontSize="13"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2">
+
+                                            <TextBlock Text="SỐ LƯỢNG TỒN"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.SoLuongTon}"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="#2E7D32"/>
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                    <!-- Tên vật tư -->
+                                    <StackPanel Grid.Row="1"
+                                Margin="0,6,0,0">
+
+                                        <TextBlock Text="TÊN VẬT TƯ"
+                                   FontSize="11"
+                                   Foreground="Gray"/>
+
+                                        <TextBlock Text="{Binding SelectedItem.Name}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+
+                                    <!-- Vị trí | Danh mục -->
+                                    <Grid Grid.Row="2"
+                          Margin="0,6,0,0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0"
+                                    Margin="0,0,16,0">
+
+                                            <TextBlock Text="VỊ TRÍ"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.TenViTri}"
+                                       FontSize="13"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1">
+
+                                            <TextBlock Text="DANH MỤC"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.TenDanhMuc}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                </Grid>
                             </Grid>
 
-                            <!-- Hàng 2: Tên Vật Tư (full width) -->
-                            <StackPanel Grid.Row="1" Margin="6">
-                                <TextBlock Text="TÊN VẬT TƯ" FontSize="11" Foreground="Gray"/>
-                                <TextBlock Text="{Binding SelectedItem.Name}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            <!-- ==================== HÀNG 2 ==================== -->
+                            <StackPanel Grid.Row="1"
+                        Margin="0,6,0,0">
+
+                                <TextBlock Text="GHI CHÚ"
+                           FontSize="11"
+                           Foreground="Gray"/>
+
+                                <TextBlock Text="{Binding SelectedItem.GhiChu}"
+                           FontSize="13"
+                           TextWrapping="Wrap"
+                           FontStyle="Italic"/>
                             </StackPanel>
 
-                            <!-- Hàng 3: Vị Trí | Danh Mục -->
-                            <Grid Grid.Row="2" Margin="6">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                                    <TextBlock Text="VỊ TRÍ" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.TenViTri}" FontSize="13"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1">
-                                    <TextBlock Text="DANH MỤC" FontSize="11" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding SelectedItem.TenDanhMuc}" FontSize="13" FontWeight="SemiBold"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Hàng 4: Ghi Chú (full width) -->
-                            <StackPanel Grid.Row="3" Margin="6">
-                                <TextBlock Text="GHI CHÚ" FontSize="11" Foreground="Gray"/>
-                                <TextBlock Text="{Binding SelectedItem.GhiChu}" FontSize="13" TextWrapping="Wrap" FontStyle="Italic"/>
-                            </StackPanel>
                         </Grid>
+
                     </Border>
-                    
                 </TabItem>
 
                 <TabItem Header="Lịch Sử Nhập Xuất">

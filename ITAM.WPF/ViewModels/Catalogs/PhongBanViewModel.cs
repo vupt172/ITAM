@@ -1,12 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ITAM.AppCore.Common;
 using ITAM.AppCore.DTOs;
 using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.ViewModels;
+using ITAM.WPF.Views.Dialogs;
 using Mapster;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -33,6 +36,8 @@ namespace ITAM.WPF.ViewModels.Catalogs
             _phongBanService = phongBanService;
             ItemsView = CollectionViewSource.GetDefaultView(Items);
             ItemsView.Filter = FilterData;
+
+            NghiepVuMenuItems = [new NghiepVuMenuItem("Xem map Phòng Ban - Vị Trí",XemCayPhongBanViTriCommand)];
             _ = LoadAsync();
 
         }
@@ -44,11 +49,19 @@ namespace ITAM.WPF.ViewModels.Catalogs
             {
                 Items.Add(dto);
             }
+
+
         }
 
         #endregion
         #region Commands
-
+        [RelayCommand]
+        private void XemCayPhongBanViTri()
+        {
+            var window = App.Services.GetRequiredService<PhongBanViTriTreeWindow>();
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
+        }
         protected override void Add()
         {
             base.Add();

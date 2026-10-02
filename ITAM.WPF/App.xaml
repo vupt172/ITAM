@@ -20,10 +20,12 @@
                 <ResourceDictionary Source="/Resources/Themes/MenuTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/ToolbarTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/HeThongDMTheme.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/DataGridTheme.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
             <!-- Converters dùng toàn cục -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
             <converters:TrangThaiLoNhapToBrushConverter x:Key="TrangThaiLoNhapToBrushConverter"/>
             <converters:TrangThaiLoNhapToIconKindConverter x:Key="TrangThaiLoNhapToIconKindConverter"/>
             <converters:TrangThaiDieuChuyenToBrushConverter x:Key="TrangThaiDieuChuyenToBrushConverter"/>

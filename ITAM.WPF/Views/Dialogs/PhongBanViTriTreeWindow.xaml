@@ -1,0 +1,54 @@
+﻿<!-- ITAM.WPF/Views/PhongBanViTriTreeWindow.xaml -->
+<Window x:Class="ITAM.WPF.Views.Dialogs.PhongBanViTriTreeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Cây Phòng Ban - Vị Trí Tài Sản"
+        Width="480" Height="600"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Mở rộng" Command="{Binding ExpandAllCommand}"
+                    Style="{StaticResource MaterialDesignFlatButton}"/>
+            <Button Content="Thu gọn" Command="{Binding CollapseAllCommand}"
+                    Style="{StaticResource MaterialDesignFlatButton}"/>
+        </StackPanel>
+
+        <TreeView Grid.Row="1" ItemsSource="{Binding Roots}">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem"
+                       BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="MapMarker" Margin="0,0,8,0">
+                            <materialDesign:PackIcon.Style>
+                                <Style TargetType="materialDesign:PackIcon">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPhongBan}" Value="True">
+                                            <Setter Property="Kind" Value="OfficeBuilding"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:PackIcon.Style>
+                        </materialDesign:PackIcon>
+                        <TextBlock Text="{Binding Code}" FontWeight="SemiBold" Margin="0,0,8,0"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <Button Grid.Row="2" Content="Đóng" IsCancel="True" HorizontalAlignment="Right"
+                Margin="0,12,0,0" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+    </Grid>
+</Window>

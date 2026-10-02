@@ -4,17 +4,21 @@ using ITAM.AppCore.Mappings;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
 using ITAM.Infrastructure.Services;
+using ITAM.ViewModels;
 using ITAM.WPF;
 using ITAM.WPF.Services;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.ViewModels;
 using ITAM.WPF.ViewModels.Catalogs;
+using ITAM.WPF.ViewModels.Reports;
 using ITAM.WPF.Views;
+using ITAM.WPF.Views.Dialogs;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
+using System.Windows.Threading;
 namespace ITAM.WPF
 {
     public partial class App : Application
@@ -56,6 +60,11 @@ namespace ITAM.WPF
             services.AddTransient<IVatTuService, VatTuService>();
             services.AddScoped<IDieuChuyenService, DieuChuyenService>();
             services.AddScoped<ILichSuDieuChuyenService, LichSuDieuChuyenService>();
+            services.AddSingleton<IFileStorageService, FileStorageService>();
+            services.AddTransient<IBaoCaoTaiSanService, BaoCaoTaiSanService>();
+            services.AddTransient<IDashboardService, DashboardService>();
+            services.AddTransient<ISoTaiSanCoDinhService, SoTaiSanCoDinhExporter>();
+            services.AddTransient<IBaoCaoTongHopTaiSanService, BaoCaoTongHopTaiSanService>();
 
             // DI ViewModels
             services.AddTransient<LoginViewModel>();          // ⬅ thêm
@@ -84,6 +93,14 @@ namespace ITAM.WPF
             services.AddTransient<VatTuEditViewModel>();
             services.AddTransient<DieuChuyenViewModel>();
             services.AddTransient<DieuChuyenSearchViewModel>();
+            services.AddTransient<LichSuDieuChuyenViewModel>();
+            services.AddTransient<HeThongBaoCaoViewModel>();
+            services.AddTransient<BaoCaoTaiSanViewModel>();
+            services.AddTransient<PhongBanViTriTreeViewModel>();
+            services.AddTransient<PhongBanViTriTreeWindow>();
+            services.AddTransient<SoTaiSanCoDinhViewModel>();
+            services.AddTransient<TongHopTaiSanViewModel>();
+
             // DI Windows
             services.AddTransient<LoginWindow>();              // ⬅ đổi Transient (mở lại được khi logout)
             services.AddSingleton<MainWindow>();
@@ -102,6 +119,8 @@ namespace ITAM.WPF
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            DispatcherUnhandledException += OnDispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += OnAppDomainUnhandledException;
             // Seed dữ liệu Feature/Role/Admin trước khi hiển thị bất kỳ Window nào
             using (var scope = Services.CreateScope())
             {
@@ -118,11 +137,32 @@ namespace ITAM.WPF
                     return;
                 }
             }
-            AutoUpdater.Start(@"\\192.168.1.4\Public\ITAM\Publish\Update.xml");
+            AutoUpdater.Start(@"\\192.168.1.4\Publish\ITAM\Update.xml");
 
             // Mở LoginWindow trước, MainWindow chỉ hiện sau khi đăng nhập thành công
             var loginWindow = Services.GetRequiredService<LoginWindow>();
             loginWindow.Show();
         }
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(
+                $"Đã xảy ra lỗi không mong muốn:\n\n{e.Exception.Message}\n\nỨng dụng sẽ tiếp tục chạy, nhưng nên lưu lại công việc và khởi động lại nếu gặp lỗi tiếp theo.",
+                "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            // Danh dau da xu ly -> KHONG cho app tat, chi bao loi va tiep tuc chay
+            e.Handled = true;
+        }
+
+        private void OnAppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Loi xay ra ngoai UI thread (vd trong Task.Run) khong the "Handled" duoc,
+            // nhung it nhat ghi lai duoc truoc khi process chet that su.
+            if (e.ExceptionObject is Exception ex)
+            {
+                MessageBox.Show($"Lỗi nghiêm trọng: {ex.Message}", "Lỗi nghiêm trọng",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

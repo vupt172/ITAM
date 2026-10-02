@@ -10,12 +10,5 @@ namespace ITAM.WPF.Views
             InitializeComponent();
         }
 
-        // Khi dropdown đóng lại (do click chọn item, Enter, hoặc click ra ngoài),
-        // xác nhận luôn item đang bôi đen thành SelectedUser chính thức.
-        private void UserComboBox_DropDownClosed(object sender, System.EventArgs e)
-        {
-            if (DataContext is ThamSoNguoiDungViewModel vm)
-                vm.ConfirmUserSearchCommand.Execute(null);
-        }
     }
 }

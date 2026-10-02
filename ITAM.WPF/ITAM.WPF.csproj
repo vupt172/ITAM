@@ -1,23 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>1.0.0.2</Version>
+		<Version>1.0.0.4</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
 		<SatelliteResourceLanguages>vi</SatelliteResourceLanguages>
+		<ApplicationIcon>Assets\Images\itam-logo.ico</ApplicationIcon>
+		<AssemblyName>ITAM</AssemblyName>
+		<RootNamespace>ITAM</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Assets\Images\logoITAM.png" />
+	  <None Remove="Assets\Images\login-illustration.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Autoupdater.NET.Official" Version="1.9.3" />
 		<PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+		<PackageReference Include="ClosedXML" Version="0.105.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.5" />
 		<PackageReference Include="Mapster" Version="10.0.0" />
 		<PackageReference Include="MaterialDesignColors" Version="5.3.2" />
 		<PackageReference Include="MaterialDesignThemes" Version="5.3.2" />
@@ -30,6 +35,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
+		<PackageReference Include="Syncfusion.SfGrid.WPF" Version="34.2.9" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,14 +44,17 @@
 		<ProjectReference Include="..\ITAM.Infrastructure\ITAM.Infrastructure.csproj" />
 		<ProjectReference Include="..\ITAM.Shared\ITAM.Shared.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Resource Include="Assets\Images\logoITAM.png" />
-	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Common\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Assets\Images\itam-logo.ico" />
+	  <Resource Include="Assets\Images\login-illustration.png" />
 	</ItemGroup>
 
 </Project>

@@ -44,6 +44,29 @@ namespace ITAM.Infrastructure.Services
                     x.ViTriChuyenDiId == dto.ViTriTaiSanId.Value ||
                     x.ViTriChuyenDenId == dto.ViTriTaiSanId.Value);
 
+            // Lọc theo Khoa/Phòng Ban Đi/Đến — join qua navigation ViTriChuyenDi/ViTriChuyenDen.PhongBanId,
+            // vì LichSuDieuChuyenTaiSan chỉ lưu ViTriTaiSanId, không lưu PhongBanId trực tiếp.
+            if (dto.PhongBanChuyenDiId.HasValue)
+                query = query.Where(x =>
+                    x.ViTriChuyenDi != null &&
+                    x.ViTriChuyenDi.PhongBanId == dto.PhongBanChuyenDiId.Value);
+
+            if (dto.PhongBanChuyenDenId.HasValue)
+                query = query.Where(x => x.ViTriChuyenDen.PhongBanId == dto.PhongBanChuyenDenId.Value);
+
+            // Vị Trí Đi/Đến match trực tiếp (khác ViTriTaiSanId cũ vốn OR cả 2 chiều) —
+            // không cần join qua PhongBan vì ViTriChuyenDiId/ViTriChuyenDenId đã là field trực tiếp.
+            if (dto.ViTriChuyenDiId.HasValue)
+                query = query.Where(x => x.ViTriChuyenDiId == dto.ViTriChuyenDiId.Value);
+
+            if (dto.ViTriChuyenDenId.HasValue)
+                query = query.Where(x => x.ViTriChuyenDenId == dto.ViTriChuyenDenId.Value);
+
+            if (!string.IsNullOrWhiteSpace(dto.TuKhoaTaiSan))
+                query = query.Where(x =>
+                    x.TaiSanDinhDanh.Code.Contains(dto.TuKhoaTaiSan) ||
+                    x.TaiSanDinhDanh.Name.Contains(dto.TuKhoaTaiSan));
+
             if (dto.NguoiDuyetId.HasValue)
                 query = query.Where(x => x.NguoiDuyetId == dto.NguoiDuyetId.Value);
 
@@ -51,7 +74,11 @@ namespace ITAM.Infrastructure.Services
                 query = query.Where(x => x.NgayDuyet >= dto.TuNgay.Value);
 
             if (dto.DenNgay.HasValue)
-                query = query.Where(x => x.NgayDuyet <= dto.DenNgay.Value);
+            {
+                var denNgay = dto.DenNgay.Value.Date.AddDays(1);
+
+                query = query.Where(x => x.NgayDuyet < denNgay);
+            }
 
             return await query
                 .OrderByDescending(x => x.NgayDuyet)
@@ -64,7 +91,9 @@ namespace ITAM.Infrastructure.Services
             return _context.LichSuDieuChuyenTaiSan
                 .Include(x => x.TaiSanDinhDanh)
                 .Include(x => x.ViTriChuyenDi)
+                    .ThenInclude(v => v.PhongBan) // TODO xác nhận: navigation ViTriTaiSan.PhongBan tồn tại (chỉ mới xác nhận PhongBanId)
                 .Include(x => x.ViTriChuyenDen)
+                    .ThenInclude(v => v.PhongBan)
                 .Include(x => x.NguoiDuyet)
                 .AsNoTracking();
         }

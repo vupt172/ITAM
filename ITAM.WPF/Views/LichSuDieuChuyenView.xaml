@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="ITAM.WPF.Views.LichSuDieuChuyenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:ITAM.WPF.Views.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700">
+
+    <Grid Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ================= BỘ LỌC (TRÁI) ================= -->
+            <materialDesign:Card Grid.Column="0" Padding="16">
+                <StackPanel>
+                    <TextBlock Text="BỘ LỌC" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                    <!-- Tài sản: tìm theo Mã/Tên, không auto search -->
+                    <Grid Margin="0,0,0,16">
+                        <TextBox Text="{Binding TuKhoaTaiSan, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="8,0,32,0"
+                                 materialDesign:HintAssist.Hint="Tài sản (mã hoặc tên)"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding TimKiemCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <materialDesign:PackIcon Kind="Magnify" Width="18" Height="18"
+                                                  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                  Margin="0,0,6,0" IsHitTestVisible="False"
+                                                  Foreground="Gray"/>
+                    </Grid>
+
+                    <!-- Phòng Ban Đi: SearchableCollectionView — autocomplete 1 cột, chỉ hiện Tên -->
+                    <ComboBox IsEditable="True" IsTextSearchEnabled="False"
+                              ItemsSource="{Binding PhongBanChuyenDiView.View}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding PhongBanChuyenDiChon, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding PhongBanChuyenDiView.SearchText, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Phòng Ban Đi"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              Margin="0,0,0,16"/>
+
+                    <!-- Phòng Ban Đến: SearchableCollectionView — autocomplete 1 cột, chỉ hiện Tên -->
+                    <ComboBox IsEditable="True" IsTextSearchEnabled="False"
+                              ItemsSource="{Binding PhongBanChuyenDenView.View}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding PhongBanChuyenDenChon, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding PhongBanChuyenDenView.SearchText, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Phòng Ban Đến"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              Margin="0,0,0,16"/>
+
+                    <!-- Vị Trí Đi: MultiColumnSearchComboBox — hiển thị nhiều cột Mã/Tên -->
+                    <controls:MultiColumnSearchComboBox
+                        ItemsSource="{Binding ViTriTaiSans}"
+                        DisplayMemberPath="Name" SelectedValuePath="Id"
+                        SelectedValue="{Binding ViTriChuyenDiChonId, UpdateSourceTrigger=PropertyChanged}"
+                        Hint="Vị Trí Đi" Margin="0,0,0,16">
+                        <controls:MultiColumnSearchComboBox.Columns>
+                            <controls:SearchColumn Header="Mã" Binding="Code" Width="150"/>
+                            <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                        </controls:MultiColumnSearchComboBox.Columns>
+                    </controls:MultiColumnSearchComboBox>
+
+                    <!-- Vị Trí Đến: MultiColumnSearchComboBox — hiển thị nhiều cột Mã/Tên -->
+                    <controls:MultiColumnSearchComboBox
+                        ItemsSource="{Binding ViTriTaiSans}"
+                        DisplayMemberPath="Name" SelectedValuePath="Id"
+                        SelectedValue="{Binding ViTriChuyenDenChonId, UpdateSourceTrigger=PropertyChanged}"
+                        Hint="Vị Trí Đến" Margin="0,0,0,16">
+                        <controls:MultiColumnSearchComboBox.Columns>
+                            <controls:SearchColumn Header="Mã" Binding="Code" Width="150"/>
+                            <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                        </controls:MultiColumnSearchComboBox.Columns>
+                    </controls:MultiColumnSearchComboBox>
+
+                    <!-- Từ Ngày / Đến Ngày -->
+                    <DatePicker SelectedDate="{Binding TuNgay}"
+                                materialDesign:HintAssist.Hint="Từ Ngày"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Margin="0,0,0,16"/>
+
+                    <DatePicker SelectedDate="{Binding DenNgay}"
+                                materialDesign:HintAssist.Hint="Đến Ngày"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Margin="0,0,0,20"/>
+
+                    <!-- Nút hành động -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Tìm Kiếm" Command="{Binding TimKiemCommand}" Margin="0,0,8,0"
+                                Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        <Button Content="Xóa Lọc" Command="{Binding XoaLocCommand}"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <!-- ================= KẾT QUẢ (PHẢI) ================= -->
+            <materialDesign:Card Grid.Column="2" Padding="8">
+                <Grid>
+                    <!-- Read-only, không có cột thao tác -->
+                    <DataGrid ItemsSource="{Binding KetQua}" AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                              materialDesign:DataGridAssist.CellPadding="8,6">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã Tài Sản" Binding="{Binding MaTaiSan}" Width="120"/>
+                            <DataGridTextColumn Header="Tên Tài Sản" Binding="{Binding TenTaiSan}" Width="*"/>
+                            <DataGridTextColumn Header="Vị Trí Đi" Binding="{Binding TenViTriChuyenDi}" Width="160"/>
+                            <DataGridTextColumn Header="Vị Trí Đến" Binding="{Binding TenViTriChuyenDen}" Width="160"/>
+                            <DataGridTextColumn Header="Người Duyệt" Binding="{Binding TenNguoiDuyet}" Width="140"/>
+                            <DataGridTextColumn Header="Ngày Duyệt" Binding="{Binding NgayDuyet, StringFormat=dd/MM/yyyy HH:mm}" Width="140"/>
+                            <DataGridTextColumn Header="Ghi Chú" Binding="{Binding GhiChu}" Width="180"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!-- TODO (tùy chọn): thêm placeholder "Chưa có kết quả / Bấm Tìm Kiếm" khi KetQua rỗng —
+                         cần biết converter đếm phần tử collection dự án đang dùng ở đâu (nếu có sẵn) để tái dùng
+                         thay vì tạo converter mới không cần thiết. -->
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+</UserControl>

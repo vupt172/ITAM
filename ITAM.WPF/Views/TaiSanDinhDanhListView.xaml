@@ -131,11 +131,12 @@
                             <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding EditCommand}"/>
                         </DataGrid.InputBindings>
                         <DataGrid.Columns>
-             
+
                             <DataGridTextColumn Header="Mã tài sản" Binding="{Binding Code}" Width="130"/>
                             <DataGridTextColumn Header="Tên tài sản" Binding="{Binding Name}" Width="400"/>
                             <DataGridTextColumn Header="Serial" Binding="{Binding Serial}" Width="120"/>
                             <DataGridTextColumn Header="Mã Hàng hóa" Binding="{Binding MaHangHoa}" Width="120"/>
+                            <DataGridTextColumn Header="Số Hiệu TSCĐ" Binding="{Binding SoHieuTSCD}" Width="120"/>
                             <DataGridTextColumn Header="Loại TS" Binding="{Binding TenLoaiTaiSan}" Width="110"/>
                             <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThaiTaiSan}" Width="100"/>
                             <DataGridTextColumn Header="Vị trí" Binding="{Binding TenViTri}" Width="120"/>
@@ -168,7 +169,7 @@
                             <Grid Grid.Row="0" Margin="0">
                                 <Grid.ColumnDefinitions>
                                     <!-- Hình ảnh -->
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="200"/>
                                     <!-- Thông tin -->
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
@@ -176,16 +177,11 @@
 
                                 <!-- HÌNH ẢNH -->
                                 <Border Grid.Column="0"
-                        Width="100"
-                        Height="100"
-                        HorizontalAlignment="Left"
-                        BorderBrush="#D0D5DD"
+                        Width="180" Height="130"
+                        HorizontalAlignment="Center"
                         BorderThickness="1"
-                        Background="White">
-
-                                    <Image Source="{Binding SelectedItem.ImagePath}"
-                           Stretch="Uniform"
-                           Margin="6"/>
+                        BorderBrush="#B0B0B0" Background="#F5F5F5">
+                                    <Image Source="{Binding ImageSource}" Stretch="Uniform" Margin="6"/>
                                 </Border>
 
 
@@ -193,6 +189,7 @@
                                 <Grid Grid.Column="1" Margin="6,0,0,0">
 
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -206,23 +203,19 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <StackPanel Grid.Column="0"
-                                    Margin="0,0,16,0">
-
-                                            <TextBlock Text="MÃ TÀI SẢN"
-                                       FontSize="11"
-                                       Foreground="Gray"/>
-
-                                            <TextBlock Text="{Binding SelectedItem.Code}"
-                                       FontSize="13"
-                                       FontWeight="Bold"
-                                       Foreground="#1565C0"/>
+                                        <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                            <TextBlock Text="MÃ TÀI SẢN" FontSize="11" Foreground="Gray"/>
+                                            <TextBlock Text="{Binding SelectedItem.Code}" FontSize="13" FontWeight="Bold" Foreground="#1565C0"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Margin="0,0,16,0">
+                                            <TextBlock Text="SỐ HIỆU TSCĐ" FontSize="11" Foreground="Gray"/>
+                                            <TextBlock Text="{Binding SelectedItem.SoHieuTSCD}" FontSize="13" FontWeight="Bold" Foreground="#1565C0"/>
                                         </StackPanel>
 
-
-                                        <StackPanel Grid.Column="1"
+                                        <StackPanel Grid.Column="2"
                                     Margin="0,0,16,0">
 
                                             <TextBlock Text="SERIAL"
@@ -234,7 +227,7 @@
                                         </StackPanel>
 
 
-                                        <StackPanel Grid.Column="2">
+                                        <StackPanel Grid.Column="3">
 
                                             <TextBlock Text="NĂM SỬ DỤNG"
                                        FontSize="11"
@@ -305,57 +298,56 @@
                                         </StackPanel>
 
                                     </Grid>
+                                    <Grid Grid.Row="3" Margin="0,6,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <StackPanel Grid.Column="0"
+    Margin="0,0,16,0">
+
+                                            <TextBlock Text="MÃ HÀNG HÓA"
+       FontSize="11"
+       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.MaHangHoa}"
+       FontSize="13"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="1"
+    Margin="0,0,16,0">
+
+                                            <TextBlock Text="GIÁ NHẬP"
+       FontSize="11"
+       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.GiaNhap, StringFormat=N0}"
+       FontSize="13"
+       FontWeight="Bold"
+       Foreground="#B71C1C"/>
+                                        </StackPanel>
+
+
+                                        <StackPanel Grid.Column="2">
+
+                                            <TextBlock Text="SỐ PHIẾU NHẬP CHI TIẾT"
+       FontSize="11"
+       Foreground="Gray"/>
+
+                                            <TextBlock Text="{Binding SelectedItem.SoLoNhapChiTiet}"
+       FontSize="13"/>
+                                        </StackPanel>
+
+                                    </Grid>
                                 </Grid>
 
                             </Grid>
                             <!-- ==================== HÀNG 2 ==================== -->
-                            <Grid Grid.Row="1" Margin="0,6,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-
-                                <StackPanel Grid.Column="0"
-                            Margin="0,0,16,0">
-
-                                    <TextBlock Text="MÃ HÀNG HÓA"
-                               FontSize="11"
-                               Foreground="Gray"/>
-
-                                    <TextBlock Text="{Binding SelectedItem.MaHangHoa}"
-                               FontSize="13"/>
-                                </StackPanel>
-
-
-                                <StackPanel Grid.Column="1"
-                            Margin="0,0,16,0">
-
-                                    <TextBlock Text="GIÁ NHẬP"
-                               FontSize="11"
-                               Foreground="Gray"/>
-
-                                    <TextBlock Text="{Binding SelectedItem.GiaNhap, StringFormat=N0}"
-                               FontSize="13"
-                               FontWeight="Bold"
-                               Foreground="#B71C1C"/>
-                                </StackPanel>
-
-
-                                <StackPanel Grid.Column="2">
-
-                                    <TextBlock Text="SỐ PHIẾU NHẬP CHI TIẾT"
-                               FontSize="11"
-                               Foreground="Gray"/>
-
-                                    <TextBlock Text="{Binding SelectedItem.SoLoNhapChiTiet}"
-                               FontSize="13"/>
-                                </StackPanel>
-
-                            </Grid>
-                            <!-- ==================== HÀNG 3 ==================== -->
-                            <StackPanel Grid.Row="2" Margin="0,6,0,0">
+                            <StackPanel Grid.Row="1" Margin="0,6,0,0">
                                 <TextBlock Text="GHI CHÚ"
                            FontSize="11"
                            Foreground="Gray"/>
@@ -370,10 +362,37 @@
                 </TabItem>
 
                 <TabItem Header="Lịch Sử Điều Chuyển">
-                    <Grid>
-                        <TextBlock Text="Đang xây dựng" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   FontSize="16" Opacity="0.6"/>
-                    </Grid>
+                    <DataGrid ItemsSource="{Binding LichSuDieuChuyen}"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              CanUserAddRows="False"
+              HeadersVisibility="Column"
+              RowHeight="30">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Vị trí chuyển đi"
+                                Binding="{Binding TenViTriChuyenDi}"
+                                Width="*"/>
+
+                            <DataGridTextColumn Header="Vị trí chuyển đến"
+                                Binding="{Binding TenViTriChuyenDen}"
+                                Width="*"/>
+
+                            <DataGridTextColumn Header="Ngày duyệt"
+                                Binding="{Binding NgayDuyet, StringFormat=dd/MM/yyyy HH:mm:ss}"
+                                Width="145"/>
+
+                            <DataGridTextColumn Header="Người duyệt"
+                                Binding="{Binding TenNguoiDuyet}"
+                                Width="150"/>
+
+                            <DataGridTextColumn Header="Ghi chú"
+                                Binding="{Binding GhiChu}"
+                                Width="200"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
 
                 <TabItem Header="Lịch Sử Sửa Chữa">

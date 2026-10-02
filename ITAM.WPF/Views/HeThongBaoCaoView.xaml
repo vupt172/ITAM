@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ITAM.WPF.Views.HeThongBaoCaoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ITAM.WPF.Views"
+             xmlns:models="clr-namespace:ITAM.WPF.Models"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- TreeView danh sách báo cáo -->
+        <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#D0D0D0" Padding="0">
+            <TreeView
+                ItemsSource="{Binding Catalogs}"
+                SelectedItemChanged="TreeView_SelectedItemChanged">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type models:CatalogNode}" ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Width="18" Height="18" Style="{StaticResource HeThongDMIconStyle}" />
+                            <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Border>
+
+        <!-- Nội dung báo cáo -->
+        <Grid Grid.Column="1">
+            <ContentControl Content="{Binding CurrentView}"/>
+            <TextBlock Text="Chức năng báo cáo này đang được xây dựng."
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="Gray" FontStyle="Italic"
+                       Visibility="{Binding CurrentView, Converter={StaticResource NullToVisibilityConverter}}"/>
+            <!-- TODO xác nhận: cần NullToVisibilityConverter (Content == null -> Visible); nếu project
+                 chưa có converter này, mình viết bổ sung khi bạn xác nhận -->
+        </Grid>
+    </Grid>
+</UserControl>

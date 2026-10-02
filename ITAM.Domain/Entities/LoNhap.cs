@@ -26,6 +26,7 @@ namespace ITAM.Domain.Entities
         /// <summary>Người bấm Duyệt/Từ chối — gán tự động, null khi phiếu còn PENDING.</summary>
         public long? NguoiDuyetId { get; set; }
         public User? NguoiDuyet { get; set; }
+        public DateTime? NgayDuyet { get; set; }
         public TrangThaiLoNhap TrangThai { get; set; } = TrangThaiLoNhap.PENDING;
         public string? GhiChu { get; set; }
 

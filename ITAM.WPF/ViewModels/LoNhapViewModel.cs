@@ -7,6 +7,7 @@ using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.Shared.Constants;
+using ITAM.WPF.Constants;
 using ITAM.WPF.Services;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.Views;
@@ -28,7 +29,7 @@ namespace ITAM.WPF.ViewModels
         private readonly ICatalogService<LoaiTaiSan> _loaiTaiSanService;
         private readonly ICurrentUserContext _currentUser;
 
-        public override string Title => "Phiếu Nhập Kho";
+        public override string Title => PageTitles.PhieuNhapKho;
 
         public ObservableCollection<LoNhapChiTietFormDto> ChiTiets { get; } = [];
         public ObservableCollection<NhaCungCap> NhaCungCaps { get; } = [];
@@ -91,6 +92,7 @@ namespace ITAM.WPF.ViewModels
                 NguoiLapPhieuId = p.NguoiLapPhieuId,
                 TenNguoiLapPhieu = p.NguoiLapPhieu?.FullName ?? string.Empty,
                 TenNguoiDuyet = p.NguoiDuyet?.FullName ?? "Chưa duyệt",   // ⬅ mới
+                NgayDuyet = p.NgayDuyet,  
                 GhiChu = p.GhiChu,
                 TrangThai = p.TrangThai.ToString()
             };

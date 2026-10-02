@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ITAM.WPF.UserControls"
+             xmlns:helpers="clr-namespace:ITAM.WPF.Helpers"
              mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:ITAM.WPF.Helpers"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <helpers:BindingProxy x:Key="Proxy" Data="{Binding}"/>
+    </UserControl.Resources>
     <Grid Background="{StaticResource MenuBackgroundBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -31,24 +35,30 @@
             </MenuItem>
             <!-- Kho -->
             <MenuItem Header="Quản Lý Kho">
-                <MenuItem Header="Nhập Tài Sản Từ NCC"
+                <MenuItem Header="Nhập Tài Sản Từ NCC" Visibility="{Binding HasFeaturePhieuNhapNCC, Converter={StaticResource BooleanToVisibilityConverter}}"
                           Command="{Binding NavigateLoNhapCommand}"/>
             </MenuItem>
             <!-- TÀI SẢN -->
             <MenuItem Header="Tài Sản">
-                <MenuItem Header="Danh Sách Tài Sản Định Danh" Icon="{materialDesign:PackIcon Kind=FormatListBulletedSquare}"
+                <MenuItem Header="Danh Sách Tài Sản Định Danh" Icon="{materialDesign:PackIcon Kind=FormatListBulletedSquare}" Visibility="{Binding HasFeatureDanhSachTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
           Command="{Binding NavigateTaiSanDinhDanhCommand}"/>
-                <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}"
-          Visibility="{Binding HasFeatureDieuChuyen, Converter={StaticResource BooleanToVisibilityConverter}}"
+                <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}" Visibility="{Binding HasFeatureDieuChuyen, Converter={StaticResource BooleanToVisibilityConverter}}"
           Command="{Binding NavigateDieuChuyenCommand}"/>
+                <MenuItem Header="Lịch Sử Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=History}" Visibility="{Binding HasFeatureLichSuTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
+          Command="{Binding NavigateLichSuDieuChuyenCommand}"/>
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
                 </MenuItem>
             </MenuItem>
+            <!-- VẬT TƯ -->
             <MenuItem Header="Vật Tư">
-                <MenuItem Header="Danh Sách Vật Tư" Icon="{materialDesign:PackIcon Kind=PackageVariant}"
+                <MenuItem Header="Danh Sách Vật Tư" Icon="{materialDesign:PackIcon Kind=PackageVariant}" Visibility="{Binding HasFeatureDanhSachVatTu, Converter={StaticResource BooleanToVisibilityConverter}}"
           Command="{Binding NavigateVatTuCommand}"/>
             </MenuItem>
-
+            <!-- BÁO CÁO -->
+            <MenuItem Header="Báo Cáo">
+                <MenuItem Header="Danh Sách Báo Cáo" Icon="{materialDesign:PackIcon Kind=FileDocument}" Visibility="{Binding HasFeatureBaoCao, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Command="{Binding NavigateBaoCaoCommand}"/>
+            </MenuItem>
             <!-- HỆ THỐNG -->
             <MenuItem Header="Hệ Thống">
                 <MenuItem Header="Đăng Xuất" Icon="{materialDesign:PackIcon Kind=DoorOpen}"
@@ -65,6 +75,24 @@
                 <Separator/>
                 <MenuItem Header="Thay Đổi Khoa/Phòng Ban" Icon="{materialDesign:PackIcon Kind=DomainArrowRight}"
               Command="{Binding ChangePhongBanCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Cửa Sổ">
+                <MenuItem.ItemsSource>
+                    <CompositeCollection>
+                        <MenuItem Header="Close All Windows" IsCheckable="False" IsChecked="False"
+                      Command="{Binding Data.CloseAllWindowsCommand, Source={StaticResource Proxy}}"/>
+                        <Separator/>
+                        <CollectionContainer Collection="{Binding Data.Windows, Source={StaticResource Proxy}}"/>
+                    </CompositeCollection>
+                </MenuItem.ItemsSource>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                        <Setter Property="Header" Value="{Binding DisplayText}"/>
+                        <Setter Property="Command" Value="{Binding ActivateCommand}"/>
+                        <Setter Property="IsCheckable" Value="False"/>
+                        <Setter Property="IsChecked" Value="{Binding IsActive, Mode=OneWay}"/>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
         </Menu>
     </Grid>

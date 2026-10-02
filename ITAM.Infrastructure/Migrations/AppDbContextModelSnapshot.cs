@@ -105,6 +105,10 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("ImagePath")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -182,6 +186,10 @@ namespace ITAM.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal?>("TyLeHaoMon")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -690,6 +698,9 @@ namespace ITAM.Infrastructure.Migrations
                     b.Property<string>("MaHoaDon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("NgayDuyet")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("NgayNhap")
                         .HasColumnType("datetime2");
 
@@ -844,6 +855,10 @@ namespace ITAM.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("SoHieuTSCD")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TrangThaiTaiSan")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -870,6 +885,11 @@ namespace ITAM.Infrastructure.Migrations
                     b.HasIndex("LoaiTaiSanId");
 
                     b.HasIndex("Serial");
+
+                    b.HasIndex("SoHieuTSCD")
+                        .IsUnique()
+                        .HasDatabaseName("UX_TaiSanDinhDanh_SoHieuTSCD")
+                        .HasFilter("[SoHieuTSCD] IS NOT NULL");
 
                     b.HasIndex("ViTriTaiSanId");
 

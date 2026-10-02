@@ -12,11 +12,19 @@ namespace ITAM.Infrastructure.Configurations
 
             builder.Property(x => x.Name).HasMaxLength(500).IsRequired();
             builder.Property(x => x.Code).HasMaxLength(100).IsRequired();
+            builder.Property(x => x.SoHieuTSCD).HasMaxLength(50);
             builder.Property(x => x.Serial).HasMaxLength(100);
-            builder.Property(x => x.GiaNhap).HasColumnType("decimal(18,2)");
 
+            builder.Property(x => x.GiaNhap).HasColumnType("decimal(18,2)");
             builder.HasIndex(x => x.Code).IsUnique();
             builder.HasIndex(x => x.Serial);
+
+
+
+            builder.HasIndex(x => x.SoHieuTSCD)
+                   .IsUnique()
+                   .HasFilter("[SoHieuTSCD] IS NOT NULL")
+                   .HasDatabaseName("UX_TaiSanDinhDanh_SoHieuTSCD");
 
             builder.Property(x => x.TrangThaiTaiSan)
                 .HasConversion<string>()

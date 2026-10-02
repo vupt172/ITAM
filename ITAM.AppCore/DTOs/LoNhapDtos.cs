@@ -17,6 +17,7 @@ namespace ITAM.AppCore.DTOs
         public long NguoiLapPhieuId { get; set; }
         public string TenNguoiLapPhieu { get; set; } = string.Empty;
         public string TenNguoiDuyet { get; set; } = "Chưa duyệt";   // ⬅ mới
+        public DateTime? NgayDuyet { get; set; }   // ⬅ mới, null khi phiếu còn PENDING
         public string? GhiChu { get; set; } = string.Empty;
         public string TrangThai { get; set; } = "PENDING";
     }

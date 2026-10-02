@@ -3,36 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Style="{StaticResource MaterialDesignWindow}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        mc:Ignorable="d"
         Title="Thay Đổi Khoa/Phòng Ban"
-        Height="240" Width="420"
+        Height="130" Width="420"
         WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Style="{StaticResource MaterialDesignWindow}">
 
     <Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding SaveCommand}" />
         <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
     </Window.InputBindings>
 
-    <Grid Margin="16">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" VerticalAlignment="Center">
-            <TextBlock Text="Chọn Khoa/Phòng ban muốn làm việc" FontWeight="Bold" Margin="0,0,0,12"/>
-            <ComboBox ItemsSource="{Binding AccessiblePhongBans}"
+        
+        <ComboBox IsEditable="True" IsTextSearchEnabled="False" 
+            ItemsSource="{Binding AccessiblePhongBansView.View}" DisplayMemberPath="Name" SelectedValuePath="Id"
+            SelectedValue="{Binding SelectedPhongBanId,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CoTheDoiPhongBanChuyenDen}"
+            Text="{Binding AccessiblePhongBansView.SearchText,UpdateSourceTrigger=PropertyChanged}"
+            materialDesign:HintAssist.Hint="Phòng Ban Chuyển Đến"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        <!--<ComboBox ItemsSource="{Binding AccessiblePhongBans}"
                       SelectedValue="{Binding SelectedPhongBanId}"
                       SelectedValuePath="Id"
                       DisplayMemberPath="Name"
                       materialDesign:HintAssist.Hint="Khoa/Phòng ban"
-                      Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"/>-->
+       
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,3,0,0">
             <Button Content="Lưu" Command="{Binding SaveCommand}"
                     Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,8,0"/>
             <Button Content="Hủy" Command="{Binding CancelCommand}"

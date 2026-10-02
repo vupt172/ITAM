@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using Mapster;
 using System.ComponentModel.DataAnnotations;
 
 namespace ITAM.AppCore.DTOs
@@ -28,6 +29,8 @@ namespace ITAM.AppCore.DTOs
         [ObservableProperty]
         private bool requireSerial;
         [Range(1, long.MaxValue, ErrorMessage = "Phải chọn danh mục tài sản.")]
+        [ObservableProperty]
+        private string? imagePath = string.Empty;
         public long DMTaiSanId { get; set; }
         public string? DMTaiSanName { get; set; }
         [ObservableProperty] private string? description;
@@ -39,11 +42,9 @@ namespace ITAM.AppCore.DTOs
             return !HasErrors;
         }
 
-        public HangHoaDto Clone() => new()
+        public HangHoaDto Clone() 
         {
-            Id = Id, Code = Code, Name = Name, HangSanXuat = HangSanXuat,DonViTinh= DonViTinh,
-            Model = Model,RequireSerial=RequireSerial, DMTaiSanId = DMTaiSanId, DMTaiSanName = DMTaiSanName,
-            Description = Description, IsActive = IsActive
-        };
+           return this.Adapt<HangHoaDto>();
+        }
     }
 }

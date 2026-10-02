@@ -34,7 +34,7 @@ namespace ITAM.WPF.ViewModels
         private CatalogViewModel? currentView;
 
         // Kế thừa contructor từ BaseViewModel sẽ tự gọi InitToolbarState() để khởi tạo trạng thái toolbar và property _navigationService
-        public HeThongDMViewModel(IServiceProvider serviceProvider, IToolbarService toolbarService, INavigationService navigationService) : base(navigationService)
+        public HeThongDMViewModel(IServiceProvider serviceProvider, IToolbarService toolbarService, INavigationService navigationService,ICurrentUserContext currentUserContext) : base(navigationService,currentUserContext)
         {
             _serviceProvider = serviceProvider;
             _toolbarService = toolbarService;
@@ -113,6 +113,7 @@ namespace ITAM.WPF.ViewModels
             ToolbarContext.DeleteCommand = catalogViewModel.DeleteCommand;
             ToolbarContext.SaveCommand = catalogViewModel.SaveCommand;
             ToolbarContext.CancelCommand = catalogViewModel.CancelCommand;
+            ToolbarContext.SetNghiepVu(catalogViewModel.NghiepVuMenuItems);
         }
 
     }

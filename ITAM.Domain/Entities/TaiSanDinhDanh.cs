@@ -20,6 +20,7 @@ namespace ITAM.Domain.Entities
 
         public int? NamSuDung { get; set; }
         public decimal GiaNhap { get; set; }
+        public string? SoHieuTSCD { get; set; }    // mã liên kết Tài chính Kế toán
 
         /// <summary>
         /// Phân loại TSCĐ/CCDC — snapshot tại thời điểm nhập, tự tính theo GiaNhap

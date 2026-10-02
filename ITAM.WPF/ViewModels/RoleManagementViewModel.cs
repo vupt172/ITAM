@@ -29,7 +29,8 @@ namespace ITAM.WPF.ViewModels
         public RoleManagementViewModel(
             INavigationService navigationService,
             IRoleService roleService,
-            IErrorDialogService errorDialogService) : base(navigationService)
+            IErrorDialogService errorDialogService,
+            ICurrentUserContext currentUserContext) : base(navigationService, currentUserContext)
         {
             _roleService = roleService;
             _errorDialogService = errorDialogService;

@@ -15,6 +15,7 @@ namespace ITAM.Infrastructure.Configurations
             builder.Property(x => x.HangSanXuat).HasMaxLength(255).IsRequired();
             builder.Property(x => x.Model).HasMaxLength(255).IsRequired();
             builder.Property(x => x.DonViTinh).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.ImagePath).HasMaxLength(500);
             builder.HasOne(x => x.DMTaiSan).WithMany().HasForeignKey(x => x.DMTaiSanId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

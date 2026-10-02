@@ -13,19 +13,37 @@
     <Compile Update="Views\ChangePhongBanWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Dialogs\PhongBanViTriTreeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DieuChuyenSearchWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\DieuChuyenView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\HeThongBaoCaoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LichSuDieuChuyenView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\LoNhapSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\BaoCaoTaiSanView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\SoTaiSanCoDinhView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\TongHopTaiSanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\RoleManagementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\TaiSanDinhDanhEditWindow.xaml.cs">
+    <Compile Update="Views\Dialogs\TaiSanDinhDanhEditWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\TaiSanDinhDanhListView.xaml.cs">
@@ -35,6 +53,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UserControls\MenuBarUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\MultiColumnSearchComboBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UserControls\ToolbarUC.xaml.cs">

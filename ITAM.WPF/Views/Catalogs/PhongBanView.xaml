@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ITAM.WPF.Views.Catalogs"
+             xmlns:behaviors="clr-namespace:ITAM.WPF.Behaviors"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -35,7 +36,7 @@
                Text="{Binding CurrentItem.Description,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox" Content="IsActive" IsEnabled="{Binding IsEditing}"
+                    <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox" Content="IsActive" IsHitTestVisible="{Binding IsEditing}" Focusable="{Binding IsEditing}"
                              IsChecked="{Binding CurrentItem.IsActive, Mode=TwoWay}"   />
                 </StackPanel>
             </Grid>

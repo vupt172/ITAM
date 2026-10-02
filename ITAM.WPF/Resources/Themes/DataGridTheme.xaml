@@ -1,0 +1,121 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:behaviors="clr-namespace:ITAM.WPF.Behaviors">
+
+    <!-- ================= COLORS ================= -->
+    <Color x:Key="GridHeaderColor">#DDE4F5</Color>
+    <Color x:Key="GridHeaderBorderColor">#A6B2D1</Color>
+    <Color x:Key="GridLineColor">#DDE3F0</Color>
+    <Color x:Key="GridRowColor">#FFFFFF</Color>
+    <Color x:Key="GridAltRowColor">#F5F8FF</Color>
+    <Color x:Key="GridRowHoverColor">#D6ECFF</Color>
+    <Color x:Key="GridRowSelectedColor">#B1C5FF</Color>
+    <Color x:Key="GridAccentColor">#007ACC</Color>
+    <Color x:Key="GridForegroundColor">#1E1E1E</Color>
+
+    <!-- ================= BRUSHES ================= -->
+    <SolidColorBrush x:Key="GridHeaderBrush" Color="{StaticResource GridHeaderColor}"/>
+    <SolidColorBrush x:Key="GridHeaderBorderBrush" Color="{StaticResource GridHeaderBorderColor}"/>
+    <SolidColorBrush x:Key="GridLineBrush" Color="{StaticResource GridLineColor}"/>
+    <SolidColorBrush x:Key="GridRowBrush" Color="{StaticResource GridRowColor}"/>
+    <SolidColorBrush x:Key="GridAltRowBrush" Color="{StaticResource GridAltRowColor}"/>
+    <SolidColorBrush x:Key="GridRowHoverBrush" Color="{StaticResource GridRowHoverColor}"/>
+    <SolidColorBrush x:Key="GridRowSelectedBrush" Color="{StaticResource GridRowSelectedColor}"/>
+    <SolidColorBrush x:Key="GridAccentBrush" Color="{StaticResource GridAccentColor}"/>
+    <SolidColorBrush x:Key="GridForegroundBrush" Color="{StaticResource GridForegroundColor}"/>
+
+    <!-- ================= COLUMN HEADER ================= -->
+    <Style x:Key="CompactDataGridColumnHeaderStyle"
+           TargetType="DataGridColumnHeader"
+           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+        <Setter Property="Background" Value="{StaticResource GridHeaderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <!-- ================= ROW HEADER (cột STT) ================= -->
+    <Style x:Key="CompactDataGridRowHeaderStyle"
+           TargetType="DataGridRowHeader"
+           BasedOn="{StaticResource MaterialDesignDataGridRowHeader}">
+        <Setter Property="Background" Value="{StaticResource GridHeaderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <DataTemplate x:Key="DataGridRowNumberTemplate">
+        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="10,0"/>
+    </DataTemplate>
+
+    <!-- ================= ROW ================= -->
+    <Style x:Key="CompactDataGridRowStyle"
+           TargetType="DataGridRow"
+           BasedOn="{StaticResource MaterialDesignDataGridRow}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource GridRowBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="{StaticResource GridAltRowBrush}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource GridRowHoverBrush}"/>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource GridRowSelectedBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource GridAccentBrush}"/>
+                <Setter Property="BorderThickness" Value="3,0,0,0"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ================= CELL ================= -->
+    <Style x:Key="CompactDataGridCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <!-- ================= DATAGRID ================= -->
+    <Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+        <Setter Property="behaviors:DataGridBehavior.AutoIndex" Value="True"/>
+        <Setter Property="HeadersVisibility" Value="All"/>
+        <Setter Property="RowHeaderTemplate" Value="{StaticResource DataGridRowNumberTemplate}"/>
+        <Setter Property="RowHeaderWidth" Value="45"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="RowHeight" Value="30"/>
+        <Setter Property="ColumnHeaderHeight" Value="33"/>
+        <Setter Property="AlternationCount" Value="2"/>
+
+        <Setter Property="Background" Value="{StaticResource GridRowBrush}"/>
+        <Setter Property="AlternatingRowBackground" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource GridLineBrush}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource GridLineBrush}"/>
+
+        <Setter Property="RowStyle" Value="{StaticResource CompactDataGridRowStyle}"/>
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource CompactDataGridColumnHeaderStyle}"/>
+        <Setter Property="RowHeaderStyle" Value="{StaticResource CompactDataGridRowHeaderStyle}"/>
+        <Setter Property="CellStyle" Value="{StaticResource CompactDataGridCellStyle}"/>
+
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                             Color="{StaticResource GridRowSelectedColor}"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                             Color="{StaticResource GridForegroundColor}"/>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

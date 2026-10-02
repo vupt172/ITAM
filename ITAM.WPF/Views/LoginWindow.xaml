@@ -3,12 +3,92 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Đăng nhập - ITAM"
-        Height="480" Width="380"
+        Height="560" Width="900"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="White"
         FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="LoginPanelBrush" Color="#4C6FBF"/>
+        <SolidColorBrush x:Key="LoginButtonBrush" Color="#7A93D6"/>
+        <SolidColorBrush x:Key="LoginButtonHoverBrush" Color="#8FA6E0"/>
+
+        <!-- Nhãn phía trên ô nhập -->
+        <Style x:Key="LoginLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <!-- Ô nhập bo góc, nền trắng -->
+        <Style x:Key="LoginTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="White" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LoginPasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="White" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Nút đăng nhập bo góc -->
+        <Style x:Key="LoginButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{StaticResource LoginButtonBrush}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource LoginButtonHoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Window.InputBindings>
         <KeyBinding Key="Return"
@@ -16,44 +96,67 @@
                     CommandParameter="{Binding ElementName=PwdPassword}"/>
     </Window.InputBindings>
 
-    <materialDesign:Card Margin="24" Padding="24" UniformCornerRadius="8">
-        <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="ĐĂNG NHẬP HỆ THỐNG ITAM"
-                       Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,24"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="TxtUsername"
-                     materialDesign:HintAssist.Hint="Tên đăng nhập"
-                     materialDesign:TextFieldAssist.HasClearButton="True"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0,0,0,16"/>
+        <!-- Bên trái: hình minh họa -->
+        <Grid Grid.Column="0" Background="White">
+            <!-- Thêm ảnh vào project (Build Action = Resource) rồi chỉnh lại đường dẫn nếu cần -->
+            <Image Source="/Assets/Images/login-illustration.png"
+                   Stretch="Uniform"
+                   Margin="20"
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Grid>
 
-            <PasswordBox x:Name="PwdPassword"
-                         materialDesign:HintAssist.Hint="Mật khẩu"
-                         materialDesign:TextFieldAssist.HasClearButton="True"
-                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                         Margin="0,0,0,8"/>
+        <!-- Bên phải: form đăng nhập -->
+        <Grid Grid.Column="1" Background="{StaticResource LoginPanelBrush}">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="330">
 
-            <TextBlock Text="{Binding ErrorMessage}"
-                       Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
-                       TextWrapping="Wrap"
-                       Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Margin="0,4,0,8"/>
+                <TextBlock Text="ĐĂNG NHẬP HỆ THỐNG ITAM"
+                           Foreground="White"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,40"/>
 
-            <Button Content="ĐĂNG NHẬP"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=PwdPassword}"
-                    Height="40" Margin="0,12,0,0"/>
+                <TextBlock Text="Tên đăng nhập" Style="{StaticResource LoginLabelStyle}"/>
+                <TextBox x:Name="TxtUsername"
+                         Style="{StaticResource LoginTextBoxStyle}"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,20"/>
 
-            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                         IsIndeterminate="True"
-                         Width="24" Height="24"
-                         HorizontalAlignment="Center"
-                         Margin="0,16,0,0"
-                         Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        </StackPanel>
-    </materialDesign:Card>
+                <TextBlock Text="Mật khẩu" Style="{StaticResource LoginLabelStyle}"/>
+                <PasswordBox x:Name="PwdPassword"
+                             Style="{StaticResource LoginPasswordBoxStyle}"
+                             Margin="0,0,0,8"/>
+
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Foreground="#FFD2D2"
+                           FontWeight="SemiBold"
+                           TextWrapping="Wrap"
+                           Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Margin="0,4,0,8"/>
+
+                <Button Content="Đăng nhập"
+                        Style="{StaticResource LoginButtonStyle}"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=PwdPassword}"
+                        Margin="0,24,0,0"/>
+
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Foreground="White"
+                             IsIndeterminate="True"
+                             Width="24" Height="24"
+                             HorizontalAlignment="Center"
+                             Margin="0,16,0,0"
+                             Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Window>

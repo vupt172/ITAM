@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ITAM.AppCore.Common;
 using ITAM.Domain.Enums;
 using ITAM.WPF.Services.Interfaces;
 
@@ -8,7 +9,7 @@ namespace ITAM.WPF.ViewModels
     public abstract partial class CatalogViewModel : ObservableObject
     {
         protected readonly IErrorDialogService _errorDialogService;
- 
+        public IEnumerable<NghiepVuMenuItem> NghiepVuMenuItems { get; set; } = [];
         public CatalogViewModel(IErrorDialogService errorDialogService)
         {
             _errorDialogService = errorDialogService;
