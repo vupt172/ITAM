@@ -36,6 +36,11 @@ namespace ITAM.Infrastructure.Configurations
                 .HasForeignKey(x => x.DieuChuyenChiTietId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(false);
+
+            builder.HasOne(x => x.PhieuThatLacChiTiet).WithMany()
+                .HasForeignKey(x => x.PhieuThatLacChiTietId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired(false);   // đã có lịch sử thì không xóa được chi tiết
         }
     }
 }

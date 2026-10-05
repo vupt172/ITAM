@@ -37,6 +37,8 @@
             <MenuItem Header="Quản Lý Kho">
                 <MenuItem Header="Nhập Tài Sản Từ NCC" Visibility="{Binding HasFeaturePhieuNhapNCC, Converter={StaticResource BooleanToVisibilityConverter}}"
                           Command="{Binding NavigateLoNhapCommand}"/>
+                <MenuItem Header="Lịch Sử Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=History}" Visibility="{Binding HasFeatureLichSuTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Command="{Binding NavigateLichSuDieuChuyenCommand}"/>
             </MenuItem>
             <!-- TÀI SẢN -->
             <MenuItem Header="Tài Sản">
@@ -44,8 +46,9 @@
           Command="{Binding NavigateTaiSanDinhDanhCommand}"/>
                 <MenuItem Header="Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}" Visibility="{Binding HasFeatureDieuChuyen, Converter={StaticResource BooleanToVisibilityConverter}}"
           Command="{Binding NavigateDieuChuyenCommand}"/>
-                <MenuItem Header="Lịch Sử Điều Chuyển Tài Sản" Icon="{materialDesign:PackIcon Kind=History}" Visibility="{Binding HasFeatureLichSuTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
-          Command="{Binding NavigateLichSuDieuChuyenCommand}"/>
+                <MenuItem Header="Thất Lạc Tài Sản" Visibility="{Binding HasFeatureThatLacTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
+Command="{Binding NavigatePhieuThatLacCommand}"/>
+
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
                 </MenuItem>
             </MenuItem>

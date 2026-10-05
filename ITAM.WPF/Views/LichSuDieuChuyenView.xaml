@@ -22,7 +22,7 @@
                     <!-- Tài sản: tìm theo Mã/Tên, không auto search -->
                     <Grid Margin="0,0,0,16">
                         <TextBox Text="{Binding TuKhoaTaiSan, UpdateSourceTrigger=PropertyChanged}"
-                                 Padding="8,0,32,0"
+                                 Padding="0,0,20,0"
                                  materialDesign:HintAssist.Hint="Tài sản (mã hoặc tên)"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                             <TextBox.InputBindings>
@@ -31,7 +31,7 @@
                         </TextBox>
                         <materialDesign:PackIcon Kind="Magnify" Width="18" Height="18"
                                                   HorizontalAlignment="Right" VerticalAlignment="Center"
-                                                  Margin="0,0,6,0" IsHitTestVisible="False"
+                                                  Margin="0,0,0,0" IsHitTestVisible="False"
                                                   Foreground="Gray"/>
                     </Grid>
 

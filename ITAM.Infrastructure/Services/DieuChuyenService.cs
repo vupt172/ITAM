@@ -58,7 +58,7 @@ namespace ITAM.Infrastructure.Services
                         .FirstOrDefaultAsync(x => x.Id == id)
                         ?? throw new InvalidBusinessRuleException("Không tìm thấy Phiếu Điều Chuyển.");
 
-                    if (phieu.TrangThai != TrangThaiDieuChuyen.PENDING)
+                    if (phieu.TrangThai != TrangThaiPhieu.PENDING)
                         throw new InvalidBusinessRuleException("Phiếu đã được duyệt hoặc đã từ chối, không thể sửa.");
                 }
                 else
@@ -70,7 +70,7 @@ namespace ITAM.Infrastructure.Services
                         NguoiTaoId = dto.NguoiTaoId,
                         // Phòng Ban Chuyển Đi cố định = Phòng Ban mặc định của người tạo, do ViewModel gán sẵn trong dto — không cho sửa sau khi tạo.
                         PhongBanChuyenDiId = dto.PhongBanChuyenDiId,
-                        TrangThai = TrangThaiDieuChuyen.PENDING
+                        TrangThai = TrangThaiPhieu.PENDING
                     };
                     _context.DieuChuyen.Add(phieu);
                 }
@@ -199,7 +199,7 @@ namespace ITAM.Infrastructure.Services
             var dangOPhieuKhac = await _context.DieuChuyenChiTiet.AsNoTracking()
                 .AnyAsync(x => x.TaiSanDinhDanhId == ctDto.TaiSanDinhDanhId
                     && x.DieuChuyenId != phieuIdHienTai
-                    && x.DieuChuyen.TrangThai == TrangThaiDieuChuyen.PENDING);
+                    && x.DieuChuyen.TrangThai == TrangThaiPhieu.PENDING);
 
             if (dangOPhieuKhac)
                 throw new InvalidBusinessRuleException($"Tài sản '{taiSan.Code}' đang có trong 1 Phiếu Điều Chuyển khác chưa được duyệt.");
@@ -218,7 +218,7 @@ namespace ITAM.Infrastructure.Services
                     .FirstOrDefaultAsync(x => x.Id == dieuChuyenId)
                     ?? throw new InvalidBusinessRuleException("Không tìm thấy Phiếu Điều Chuyển.");
 
-                if (phieu.TrangThai != TrangThaiDieuChuyen.PENDING)
+                if (phieu.TrangThai != TrangThaiPhieu.PENDING)
                     throw new InvalidBusinessRuleException("Phiếu đã được duyệt hoặc đã từ chối, không thể duyệt lại.");
 
                 if (!phieu.ChiTiets.Any())
@@ -267,7 +267,7 @@ namespace ITAM.Infrastructure.Services
                     });
                 }
 
-                phieu.TrangThai = TrangThaiDieuChuyen.APPROVED;
+                phieu.TrangThai = TrangThaiPhieu.APPROVED;
                 phieu.NguoiDuyetId = nguoiDuyetId;
                 phieu.NgayDuyet = thoiDiemDuyet;
 
@@ -289,10 +289,10 @@ namespace ITAM.Infrastructure.Services
                 var phieu = await _context.DieuChuyen.FirstOrDefaultAsync(x => x.Id == dieuChuyenId)
                     ?? throw new InvalidBusinessRuleException("Không tìm thấy Phiếu Điều Chuyển.");
 
-                if (phieu.TrangThai != TrangThaiDieuChuyen.PENDING)
+                if (phieu.TrangThai != TrangThaiPhieu.PENDING)
                     throw new InvalidBusinessRuleException("Phiếu đã được duyệt hoặc đã từ chối, không thể từ chối lại.");
 
-                phieu.TrangThai = TrangThaiDieuChuyen.REJECTED;
+                phieu.TrangThai = TrangThaiPhieu.REJECTED;
                 phieu.NguoiDuyetId = nguoiDuyetId;
                 phieu.NgayDuyet = DateTime.Now;
 
@@ -314,7 +314,7 @@ namespace ITAM.Infrastructure.Services
                     .FirstOrDefaultAsync(x => x.Id == dieuChuyenId)
                     ?? throw new InvalidBusinessRuleException("Không tìm thấy Phiếu Điều Chuyển.");
 
-                if (phieu.TrangThai != TrangThaiDieuChuyen.PENDING)
+                if (phieu.TrangThai != TrangThaiPhieu.PENDING)
                     throw new InvalidBusinessRuleException("Chỉ được xóa phiếu đang ở trạng thái Chờ duyệt.");
 
                 _context.DieuChuyen.Remove(phieu); // Cascade xóa ChiTiets theo cấu hình DieuChuyenConfiguration.

@@ -27,7 +27,7 @@ namespace ITAM.Domain.Entities
         public long? NguoiDuyetId { get; set; }
         public User? NguoiDuyet { get; set; }
         public DateTime? NgayDuyet { get; set; }
-        public TrangThaiLoNhap TrangThai { get; set; } = TrangThaiLoNhap.PENDING;
+        public TrangThaiPhieu TrangThai { get; set; } = TrangThaiPhieu.PENDING;
         public string? GhiChu { get; set; }
 
         public ICollection<LoNhapChiTiet> ChiTiets { get; set; } = new List<LoNhapChiTiet>();

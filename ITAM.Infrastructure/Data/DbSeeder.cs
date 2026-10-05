@@ -21,7 +21,9 @@ namespace ITAM.Infrastructure.Data
             ("HETHONG_BAOCAO","Hệ thống báo cáo"),
             ("LICHSU_TAISAN","Lịch sử tài sản"),
             ("DANHSACH_TAISAN","Danh sách tài sản"),
-            ("DANHSACH_VATU","Danh sách vật tư")
+            ("DANHSACH_VATU","Danh sách vật tư"),
+            ("THATLAC_TAISAN","Tài sản thất lạc"),
+            ("THANHLY_TAISAN","Thanh lý tài sản"),
         };
         private static Role? adminRole = null!;
 

@@ -37,7 +37,7 @@ namespace ITAM.Domain.Entities
         /// <summary>Tên người nhận — nhập tay, không bắt buộc.</summary>
         public string? NguoiNhan { get; set; }
 
-        public TrangThaiDieuChuyen TrangThai { get; set; } = TrangThaiDieuChuyen.PENDING;
+        public TrangThaiPhieu TrangThai { get; set; } = TrangThaiPhieu.PENDING;
 
         public long? NguoiDuyetId { get; set; }
         public User? NguoiDuyet { get; set; }

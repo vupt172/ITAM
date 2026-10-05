@@ -55,7 +55,7 @@ namespace ITAM.WPF.ViewModels
                     DenNgay = DenNgay,
                     TrangThai = string.IsNullOrEmpty(SelectedTrangThai)
                         ? null
-                        : Enum.Parse<TrangThaiLoNhap>(SelectedTrangThai)
+                        : Enum.Parse<TrangThaiPhieu>(SelectedTrangThai)
                 });
 
                 Results.Clear();

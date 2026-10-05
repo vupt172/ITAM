@@ -30,6 +30,8 @@ namespace ITAM.Infrastructure.Data
         public DbSet<DieuChuyen> DieuChuyen { get; set; }
         public DbSet<DieuChuyenChiTiet> DieuChuyenChiTiet { get; set; }
         public DbSet<LichSuDieuChuyenTaiSan> LichSuDieuChuyenTaiSan { get; set; }
+        public DbSet<PhieuThatLac> PhieuThatLac => Set<PhieuThatLac>();
+        public DbSet<PhieuThatLacChiTiet> PhieuThatLacChiTiet => Set<PhieuThatLacChiTiet>();
 
         // Identity — bổ sung
         public DbSet<User> Users => Set<User>();

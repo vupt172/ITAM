@@ -53,7 +53,7 @@ namespace ITAM.Infrastructure.Services
                         NguoiGiao=dto.NguoiGiao,
                         NguoiLapPhieuId = dto.NguoiLapPhieuId,
                         GhiChu = dto.GhiChu,
-                        TrangThai = TrangThaiLoNhap.PENDING
+                        TrangThai = TrangThaiPhieu.PENDING
                     };
                     _context.LoNhap.Add(loNhap);
                     await _context.SaveChangesAsync();
@@ -68,7 +68,7 @@ namespace ITAM.Infrastructure.Services
                         .FirstOrDefaultAsync(x => x.Id == dto.Id.Value)
                         ?? throw new InvalidBusinessRuleException("Không tìm thấy Lô Nhập.");
 
-                    if (loNhap.TrangThai != TrangThaiLoNhap.PENDING)
+                    if (loNhap.TrangThai != TrangThaiPhieu.PENDING)
                         throw new InvalidBusinessRuleException("Chỉ được sửa phiếu khi đang ở trạng thái Chờ duyệt.");
 
                     loNhap.NhaCungCapId = dto.NhaCungCapId;
@@ -166,7 +166,7 @@ namespace ITAM.Infrastructure.Services
                     .FirstOrDefaultAsync(x => x.Id == loNhapId)
                     ?? throw new InvalidBusinessRuleException("Không tìm thấy Lô Nhập.");
 
-                if (loNhap.TrangThai != TrangThaiLoNhap.PENDING)
+                if (loNhap.TrangThai != TrangThaiPhieu.PENDING)
                     throw new InvalidBusinessRuleException("Phiếu đã được duyệt hoặc đã từ chối, không thể duyệt lại.");
 
                 if (!loNhap.ChiTiets.Any())
@@ -229,7 +229,7 @@ namespace ITAM.Infrastructure.Services
                     }
                 }
 
-                loNhap.TrangThai = TrangThaiLoNhap.APPROVED;
+                loNhap.TrangThai = TrangThaiPhieu.APPROVED;
                 loNhap.NgayDuyet = DateTime.Now;
                 loNhap.NguoiDuyetId = nguoiDuyetId;
                 await _context.SaveChangesAsync();
@@ -271,11 +271,11 @@ namespace ITAM.Infrastructure.Services
             var loNhap = await _context.LoNhap.FindAsync(loNhapId)
                 ?? throw new InvalidBusinessRuleException("Không tìm thấy Lô Nhập.");
 
-            if (loNhap.TrangThai != TrangThaiLoNhap.PENDING)
+            if (loNhap.TrangThai != TrangThaiPhieu.PENDING)
                 throw new InvalidBusinessRuleException(
                     "Chỉ được từ chối phiếu khi đang ở trạng thái Chờ duyệt — phiếu đã duyệt đã sinh tài sản/vật tư, không thể hủy trực tiếp.");
 
-            loNhap.TrangThai = TrangThaiLoNhap.REJECTED;
+            loNhap.TrangThai = TrangThaiPhieu.REJECTED;
             loNhap.NguoiDuyetId = nguoiDuyetId;   // ⬅ mới
             await _context.SaveChangesAsync();
         }
@@ -332,7 +332,7 @@ namespace ITAM.Infrastructure.Services
                 .FirstOrDefaultAsync(x => x.Id == loNhapId)
                 ?? throw new InvalidBusinessRuleException("Không tìm thấy Lô Nhập.");
 
-            if (loNhap.TrangThai != TrangThaiLoNhap.PENDING)
+            if (loNhap.TrangThai != TrangThaiPhieu.PENDING)
                 throw new InvalidBusinessRuleException("Chỉ được xóa phiếu đang ở trạng thái Chờ Duyệt (PENDING).");
             try
             {

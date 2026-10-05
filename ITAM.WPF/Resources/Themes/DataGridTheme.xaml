@@ -34,7 +34,7 @@
         <Setter Property="BorderThickness" Value="0,0,1,1"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
     </Style>
 
     <!-- ================= ROW HEADER (cột STT) ================= -->
@@ -45,7 +45,7 @@
         <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBorderBrush}"/>
         <Setter Property="BorderThickness" Value="0,0,1,1"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
     </Style>
 
     <DataTemplate x:Key="DataGridRowNumberTemplate">
@@ -93,8 +93,9 @@
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="RowHeight" Value="30"/>
-        <Setter Property="ColumnHeaderHeight" Value="33"/>
+        <Setter Property="ColumnHeaderHeight" Value="34"/>
         <Setter Property="AlternationCount" Value="2"/>
+        <Setter Property="FontSize" Value="13"/>
 
         <Setter Property="Background" Value="{StaticResource GridRowBrush}"/>
         <Setter Property="AlternatingRowBackground" Value="Transparent"/>

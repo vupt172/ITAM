@@ -86,7 +86,7 @@ namespace ITAM.AppCore.DTOs
         public string? SoPhieu { get; set; }
         public DateTime? TuNgay { get; set; }
         public DateTime? DenNgay { get; set; }
-        public TrangThaiDieuChuyen? TrangThai { get; set; }
+        public TrangThaiPhieu? TrangThai { get; set; }
     }
 
     /// <summary>1 dòng lịch sử điều chuyển hiển thị (đọc) — dùng cho màn hình xem Lịch Sử Điều Chuyển của 1 tài sản.</summary>

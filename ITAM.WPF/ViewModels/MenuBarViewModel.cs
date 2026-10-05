@@ -29,6 +29,8 @@ namespace ITAM.WPF.ViewModels
         public bool HasFeatureDieuChuyen => _currentUserContext.HasFeature("DIEUCHUYEN");
         public bool HasFeatureBaoCao => _currentUserContext.HasFeature("HETHONG_BAOCAO");
         public bool HasFeatureLichSuTaiSan => _currentUserContext.HasFeature("LICHSU_TAISAN");
+        public bool HasFeatureThatLacTaiSan => _currentUserContext.HasFeature("THATLAC_TAISAN");
+
         public bool HasFeatureDanhSachTaiSan => _currentUserContext.HasFeature("DANHSACH_TAISAN");
         public bool HasFeatureDanhSachVatTu => _currentUserContext.HasFeature("DANHSACH_VATU");
         public ObservableCollection<OpenedWindowItem> Windows { get; } = new();
@@ -90,6 +92,8 @@ namespace ITAM.WPF.ViewModels
             _navigationService.NavigateTo<LichSuDieuChuyenViewModel>();
             // TODO xác nhận: đúng cách gọi NavigationService như NavigateDieuChuyenCommand đang dùng
         }
+        [RelayCommand]
+        private void NavigatePhieuThatLac() => _navigationService.NavigateTo<PhieuThatLacViewModel>();
         [RelayCommand]
         private void NavigateVatTu() => _navigationService.NavigateTo<VatTuListViewModel>();
 

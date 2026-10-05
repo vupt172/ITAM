@@ -30,6 +30,9 @@
     <DataTemplate DataType="{x:Type viewModels:LichSuDieuChuyenViewModel}">
         <views:LichSuDieuChuyenView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:PhieuThatLacViewModel}">
+        <views:PhieuThatLacView/>
+    </DataTemplate>
     <!-- Danh Mục -->
     <DataTemplate DataType="{x:Type catalogViewModels:DMTaiSanViewModel}">
         <catalogViews:DMTaiSanView />

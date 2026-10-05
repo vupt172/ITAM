@@ -1,7 +1,7 @@
 ﻿namespace ITAM.Domain.Enums
 {
     /// <summary>Trạng thái Phiếu Điều Chuyển tài sản.</summary>
-    public enum TrangThaiDieuChuyen
+    public enum TrangThaiPhieu
     {
         /// <summary>Mới tạo / đang chờ duyệt. Có thể sửa hoặc xóa.</summary>
         PENDING,

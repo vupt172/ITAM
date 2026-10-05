@@ -66,7 +66,7 @@ namespace ITAM.AppCore.DTOs
         public string? SoLo { get; set; }
         public DateTime? TuNgay { get; set; }
         public DateTime? DenNgay { get; set; }
-        public TrangThaiLoNhap? TrangThai { get; set; }
+        public TrangThaiPhieu? TrangThai { get; set; }
     }
 
     // KHONG SU DUNG

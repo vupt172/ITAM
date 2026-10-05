@@ -185,7 +185,7 @@ public class DashboardService : IDashboardService
 
         // Nhập kho — TODO xác nhận TrangThaiLoNhap.APPROVED
         var loNhaps = await _context.LoNhap.AsNoTracking()
-            .Where(x => x.TrangThai == TrangThaiLoNhap.APPROVED && x.NgayDuyet != null)
+            .Where(x => x.TrangThai == TrangThaiPhieu.APPROVED && x.NgayDuyet != null)
             .OrderByDescending(x => x.NgayDuyet)
             .Take(soLuong)
             .Select(x => new { x.SoLo, x.NgayDuyet, SoDong = x.ChiTiets.Count })
@@ -200,7 +200,7 @@ public class DashboardService : IDashboardService
 
         // Điều chuyển đã duyệt
         var dieuChuyens = await _context.DieuChuyen.AsNoTracking()
-            .Where(x => x.TrangThai == TrangThaiDieuChuyen.APPROVED && x.NgayDuyet != null)
+            .Where(x => x.TrangThai == TrangThaiPhieu.APPROVED && x.NgayDuyet != null)
             .OrderByDescending(x => x.NgayDuyet)
             .Take(soLuong)
             .Select(x => new

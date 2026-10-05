@@ -89,6 +89,10 @@ namespace ITAM.WPF.ViewModels
             _ = InitializeAsync();
         }
 
+        protected override void InitToolbarState()
+        {
+            CanClose = true;
+        }
 
 
         partial void OnPhongBanChuyenDiChonChanged(PhongBan? value)
