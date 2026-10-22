@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>1.0.0.4</Version>
+		<Version>1.0.0.6</Version>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
 		<SatelliteResourceLanguages>vi</SatelliteResourceLanguages>
-		<ApplicationIcon>Assets\Images\itam-logo.ico</ApplicationIcon>
+		<ApplicationIcon>Assets\Images\ITAM_icon.ico</ApplicationIcon>
 		<AssemblyName>ITAM</AssemblyName>
 		<RootNamespace>ITAM</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Assets\Images\itam_icon.ico" />
 	  <None Remove="Assets\Images\login-illustration.png" />
 	</ItemGroup>
 
@@ -53,7 +54,7 @@
 		<Folder Include="Common\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Resource Include="Assets\Images\itam-logo.ico" />
+	  <Resource Include="Assets\Images\itam_icon.ico" />
 	  <Resource Include="Assets\Images\login-illustration.png" />
 	</ItemGroup>
 

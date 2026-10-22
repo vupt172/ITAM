@@ -1,4 +1,5 @@
-﻿using ITAM.WPF.ViewModels;
+﻿
+using ITAM.WPF.ViewModels.Dialogs;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

@@ -28,9 +28,10 @@ namespace ITAM.AppCore.DTOs
         private string donViTinh = string.Empty;
         [ObservableProperty]
         private bool requireSerial;
-        [Range(1, long.MaxValue, ErrorMessage = "Phải chọn danh mục tài sản.")]
         [ObservableProperty]
         private string? imagePath = string.Empty;
+
+        [Range(1, long.MaxValue, ErrorMessage = "Phải chọn danh mục tài sản.")]
         public long DMTaiSanId { get; set; }
         public string? DMTaiSanName { get; set; }
         [ObservableProperty] private string? description;

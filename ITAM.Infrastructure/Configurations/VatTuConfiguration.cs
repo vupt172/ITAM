@@ -10,11 +10,8 @@ namespace ITAM.Infrastructure.Configurations
         {
             builder.ToTable("VatTu");
 
-            builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
-            builder.Property(x => x.DonViTinh).HasMaxLength(50);
-
             // Một hàng hóa vật tư chỉ có đúng một bản ghi tồn tương ứng.
-            builder.HasIndex(x => x.HangHoaId).IsUnique();
+            builder.HasIndex(x => new { x.HangHoaId, x.ViTriTaiSanId }).IsUnique();
 
 
             builder.HasOne(x => x.HangHoa)

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ITAM.WPF.Views
+namespace ITAM.WPF.Views.Reports
 {
     /// <summary>
-    /// Interaction logic for ErrorDialog2.xaml
+    /// Interaction logic for DanhSachPhieuNhapView.xaml
     /// </summary>
-    public partial class ErrorDialog : Window
+    public partial class DanhSachPhieuNhapView : UserControl
     {
-        public ErrorDialog()
+        public DanhSachPhieuNhapView()
         {
             InitializeComponent();
         }

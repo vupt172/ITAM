@@ -13,6 +13,12 @@
     <Compile Update="Views\ChangePhongBanWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Dialogs\DieuChuyenVatTuSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\PhieuThanhLySearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Dialogs\PhieuThatLacSearchWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\DieuChuyenSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DieuChuyenVatTuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\DieuChuyenView.xaml.cs">
@@ -31,13 +40,22 @@
     <Compile Update="Views\LichSuDieuChuyenView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\LoNhapSearchWindow.xaml.cs">
+    <Compile Update="Views\Dialogs\LoNhapSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PhieuThanhLyView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\PhieuThatLacView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Reports\BaoCaoNhapTaiSanView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Reports\BaoCaoTaiSanView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\DanhSachPhieuNhapView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Reports\SoTaiSanCoDinhView.xaml.cs">
@@ -85,7 +103,7 @@
     <Compile Update="Views\DashboardView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ErrorDialog.xaml.cs">
+    <Compile Update="Views\Dialogs\ErrorDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\HeThongDMView.xaml.cs">

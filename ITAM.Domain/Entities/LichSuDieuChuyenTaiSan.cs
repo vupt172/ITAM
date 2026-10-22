@@ -39,6 +39,8 @@ namespace ITAM.Domain.Entities
         public DieuChuyenChiTiet? DieuChuyenChiTiet { get; set; }
         public long? PhieuThatLacChiTietId { get; set; }
         public PhieuThatLacChiTiet? PhieuThatLacChiTiet { get; set; }
+        public long? PhieuThanhLyChiTietId { get; set; }
+        public PhieuThanhLyChiTiet? PhieuThanhLyChiTiet { get; set; }
 
         /// <summary>Copy từ DieuChuyenChiTiet.GhiChu tại thời điểm duyệt. Null khi sinh từ Duyệt Lô Nhập.</summary>
         public string? GhiChu { get; set; }

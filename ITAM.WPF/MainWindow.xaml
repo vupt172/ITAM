@@ -9,7 +9,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowState="Maximized"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="{Binding NavigationService.CurrentTitle}" Height="450" Width="800">
+        Title="{Binding NavigationService.CurrentTitle}" Height="450" Width="800"
+        Icon="/Assets/Images/itam_icon.ico">
     <Window.InputBindings>
         <KeyBinding Key="N"
                 Modifiers="Ctrl"

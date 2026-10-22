@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ITAM.WPF.ViewModels
+namespace ITAM.WPF.ViewModels.Dialogs
 {
     public record TrangThaiPhieuOption(string Ten, TrangThaiPhieu? GiaTri);
 
@@ -44,6 +44,11 @@ namespace ITAM.WPF.ViewModels
         {
             _service = service;
             trangThaiChon = TrangThaiOptions[0];
+
+            // Mặc định lọc theo tháng hiện tại: từ ngày 1 đến ngày cuối tháng.
+            var homNay = DateTime.Today;
+            tuNgay = new DateTime(homNay.Year, homNay.Month, 1);
+            denNgay = tuNgay.Value.AddMonths(1).AddDays(-1);
         }
 
         [RelayCommand]
@@ -78,14 +83,7 @@ namespace ITAM.WPF.ViewModels
             }
         }
 
-        [RelayCommand]
-        private void XoaLoc()
-        {
-            SoPhieu = null;
-            TuNgay = null;
-            DenNgay = null;
-            TrangThaiChon = TrangThaiOptions[0];
-        }
+ 
 
         [RelayCommand]
         private void Chon()

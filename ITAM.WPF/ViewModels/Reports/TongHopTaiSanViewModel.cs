@@ -5,6 +5,7 @@ using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Enums; // TODO xác nhận namespace TrangThaiTaiSan
 using ITAM.Infrastructure.Services;
+using ITAM.ViewModels.Reports;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -15,7 +16,7 @@ public record TrangThaiOption(TrangThaiTaiSan? Value, string Text);
 public record NhomTheoOption(NhomTheoTongHop Value, string Text);
 
 // TODO xác nhận: BaseViewModel kế thừa ObservableObject
-public partial class TongHopTaiSanViewModel : BaseViewModel
+public partial class TongHopTaiSanViewModel : ReportViewModel
 {
     private const string TatCa = "Tất cả";
     private readonly IBaoCaoTongHopTaiSanService _service;
@@ -59,10 +60,9 @@ public partial class TongHopTaiSanViewModel : BaseViewModel
     {
         _service = service;
         NhomTheoChon = NhomTheos[0];
-        _=InitializeAsync();
     }
 
-    public async Task InitializeAsync()
+    public override async Task InitializeAsync()
     {
         var lookup = await _service.GetLookupAsync();
 

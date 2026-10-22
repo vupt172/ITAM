@@ -7,7 +7,7 @@ using ITAM.WPF.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 
-namespace ITAM.WPF.ViewModels
+namespace ITAM.WPF.ViewModels.Dialogs
 {
     public partial class LoNhapSearchViewModel : ObservableObject
     {

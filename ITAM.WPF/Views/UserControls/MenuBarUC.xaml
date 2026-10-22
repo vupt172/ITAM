@@ -48,6 +48,8 @@
           Command="{Binding NavigateDieuChuyenCommand}"/>
                 <MenuItem Header="Thất Lạc Tài Sản" Visibility="{Binding HasFeatureThatLacTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
 Command="{Binding NavigatePhieuThatLacCommand}"/>
+                <MenuItem Header="Thanh Lý Tài Sản" Visibility="{Binding HasFeatureThatLacTaiSan, Converter={StaticResource BooleanToVisibilityConverter}}"
+Command="{Binding NavigatePhieuThanhLyCommand}"/>
 
                 <MenuItem  Header="Bảo Trì, Sửa chữa " Icon="{materialDesign:PackIcon Kind=Tools}">
                 </MenuItem>
@@ -56,10 +58,12 @@ Command="{Binding NavigatePhieuThatLacCommand}"/>
             <MenuItem Header="Vật Tư">
                 <MenuItem Header="Danh Sách Vật Tư" Icon="{materialDesign:PackIcon Kind=PackageVariant}" Visibility="{Binding HasFeatureDanhSachVatTu, Converter={StaticResource BooleanToVisibilityConverter}}"
           Command="{Binding NavigateVatTuCommand}"/>
+                <MenuItem Header="Điều Chuyển Vật Tư" Icon="{materialDesign:PackIcon Kind=SwapHorizontal}" Visibility="{Binding HasFeatureDanhSachVatTu, Converter={StaticResource BooleanToVisibilityConverter}}"
+Command="{Binding NavigateDieuChuyenVatTuCommand}"/>
             </MenuItem>
             <!-- BÁO CÁO -->
             <MenuItem Header="Báo Cáo">
-                <MenuItem Header="Danh Sách Báo Cáo" Icon="{materialDesign:PackIcon Kind=FileDocument}" Visibility="{Binding HasFeatureBaoCao, Converter={StaticResource BooleanToVisibilityConverter}}"
+                <MenuItem Header="Hệ Thống Báo Cáo" Icon="{materialDesign:PackIcon Kind=ChartBoxOutline}" Visibility="{Binding HasFeatureBaoCao, Converter={StaticResource BooleanToVisibilityConverter}}"
                           Command="{Binding NavigateBaoCaoCommand}"/>
             </MenuItem>
             <!-- HỆ THỐNG -->

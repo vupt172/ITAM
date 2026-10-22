@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Tìm Phiếu Thất Lạc" Width="880" Height="540"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Style="{StaticResource MaterialDesignWindow}">
 
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -40,8 +41,6 @@
 
                 <Button Content="Tìm kiếm" Command="{Binding TimKiemCommand}" Margin="0,0,8,0"
                         Style="{StaticResource MaterialDesignRaisedButton}"/>
-                <Button Content="Xóa lọc" Command="{Binding XoaLocCommand}"
-                        Style="{StaticResource MaterialDesignOutlinedButton}"/>
             </StackPanel>
         </materialDesign:Card>
 

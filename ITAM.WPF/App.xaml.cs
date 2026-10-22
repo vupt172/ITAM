@@ -1,15 +1,16 @@
-﻿using AutoUpdaterDotNET;
+﻿
+using AutoUpdaterDotNET;
 using ITAM.AppCore.Interfaces;
 using ITAM.AppCore.Mappings;
 using ITAM.Domain.Interfaces;
 using ITAM.Infrastructure.Data;
 using ITAM.Infrastructure.Services;
-using ITAM.ViewModels;
-using ITAM.WPF;
+using ITAM.ViewModels.Dialogs;
 using ITAM.WPF.Services;
 using ITAM.WPF.Services.Interfaces;
 using ITAM.WPF.ViewModels;
 using ITAM.WPF.ViewModels.Catalogs;
+using ITAM.WPF.ViewModels.Dialogs;
 using ITAM.WPF.ViewModels.Reports;
 using ITAM.WPF.Views;
 using ITAM.WPF.Views.Dialogs;
@@ -65,7 +66,11 @@ namespace ITAM.WPF
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<ISoTaiSanCoDinhService, SoTaiSanCoDinhExporter>();
             services.AddTransient<IBaoCaoTongHopTaiSanService, BaoCaoTongHopTaiSanService>();
+            services.AddTransient<IBaoCaoNhapTaiSanService, BaoCaoNhapTaiSanService>();
+            services.AddTransient<IDanhSachPhieuNhapService, DanhSachPhieuNhapService>();
             services.AddTransient<IPhieuThatLacService, PhieuThatLacService>();
+            services.AddTransient<IPhieuThanhLyService, PhieuThanhLyService>();
+            services.AddTransient<IDieuChuyenVatTuService, DieuChuyenVatTuService>();
 
             // DI ViewModels
             services.AddTransient<LoginViewModel>();          // ⬅ thêm
@@ -103,6 +108,11 @@ namespace ITAM.WPF
             services.AddTransient<TongHopTaiSanViewModel>();
             services.AddTransient<PhieuThatLacViewModel>();
             services.AddTransient<PhieuThatLacSearchViewModel>();
+            services.AddTransient<BaoCaoNhapTaiSanViewModel>();
+            services.AddTransient<PhieuThanhLyViewModel>();
+            services.AddTransient<PhieuThanhLySearchViewModel>();
+            services.AddTransient<DanhSachPhieuNhapViewModel>();
+            services.AddTransient<DieuChuyenVatTuViewModel>();
 
             // DI Windows
             services.AddTransient<LoginWindow>();              // ⬅ đổi Transient (mở lại được khi logout)
@@ -116,7 +126,9 @@ namespace ITAM.WPF
             services.AddTransient<DieuChuyenView>();
             services.AddTransient<DieuChuyenSearchWindow>();
             services.AddTransient<PhieuThatLacSearchWindow>();
-
+            services.AddTransient<PhieuThanhLySearchWindow>();
+            services.AddTransient<DieuChuyenVatTuSearchViewModel>();
+            services.AddTransient<DieuChuyenVatTuSearchWindow>();
             Services = services.BuildServiceProvider();
         }
 

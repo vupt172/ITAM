@@ -27,11 +27,17 @@
     <DataTemplate DataType="{x:Type viewModels:DieuChuyenViewModel}">
         <views:DieuChuyenView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:DieuChuyenVatTuViewModel}">
+        <views:DieuChuyenVatTuView />
+    </DataTemplate>
     <DataTemplate DataType="{x:Type viewModels:LichSuDieuChuyenViewModel}">
         <views:LichSuDieuChuyenView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewModels:PhieuThatLacViewModel}">
         <views:PhieuThatLacView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:PhieuThanhLyViewModel}">
+        <views:PhieuThanhLyView/>
     </DataTemplate>
     <!-- Danh Mục -->
     <DataTemplate DataType="{x:Type catalogViewModels:DMTaiSanViewModel}">
@@ -65,6 +71,15 @@
     <DataTemplate DataType="{x:Type reportViewModels:TongHopTaiSanViewModel}">
         <reportViews:TongHopTaiSanView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type reportViewModels:BaoCaoNhapTaiSanViewModel}">
+        <reportViews:BaoCaoNhapTaiSanView/>
+    </DataTemplate>
+    
+    <!-- ViewTemplates.xaml -->
+    <DataTemplate DataType="{x:Type reportViewModels:DanhSachPhieuNhapViewModel}">
+        <reportViews:DanhSachPhieuNhapView/>
+    </DataTemplate>
+
     <!-- Quản Trị Người Dùng / Vai Trò / Tham Số Người Dùng -->
     <DataTemplate DataType="{x:Type viewModels:UserManagementViewModel}">
         <views:UserManagementView />
@@ -75,6 +90,7 @@
     <DataTemplate DataType="{x:Type viewModels:ThamSoNguoiDungViewModel}">
         <views:ThamSoNguoiDungView />
     </DataTemplate>
+    
 
 
 </ResourceDictionary>

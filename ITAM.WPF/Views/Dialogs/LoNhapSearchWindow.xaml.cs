@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ITAM.WPF.Views
+namespace ITAM.WPF.Views.Dialogs
 {
     public partial class LoNhapSearchWindow : Window
     {

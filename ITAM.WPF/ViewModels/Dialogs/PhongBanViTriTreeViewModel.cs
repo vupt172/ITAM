@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITAM.ViewModels
+namespace ITAM.ViewModels.Dialogs
 {
     // ITAM.WPF/ViewModels/PhongBanViTriTreeViewModel.cs
     public partial class PhongBanViTriTreeViewModel : ObservableObject

@@ -72,8 +72,6 @@
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{StaticResource GridRowSelectedBrush}"/>
                 <Setter Property="Foreground" Value="{StaticResource GridForegroundBrush}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource GridAccentBrush}"/>
-                <Setter Property="BorderThickness" Value="3,0,0,0"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -72,7 +72,7 @@
                         
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã Hàng hóa" Binding="{Binding MaHangHoa}" Width="150"/>
-                            <DataGridTextColumn Header="Tên vật tư" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Tên Hàng Hóa" Binding="{Binding TenHangHoa}" Width="*"/>
                             <DataGridTextColumn Header="ĐVT" Binding="{Binding DonViTinh}" Width="80"/>
                             <DataGridTextColumn Header="SL tồn" Binding="{Binding SoLuongTon}" Width="80"/>
                             <DataGridTextColumn Header="Vị trí" Binding="{Binding TenViTri}" Width="150"/>
@@ -186,11 +186,11 @@
                                     <StackPanel Grid.Row="1"
                                 Margin="0,6,0,0">
 
-                                        <TextBlock Text="TÊN VẬT TƯ"
+                                        <TextBlock Text="TÊN HÀNG HÓA"
                                    FontSize="11"
                                    Foreground="Gray"/>
 
-                                        <TextBlock Text="{Binding SelectedItem.Name}"
+                                        <TextBlock Text="{Binding SelectedItem.TenHangHoa}"
                                    FontSize="14"
                                    FontWeight="SemiBold"
                                    TextWrapping="Wrap"/>

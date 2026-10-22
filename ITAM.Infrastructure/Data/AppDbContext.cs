@@ -25,6 +25,9 @@ namespace ITAM.Infrastructure.Data
         public DbSet<ViTriTaiSan> ViTriTaiSan => Set<ViTriTaiSan>();
         public DbSet<TaiSanDinhDanh> TaiSanDinhDanh { get; set; }
         public DbSet<VatTu> VatTu { get; set; }
+        public DbSet<DieuChuyenVatTu> DieuChuyenVatTu { get; set; }
+        public DbSet<DieuChuyenVatTuChiTiet> DieuChuyenVatTuChiTiet { get; set; }
+        public DbSet<LichSuBienDongVatTu> LichSuBienDongVatTu { get; set; }
         public DbSet<LoNhap> LoNhap { get; set; }
         public DbSet<LoNhapChiTiet> LoNhapChiTiet { get; set; }
         public DbSet<DieuChuyen> DieuChuyen { get; set; }
@@ -32,6 +35,9 @@ namespace ITAM.Infrastructure.Data
         public DbSet<LichSuDieuChuyenTaiSan> LichSuDieuChuyenTaiSan { get; set; }
         public DbSet<PhieuThatLac> PhieuThatLac => Set<PhieuThatLac>();
         public DbSet<PhieuThatLacChiTiet> PhieuThatLacChiTiet => Set<PhieuThatLacChiTiet>();
+        public DbSet<PhieuThanhLy> PhieuThanhLy => Set<PhieuThanhLy>();
+        public DbSet<PhieuThanhLyChiTiet> PhieuThanhLyChiTiet => Set<PhieuThanhLyChiTiet>();
+
 
         // Identity — bổ sung
         public DbSet<User> Users => Set<User>();

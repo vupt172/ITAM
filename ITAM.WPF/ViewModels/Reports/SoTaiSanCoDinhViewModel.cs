@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ITAM.AppCore.Interfaces;
+using ITAM.ViewModels.Reports;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows;
 namespace ITAM.WPF.ViewModels.Reports
 {
     // TODO xác nhận: đổi base class nếu BaoCaoTaiSanViewModel không dùng ObservableObject
-    public partial class SoTaiSanCoDinhViewModel : ObservableObject
+    public partial class SoTaiSanCoDinhViewModel : ReportViewModel
     {
         private readonly ISoTaiSanCoDinhService _service;
 

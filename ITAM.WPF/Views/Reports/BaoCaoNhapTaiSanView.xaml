@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="ITAM.WPF.Views.Reports.BaoCaoNhapTaiSanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Bộ lọc -->
+        <UniformGrid Grid.Row="0" Columns="4">
+            <UniformGrid.Resources>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <Setter Property="Margin" Value="0,0,12,12"/>
+                    <Setter Property="DisplayMemberPath" Value="Name"/>
+                    <Setter Property="SelectedValuePath" Value="Id"/>
+                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <Setter Property="Margin" Value="0,0,12,12"/>
+                </Style>
+                <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                    <Setter Property="Margin" Value="0,0,12,12"/>
+                </Style>
+            </UniformGrid.Resources>
+
+            <DatePicker materialDesign:HintAssist.Hint="Từ ngày"
+                        SelectedDate="{Binding TuNgay}"/>
+            <DatePicker materialDesign:HintAssist.Hint="Đến ngày"
+                        SelectedDate="{Binding DenNgay}"/>
+            <ComboBox materialDesign:HintAssist.Hint="Nhà cung cấp"
+                      ItemsSource="{Binding NhaCungCaps}"
+                      SelectedValue="{Binding NhaCungCapId}"/>
+            <TextBox materialDesign:HintAssist.Hint="Số phiếu nhập"
+                     Text="{Binding SoPhieu, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox materialDesign:HintAssist.Hint="Mã hóa đơn"
+                     Text="{Binding MaHoaDon, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox materialDesign:HintAssist.Hint="Người lập phiếu"
+                      ItemsSource="{Binding NguoiLaps}"
+                      SelectedValue="{Binding NguoiLapPhieuId}"/>
+            <ComboBox materialDesign:HintAssist.Hint="Trạng thái"
+                      ItemsSource="{Binding TrangThais}"
+                      DisplayMemberPath="Text" SelectedValuePath="Value"
+                      SelectedValue="{Binding TrangThai}"/>
+            <ComboBox materialDesign:HintAssist.Hint="Danh mục"
+                      ItemsSource="{Binding DanhMucs}"
+                      SelectedValue="{Binding DMTaiSanId}"/>
+
+            <ComboBox materialDesign:HintAssist.Hint="Hàng hóa"
+                      ItemsSource="{Binding HangHoas}"
+                      SelectedValue="{Binding HangHoaId}"/>
+        </UniformGrid>
+
+        <!-- Nút -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Xem báo cáo" Command="{Binding XemBaoCaoCommand}" Margin="0,0,8,0"/>
+            <Button Content="Excel" Command="{Binding XuatExcelCommand}" Margin="0,0,8,0"/>
+            <Button Content="Đặt lại" Command="{Binding DatLaiCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"/>
+        </StackPanel>
+
+        <ProgressBar Grid.Row="2" IsIndeterminate="True" Height="3" Margin="0,0,0,4"
+                     Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!-- Kết quả -->
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Rows}" IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style x:Key="RightAlign" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Số phiếu" Binding="{Binding SoPhieu}" Width="140"/>
+                <DataGridTextColumn Header="Ngày nhập" Binding="{Binding NgayNhap, StringFormat=dd/MM/yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Ngày duyệt" Binding="{Binding NgayDuyet, StringFormat=dd/MM/yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding NhaCungCap}" Width="170"/>
+                <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding MaHoaDon}" Width="150"/>
+                <DataGridTextColumn Header="Mã HH" Binding="{Binding MaHangHoa}" Width="130"/>
+                <DataGridTextColumn Header="Tên hàng hóa" Binding="{Binding TenHangHoa}" Width="240"/>
+                <DataGridTextColumn Header="Danh mục" Binding="{Binding DanhMuc}" Width="130"/>
+                <DataGridTextColumn Header="Loại TS" Binding="{Binding LoaiTaiSan}" Width="150"/>
+                <DataGridTextColumn Header="SL" Binding="{Binding SoLuongNhap}" Width="70"
+                            ElementStyle="{StaticResource RightAlign}"/>
+                <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGia, StringFormat=N0}" Width="120"
+                            ElementStyle="{StaticResource RightAlign}"/>
+                <DataGridTextColumn Header="Thành tiền" Binding="{Binding ThanhTien, StringFormat=N0}" Width="130"
+                            ElementStyle="{StaticResource RightAlign}"/>
+                <DataGridTextColumn Header="Người lập" Binding="{Binding NguoiLapPhieu}" Width="150"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="4" Text="{Binding TongKet}" FontWeight="SemiBold" Margin="0,8,0,0"/>
+    </Grid>
+</UserControl>

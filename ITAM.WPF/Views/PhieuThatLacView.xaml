@@ -125,45 +125,40 @@
 
                 <TextBlock Grid.Row="0" Text="CHI TIẾT PHIẾU (TÀI SẢN THẤT LẠC)" FontWeight="Bold" Margin="0,0,0,8"/>
 
-                <!-- Chọn tài sản + ghi chú + quét mã: chỉ hiện khi đang sửa -->
-                <StackPanel Grid.Row="1" Margin="0,0,0,12"
-            Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal">
-                        <controls:MultiColumnSearchComboBox Width="360"
-            ItemsSource="{Binding TaiSansKhaDung}"
-            DisplayMemberPath="Code"
-            SelectedItem="{Binding TaiSanDangChon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            Hint="Tài sản (theo Mã, thuộc Phòng Ban của phiếu)">
-                            <controls:MultiColumnSearchComboBox.Columns>
-                                <controls:SearchColumn Header="Mã" Binding="Code" Width="200"/>
-                                <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
-                                <controls:SearchColumn Header="Vị Trí" Binding="ViTriTaiSan.Name" Width="300"/>
-                            </controls:MultiColumnSearchComboBox.Columns>
-                        </controls:MultiColumnSearchComboBox>
+                <!-- Thêm tài sản: 1 hàng duy nhất, chỉ hiện khi đang sửa -->
+                <Grid Grid.Row="1" Margin="0,0,0,12"
+                      Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                        <TextBox Width="260" Margin="24,0,0,0"
-                 Text="{Binding MaQuet, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Quét mã tài sản (Enter)">
-                            <TextBox.InputBindings>
-                                <KeyBinding Key="Return" Command="{Binding QuetMaCommand}"/>
-                            </TextBox.InputBindings>
-                        </TextBox>
-                    </StackPanel>
+                    <controls:MultiColumnSearchComboBox Grid.Column="0" Margin="0,0,12,0" VerticalAlignment="Bottom"
+                        ItemsSource="{Binding TaiSansKhaDung}"
+                        DisplayMemberPath="Code"
+                        SelectedItem="{Binding TaiSanDangChon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Hint="Tài sản (theo Mã, thuộc Phòng Ban của phiếu)">
+                        <controls:MultiColumnSearchComboBox.Columns>
+                            <controls:SearchColumn Header="Mã" Binding="Code" Width="200"/>
+                            <controls:SearchColumn Header="Tên" Binding="Name" Width="300"/>
+                            <controls:SearchColumn Header="Vị Trí" Binding="ViTriTaiSan.Name" Width="300"/>
+                        </controls:MultiColumnSearchComboBox.Columns>
+                    </controls:MultiColumnSearchComboBox>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <TextBox Width="600"
-                 Text="{Binding GhiChuDangNhap, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Ghi chú (không bắt buộc)">
-                            <TextBox.InputBindings>
-                                <KeyBinding Key="Return" Command="{Binding ThemTaiSanCommand}"/>
-                            </TextBox.InputBindings>
-                        </TextBox>
-                        <Button Margin="12,0,0,0" Content="+ Thêm tài sản" Command="{Binding ThemTaiSanCommand}"
-                Style="{StaticResource MaterialDesignRaisedButton}"/>
-                    </StackPanel>
-                </StackPanel>
+                    <TextBox Grid.Column="1" Margin="0,0,12,0" VerticalAlignment="Bottom"
+                             Text="{Binding GhiChuDangNhap, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="Ghi chú (không bắt buộc)">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding ThemTaiSanCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+
+                    <Button Grid.Column="2" VerticalAlignment="Bottom" Content="+ Thêm tài sản"
+                            Command="{Binding ThemTaiSanCommand}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                </Grid>
 
                 <DataGrid Grid.Row="2" ItemsSource="{Binding ChiTiets}">
                     <DataGrid.Columns>

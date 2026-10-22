@@ -8,6 +8,7 @@ using ITAM.Domain.Enums;
 using ITAM.Domain.Exceptions;
 using ITAM.Domain.Interfaces;
 using ITAM.WPF.Services.Interfaces;
+using ITAM.WPF.ViewModels.Dialogs;
 using ITAM.WPF.Views;
 using ITAM.WPF.Views.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,15 +47,13 @@ namespace ITAM.WPF.ViewModels
         [ObservableProperty]
         private PhieuThatLacFormDto currentPhieu = new();
 
+        // ----- hàng "Thêm tài sản" -----
         [ObservableProperty]
         private TaiSanDinhDanh? taiSanDangChon;
+
         /// <summary>Ghi chú nhập cùng lúc với việc thêm tài sản vào phiếu.</summary>
         [ObservableProperty]
         private string? ghiChuDangNhap;
-
-        /// <summary>Ô nhận mã từ đầu đọc USB (keyboard wedge).</summary>
-        [ObservableProperty]
-        private string? maQuet;
 
         public bool IsPhieuMoi => CurrentPhieu.Id == 0;
 
@@ -166,10 +165,16 @@ namespace ITAM.WPF.ViewModels
             }
 
             _chiTietIdsXoa.Clear();
-            TaiSanDangChon = null;
+            ResetHangThemTaiSan();
             IsEditing = false;
 
             NotifyPhieuStateChanged();
+        }
+
+        private void ResetHangThemTaiSan()
+        {
+            TaiSanDangChon = null;
+            GhiChuDangNhap = null;
         }
 
         // ---------- toolbar ----------
@@ -195,7 +200,7 @@ namespace ITAM.WPF.ViewModels
 
                 ChiTiets.Clear();
                 _chiTietIdsXoa.Clear();
-                TaiSanDangChon = null;
+                ResetHangThemTaiSan();
 
                 IsEditing = true;
                 NotifyPhieuStateChanged();
@@ -218,6 +223,7 @@ namespace ITAM.WPF.ViewModels
             {
                 await NapTaiSanKhaDungAsync(CurrentPhieu.PhongBanId);
                 _chiTietIdsXoa.Clear();
+                ResetHangThemTaiSan();
                 IsEditing = true;
                 NotifyPhieuStateChanged();
             }
@@ -292,7 +298,7 @@ namespace ITAM.WPF.ViewModels
         protected override void Cancel()
         {
             IsEditing = false;
-            TaiSanDangChon = null;
+            ResetHangThemTaiSan();
 
             if (CurrentPhieu.Id == 0)
             {
@@ -377,17 +383,34 @@ namespace ITAM.WPF.ViewModels
             if (!IsEditing)
                 return;
 
-            if (TaiSanDangChon == null)
+            var ts = TaiSanDangChon;
+            if (ts == null)
             {
                 MessageBox.Show("Chọn tài sản cần khai báo thất lạc.");
                 return;
             }
 
-            if (ThemDong(TaiSanDangChon, GhiChuDangNhap))
+            if (ChiTiets.Any(x => x.TaiSanDinhDanhId == ts.Id))
             {
-                TaiSanDangChon = null;
-                GhiChuDangNhap = null;
+                MessageBox.Show("Tài sản này đã có trong phiếu.");
+                return;
             }
+
+            ChiTiets.Add(new PhieuThatLacChiTietFormDto
+            {
+                Id = null,
+                TaiSanDinhDanhId = ts.Id,
+                MaTaiSan = ts.Code,
+                TenTaiSan = ts.Name,
+                Serial = ts.Serial,
+                ViTriTruocId = ts.ViTriTaiSanId,
+                TenViTriTruoc = TenViTri(ts.ViTriTaiSanId),
+                TrangThaiTruoc = ts.TrangThaiTaiSan,    // chỉ để hiển thị, service snapshot lại từ DB khi lưu
+                GhiChu = string.IsNullOrWhiteSpace(GhiChuDangNhap) ? null : GhiChuDangNhap.Trim()
+            });
+
+            ResetHangThemTaiSan();
+            DuyetCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand]
@@ -401,72 +424,6 @@ namespace ITAM.WPF.ViewModels
 
             ChiTiets.Remove(dong);
             DuyetCommand.NotifyCanExecuteChanged();
-        }
-
-        /// <summary>Nhấn Enter trong ô mã quét (đầu đọc USB gõ mã rồi Enter).</summary>
-        [RelayCommand]
-        private async Task QuetMa()
-        {
-            var code = MaQuet?.Trim();
-            MaQuet = null;
-
-            if (!IsEditing || string.IsNullOrEmpty(code))
-                return;
-
-            try
-            {
-                var ts = TaiSansKhaDung.FirstOrDefault(x =>
-                    string.Equals(x.Code, code, StringComparison.OrdinalIgnoreCase));
-
-                if (ts != null)
-                {
-                    if (ThemDong(ts, GhiChuDangNhap))
-                        GhiChuDangNhap = null;
-                    return;
-                }
-
-                // Không có trong danh sách của phòng ban -> tra toàn DB để báo rõ lý do (quy ước quét mã của dự án).
-                var tonTai = await _taiSanDinhDanhService.GetByCodeAsync(code);   // TODO xác nhận: method tra theo mã
-                if (tonTai == null)
-                {
-                    MessageBox.Show($"Không tìm thấy tài sản có mã '{code}'.");
-                    return;
-                }
-
-                MessageBox.Show(
-                    $"Tài sản '{code}' không thể thêm vào phiếu này.\n" +
-                    $"Trạng thái: {tonTai.TrangThaiTaiSan}\n" +
-                    $"Vị trí: {TenViTri(tonTai.ViTriTaiSanId)}");
-            }
-            catch (Exception ex)
-            {
-                _errorDialogService.Show(ex);
-            }
-        }
-
-        private bool ThemDong(TaiSanDinhDanh ts, string? ghiChu)
-        {
-            if (ChiTiets.Any(x => x.TaiSanDinhDanhId == ts.Id))
-            {
-                MessageBox.Show("Tài sản này đã có trong phiếu.");
-                return false;
-            }
-
-            ChiTiets.Add(new PhieuThatLacChiTietFormDto
-            {
-                Id = null,
-                TaiSanDinhDanhId = ts.Id,
-                MaTaiSan = ts.Code,
-                TenTaiSan = ts.Name,
-                Serial = ts.Serial,
-                ViTriTruocId = ts.ViTriTaiSanId,
-                TenViTriTruoc = TenViTri(ts.ViTriTaiSanId),
-                TrangThaiTruoc = ts.TrangThaiTaiSan,    // chỉ để hiển thị, service snapshot lại từ DB khi lưu
-                GhiChu = string.IsNullOrWhiteSpace(ghiChu) ? null : ghiChu.Trim()
-            });
-
-            DuyetCommand.NotifyCanExecuteChanged();
-            return true;
         }
 
         // ---------- duyệt / từ chối ----------

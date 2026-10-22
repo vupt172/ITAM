@@ -216,11 +216,10 @@ namespace ITAM.Infrastructure.Services
                         {
                             vatTu = new VatTu
                             {
-                                Name = chiTiet.TenVatPham,
                                 HangHoaId = chiTiet.HangHoaId,
                                 SoLuongTon = 0,
-                                ViTriTaiSanId = khoNhap.Id,
-                                DonViTinh= chiTiet.HangHoa.DonViTinh
+                                ViTriTaiSanId = khoNhap.Id
+         
                             };
                             _context.VatTu.Add(vatTu);
                         }

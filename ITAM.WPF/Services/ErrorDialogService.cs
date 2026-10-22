@@ -1,11 +1,6 @@
 ﻿using ITAM.WPF.Services.Interfaces;
-using ITAM.WPF.ViewModels;
-using ITAM.WPF.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ITAM.WPF.ViewModels.Dialogs;
+using ITAM.WPF.Views.Dialogs;
 using System.Windows;
 
 namespace ITAM.WPF.Services

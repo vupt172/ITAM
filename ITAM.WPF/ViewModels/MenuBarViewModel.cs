@@ -95,8 +95,20 @@ namespace ITAM.WPF.ViewModels
         [RelayCommand]
         private void NavigatePhieuThatLac() => _navigationService.NavigateTo<PhieuThatLacViewModel>();
         [RelayCommand]
+        private void NavigatePhieuThanhLy()
+        {
+            if (_currentUserContext.Instance?.PhongBan?.Code != PhongBanCodes.KHO_CHO_THANH_LY)
+            {
+                MessageBox.Show("Chức năng Thanh Lý chỉ dùng được khi Phòng Ban mặc định là Kho Chờ Thanh Lý.",
+                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            _navigationService.NavigateTo<PhieuThanhLyViewModel>();   // TODO xác nhận: theo lệnh của menu Thất Lạc
+        }
+        [RelayCommand]
         private void NavigateVatTu() => _navigationService.NavigateTo<VatTuListViewModel>();
-
+        [RelayCommand]
+        private void NavigateDieuChuyenVatTu() => _navigationService.NavigateTo<DieuChuyenVatTuViewModel>();
         [RelayCommand]
         private void NavigateDieuChuyen() => _navigationService.NavigateTo<DieuChuyenViewModel>();
         [RelayCommand]

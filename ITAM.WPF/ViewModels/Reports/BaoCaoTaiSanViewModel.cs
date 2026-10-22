@@ -6,6 +6,7 @@ using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Entities.Catalogs;
 using ITAM.Domain.Enums;
 using ITAM.Domain.Interfaces;
+using ITAM.ViewModels.Reports;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ using System.Windows;
 
 namespace ITAM.WPF.ViewModels.Reports
 {
-    public partial class BaoCaoTaiSanViewModel : ObservableObject
+    public partial class BaoCaoTaiSanViewModel : ReportViewModel
     {
         private readonly IBaoCaoTaiSanService _service;
         private readonly ICatalogService<PhongBan> _phongBanService;
@@ -55,7 +56,7 @@ namespace ITAM.WPF.ViewModels.Reports
             _dmTaiSanService = dmTaiSanService;
         }
 
-        public async Task InitializeAsync()
+        public override async Task InitializeAsync()
         {
             DsPhongBan.Clear();
             foreach (var x in await _phongBanService.GetAllAsync()) DsPhongBan.Add(x);
@@ -170,7 +171,7 @@ namespace ITAM.WPF.ViewModels.Reports
                     ws.Cell(row, 8).Value = item.TenViTri;
                     ws.Cell(row, 9).Value = item.NamSuDung;
                     ws.Cell(row, 10).Value = item.SoPhieuNhapChiTiet;
-                    ws.Cell(row,11).Value = item.GiaNhap;
+                    ws.Cell(row, 11).Value = item.GiaNhap;
                     ws.Cell(row, 12).Value = item.GhiChu;
 
                     row++;

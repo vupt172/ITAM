@@ -203,17 +203,5 @@ namespace ITAM.WPF.ViewModels
             }
         }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

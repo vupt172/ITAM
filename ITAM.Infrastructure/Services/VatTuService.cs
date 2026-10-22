@@ -62,8 +62,6 @@ namespace ITAM.Infrastructure.Services
             var vatTu = await _context.VatTu.FindAsync(dto.Id)
                 ?? throw new InvalidBusinessRuleException("Không tìm thấy Vật Tư.");
 
-            vatTu.Name = dto.Name;
-            vatTu.DonViTinh = dto.DonViTinh;
             vatTu.GhiChu = dto.GhiChu;
 
             await _context.SaveChangesAsync();

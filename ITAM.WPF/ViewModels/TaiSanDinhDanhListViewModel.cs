@@ -4,22 +4,17 @@ using ITAM.AppCore.Common;
 using ITAM.AppCore.DTOs;
 using ITAM.AppCore.Interfaces;
 using ITAM.Domain.Exceptions;
-using ITAM.Domain.Interfaces;
-using ITAM.Infrastructure.Services;
 using ITAM.Shared.Helpers;
 using ITAM.WPF.Services.Interfaces;
+using ITAM.WPF.ViewModels.Dialogs;
 using ITAM.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+
 
 namespace ITAM.WPF.ViewModels
 {

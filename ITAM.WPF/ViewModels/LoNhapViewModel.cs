@@ -10,13 +10,11 @@ using ITAM.Shared.Constants;
 using ITAM.WPF.Constants;
 using ITAM.WPF.Services;
 using ITAM.WPF.Services.Interfaces;
+using ITAM.WPF.ViewModels.Dialogs;
 using ITAM.WPF.Views;
+using ITAM.WPF.Views.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ITAM.WPF.ViewModels

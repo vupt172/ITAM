@@ -72,7 +72,7 @@ public partial class DashboardViewModel : BaseViewModel
 
     public Axis[] ThangXAxes { get; }
 
-    public DashboardViewModel(IDashboardService service, INavigationService navigationService,ICurrentUserContext currentUserContext) : base(navigationService,currentUserContext)
+    public DashboardViewModel(IDashboardService service, INavigationService navigationService) : base(navigationService)
     {
         _service = service;
 

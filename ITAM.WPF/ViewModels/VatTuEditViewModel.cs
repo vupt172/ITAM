@@ -17,17 +17,14 @@ namespace ITAM.WPF.ViewModels
         private long _id;
 
         // Context — chỉ hiển thị
+        [ObservableProperty] private string maHangHoa = string.Empty;
         [ObservableProperty] private string tenHangHoa = string.Empty;
         [ObservableProperty] private int soLuongTon;
         [ObservableProperty] private string tenViTri = string.Empty;
+        [ObservableProperty]private string? donViTinh;
 
         // Cho phép sửa
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [Required(ErrorMessage = "Tên vật tư không được để trống.")]
-        private string name = string.Empty;
-        [ObservableProperty]
-        private string? donViTinh;
+
         [ObservableProperty]
         private string? ghiChu;
 
@@ -51,9 +48,7 @@ namespace ITAM.WPF.ViewModels
                 _id = id;
                 var vt = await _vatTuService.GetByIdAsync(id);
                 if (vt == null) return;
-
-                Name = vt.Name;
-                DonViTinh = vt.DonViTinh;
+                MaHangHoa = vt.HangHoa?.Code ?? string.Empty;
                 TenHangHoa = vt.HangHoa?.Name ?? string.Empty;
                 SoLuongTon = vt.SoLuongTon;
                 GhiChu=vt.GhiChu;
@@ -74,8 +69,6 @@ namespace ITAM.WPF.ViewModels
                 await _vatTuService.UpdateAsync(new UpdateVatTuDto
                 {
                     Id = _id,
-                    Name = Name,
-                    DonViTinh = DonViTinh,
                     GhiChu = GhiChu
                 });
                 RequestClose?.Invoke(this, true);

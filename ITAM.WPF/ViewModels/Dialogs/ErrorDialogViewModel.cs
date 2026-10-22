@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
-namespace ITAM.WPF.Views
+namespace ITAM.WPF.ViewModels.Dialogs
 {
     /// <summary>
     /// ViewModel cho ErrorDialog2 - hiển thị thông tin exception cho người dùng.

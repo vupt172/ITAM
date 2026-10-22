@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ITAM.AppCore.Interfaces;
+using ITAM.ViewModels.Reports;
 using ITAM.WPF.Constants;
 using ITAM.WPF.Models;
 using ITAM.WPF.Services.Interfaces;
@@ -41,8 +42,18 @@ namespace ITAM.WPF.ViewModels
                         new() { Title = "Tổng Hợp Tài Sản",ViewModelType=typeof(TongHopTaiSanViewModel) },
                         new() { Title = "Danh Sách Tài Sản", ViewModelType = typeof(BaoCaoTaiSanViewModel) },
                         new() { Title = "Khấu Hao Tài Sản Cố Định", ViewModelType = typeof(SoTaiSanCoDinhViewModel) },
-                        new() { Title = "Báo Cáo Nhập Tài Sản" },                          // chưa xây
                         new() { Title = "Báo Cáo Điều Chuyển Tài Sản" },                   // chưa xây
+                    ]
+                },
+                    new()
+                {
+                    Title = "Nhập Kho",
+                    IsExpanded = true,
+                    Children =
+                    [
+                        new() { Title = "Báo Cáo Nhập Kho Tổng Hợp",ViewModelType=typeof(BaoCaoNhapTaiSanViewModel) },
+                        new() { Title = "Danh Sách Phiếu Nhập", ViewModelType = typeof(DanhSachPhieuNhapViewModel) },
+                   
                     ]
                 },
                 new()
@@ -82,8 +93,9 @@ namespace ITAM.WPF.ViewModels
         {
             try
             {
-                if (view is BaoCaoTaiSanViewModel bc)
+                if (view is ReportViewModel bc)
                     await bc.InitializeAsync();
+           
             }
             catch (Exception ex)
             {

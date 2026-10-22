@@ -75,9 +75,9 @@ namespace ITAM.WPF.ViewModels
                 _danhSachGoc = list.Select(x => new VatTuListDto
                 {
                     Id = x.Id,
-                    Name = x.Name,
                     MaHangHoa = x.HangHoa?.Code ?? string.Empty,
-                    DonViTinh = x.DonViTinh,
+                    TenHangHoa= x.HangHoa?.Name ?? string.Empty,
+                    DonViTinh = x.HangHoa?.DonViTinh??string.Empty,
                     SoLuongTon = x.SoLuongTon,
                     GhiChu = x.GhiChu,
                     TenViTri = x.ViTriTaiSan?.Name ?? string.Empty,
@@ -126,7 +126,7 @@ namespace ITAM.WPF.ViewModels
 
         private static bool ChuaKeyword(VatTuListDto x, string keyword)
         {
-            return (x.Name?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false)
+            return (x.TenHangHoa?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false)
                 || (x.MaHangHoa?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false)
                 || (x.GhiChu?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false);
         }

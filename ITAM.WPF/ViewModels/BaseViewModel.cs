@@ -21,32 +21,25 @@ namespace ITAM.WPF.ViewModels
         protected virtual bool HasSelection => false;
         public bool IsReadOnly => !IsEditing;
 
-        public BaseViewModel()
+        public BaseViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             InitToolbarState();
             ToolbarContext = GetToolbarContext();
         }
-        public BaseViewModel(INavigationService navigationService,ICurrentUserContext currentUserContext)
+        public BaseViewModel(INavigationService navigationService,ICurrentUserContext currentUserContext):this(navigationService)
         {
-            _navigationService = navigationService;
             _currentUserContext = currentUserContext;
-            InitToolbarState();
-            ToolbarContext = GetToolbarContext();
         }
-        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService)
+        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService):this(navigationService)
         {
-            _navigationService = navigationService;
             _errorDialogService = errorDialogService;
-            InitToolbarState();
-            ToolbarContext = GetToolbarContext();
         }
-        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService, ICurrentUserContext currentUserContext)
+        public BaseViewModel(INavigationService navigationService, IErrorDialogService errorDialogService, ICurrentUserContext currentUserContext):this(navigationService)
         {
-            _navigationService = navigationService;
             _errorDialogService = errorDialogService;
             _currentUserContext = currentUserContext;
-            InitToolbarState();
-            ToolbarContext = GetToolbarContext();
         }
 
         public virtual ToolbarContext GetToolbarContext()

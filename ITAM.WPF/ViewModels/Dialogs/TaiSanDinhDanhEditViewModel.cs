@@ -7,7 +7,7 @@ using ITAM.WPF.Services.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ITAM.WPF.ViewModels
+namespace ITAM.WPF.ViewModels.Dialogs
 {
     public partial class TaiSanDinhDanhEditViewModel : ObservableValidator
     {
